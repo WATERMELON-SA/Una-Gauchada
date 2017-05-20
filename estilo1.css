@@ -1,0 +1,66 @@
+.tituFavor{
+	font-size: 30px;
+	font-family: roboto;
+
+}
+
+.favor{
+	background-color: white;
+	border: solid;
+	border-color: orange;
+	padding: 10px;
+	border-radius: 10px;
+
+}
+
+.descFavor{
+	font-family: tahoma;
+	font-style: italic;
+	font-size: 20px;
+}
+.img-center {
+	margin:0 auto;
+}
+
+.text-primary{
+	color:grey;
+}
+
+.titulo{
+	font-size:80px;
+}
+
+.subtitulo{
+	color: #345476;
+}
+
+.cajaFavor{
+	height:200px;	
+}
+
+.cajaFoto{
+	height:150px;
+	width:150px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footerText{
+	margin-top:10px;
+	font-size:20px;
+}
