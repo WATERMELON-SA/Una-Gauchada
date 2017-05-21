@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html  style="overflow-x: hidden;">
+<html  style="overflow-x: hidden">
 <head>
 	<link rel="shortcut icon" href="logo.png">
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="logo.png">
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="Roboto-Regular.ttf">
-	<link rel="stylesheet" type="text/css" href="estilo1.css">
-	<link rel="javascript" type="text/javascript" href="bootstrap.min.js">
-	<link rel="javascript" type="text/javascript" href="jquery-3.1.1.min.js">
+	<link rel="stylesheet" type="text/css" href="estilo1.css">	
+	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap.min.js"></script>
 	<title>Una Gauchada</title>
 </head>
 
@@ -28,17 +28,21 @@
 </form>
 
 	
-  <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <!--<button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     Menu
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Mis pedidos</a></li>
+    <li><a href="#">Postulaciones</a></li>
+    <li><a href="#">Comprar creditos</a></li>
     <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
+    <li><a href="#">Preguntas</a></li>
   </ul>
+-->
+	<button class="btn btn-default navbar-right navbar-btn" type="button" >
+    	<a href="registrarse.php"> Registrarse</a>
+  </button>
 
 
 	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="iniciarSesion.php">Iniciar sesion</a></button>
@@ -86,12 +90,11 @@
 		</div>
 		<?php
 			include "mostrarFavores.php";
-			mostrarFavores();
+			mostrarFavores()
 		?>
 		
 	</div>
 </div>
-
 
 	  <footer class="footer">
       <div class="container">

@@ -18,6 +18,7 @@
 	font-style: italic;
 	font-size: 20px;
 }
+
 .img-center {
 	margin:0 auto;
 }
@@ -47,10 +48,13 @@ html {
   position: relative;
   min-height: 100%;
 }
+
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  padding-top: 50px;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -63,4 +67,9 @@ body {
 .footerText{
 	margin-top:10px;
 	font-size:20px;
+}
+
+li {
+	text-decoration: none;
+	list-style: none;
 }
