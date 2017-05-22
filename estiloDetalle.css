@@ -1,0 +1,23 @@
+.cajaDetalle{
+	height:600px;
+	margin-top:10%;	
+}
+
+.cajaFoto{
+	
+}
+
+.separador{
+	height:3px;
+	border-radius:5px;
+	width:auto;
+	background-color:darkgreen;
+}
+
+.cajaPreguntas{
+	height:200px;
+}
+
+h2{
+	color:darkslategrey;
+}
