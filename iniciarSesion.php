@@ -46,9 +46,10 @@
 
 <body style="text-align: center; background-color: #e6e6e6;">
 
-			<?php 
+		<?php 
 		include "inicioCorrecto.php";
-	?>
+		?>
+		
 		<h2 style="font-size: 40px">Iniciar sesion</h2>
 		<form action="inicioCorrecto.php"  method="POST">
 			Email:<input type="text" id="email" name="user" placeholder="Correo electrónico" autofocus><br><br>

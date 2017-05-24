@@ -1,6 +1,9 @@
 <?php  
+    session_start();
+    $email=$_POST['email']
+    $contraseña=$_POST['contraseña']
 	function validarRegistro(){
-		return  ((isset($_POST['email'])) and (isset($_POST['contraseña']))  and ($_POST['email'] !='') and ($_POST['contraseña'] != '')) 
+		return  ((isset($email)) and (isset($contraseña))  and ($email !='') and ($contraseña != '')) 
 	}
 
 
@@ -8,18 +11,18 @@
 		include "conexion.php";
 		$mysql = conectar();
 		if (isset($mysql)){
-			$email = $mysql->query("SELECT email FROM usuario WHERE email=$_POST[email]");
-			$contraseña=$mysql->query("SELECT contraseña FROM usuario WHERE email=$_POST[contraseña]");
-			return (isset($email) and isset($contraseña));
-	}
+			$dataBase = $mysql->query("SELECT * FROM usuario WHERE email='$email' AND contraseña='$contraseña' ");
+			return isset($dataBase)
 
-	function inicionSeseada(){ 
+
+				}
 
 	if(validarInicio() and datosCorrectos()){
-				echo "<a href="index.php"><a/>" ;
+			//header("Location: index.php");
+			echo "holaaaa"
 			else
 				echo "Datos incorrectos";
 		}
-	}
+
 
 ?>
