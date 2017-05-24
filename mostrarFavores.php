@@ -15,7 +15,6 @@
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
-		$descripcioncorta = substr($arreglo['descripcion'],0,170);
 		?>
 			<div class="container">
 					<div class="well cajaFavor row">
@@ -24,12 +23,12 @@
 						</div>
 						<div class="col-lg-8 col-xs-8">
 							<h3><?php echo $arreglo["titulo"]?></h3>
-							<h4><?php echo $descripcioncorta ?> ...</h4>
-							<h4>Usuario: <?php echo $arreglonombre["nombre"]?></h4>
-							<a href="detalleFavor.php?idFavor=<?php echo $arreglo['idFavor'] ?>">Ver más</a>
+							<h4><?php echo $arreglo["descripcion"]?></h4>
+							<h5><?php echo $arreglonombre["nombre"]?></h5>
+							<a href="#">Ver más</a>
 						</div>
 						</div>
-					</div>
+					</div>;
 		<?php					
 			$arreglo = $traer->fetch_assoc();
 		}

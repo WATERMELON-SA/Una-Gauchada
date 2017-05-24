@@ -1,28 +1,40 @@
 <?php  
-    session_start();
-    $email=$_POST['email']
-    $contraseña=$_POST['contraseña']
+    
+
+
 	function validarRegistro(){
-		return  ((isset($email)) and (isset($contraseña))  and ($email !='') and ($contraseña != '')) 
+		return  ((isset($_POST['email'])) AND (isset($_POST['contraseña']))  AND ($_POST['email'] !='') AND ($_POST['contraseña'] != '')); 
 	}
 
 
 	function datosCorrectos(){
 		include "conexion.php";
 		$mysql = conectar();
+		$contraseña=$_POST['contraseña'];
+		$email=$_POST['email'];
 		if (isset($mysql)){
-			$dataBase = $mysql->query("SELECT * FROM usuario WHERE email='$email' AND contraseña='$contraseña' ");
-			return isset($dataBase)
-
-
-				}
-
-	if(validarInicio() and datosCorrectos()){
-			//header("Location: index.php");
-			echo "holaaaa"
-			else
-				echo "Datos incorrectos";
+			$dataBase = $mysql->query("SELECT * FROM usuarios WHERE email='$email' AND password='$contraseña'");
+			$dataBase = $dataBase->fetch_assoc();
+			if (isset($dataBase['email'])){
+				return true;
+			}
+			return false;		
 		}
+	}
+
+	if(validarRegistro()){
+		if (datosCorrectos()) {
+			session_start();
+			$_SESION["nombre"]=$dataBase["nombre"];
+			$_SESION["email"]=$dataBase["email"];
+			$_SESION["contraseña"]=$dataBase["contraseña"];
+header("Location: index.php");
+		}
+				
+		else{
+			echo "mal ahee";	
+		}
+	}
 
 
 ?>

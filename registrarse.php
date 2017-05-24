@@ -1,4 +1,47 @@
-<!DOCTYPE html>
+<?php 
+		include "registrarUser.php";
+		if(validarRegistro() and contraOk()){
+			if(registrar()){
+				echo "si";
+			}
+			else
+				echo "no";
+		}
+		/*include "conexion.php";
+		if (isset($_POST['nombre'])) {
+		 	$nombre = $_POST['nombre'];
+		 }
+		 if (isset($_POST['email'])) {
+		 	$email = $_POST['email'];
+		 }
+		 if (isset($_POST['contraseña1'])) {
+		 	$contra = md5($_POST['contraseña1']);
+		 }
+		 if (isset($_POST['telefono'])) {
+		 	$telefono = $_POST['telefono'];
+		 }
+		 if (isset($_POST['localidad'])) {
+		 	$idLocalidad = $_POST['localidad'];
+		 }
+		 if (isset($_POST['fecha_nac'])) {
+		 	$nac = $_POST['fecha_nac'];
+		 }
+			
+			
+			
+			$puntaje = 0;
+			
+			$creditos = 1;
+			$conect= conectar();
+			if (isset($nombre) AND isset($email) AND isset($contra) AND isset($telefono) AND isset($creditos) AND isset($nac) AND isset($idLocalidad)) {
+				echo "SEEEEEE";
+				$ok= $conect->query("INSERT INTO usuarios VALUES('$nombre', '$email', '$idLocalidad',NULL,NULL,'$telefono', '$creditos', '$nac', '$contra')");
+			$conect -> close();
+			return $ok;
+			}*/
+			
+	?>
+	<!DOCTYPE html>
 <html  style="overflow-x: hidden">
 <head>
 	<link rel="shortcut icon" href="logo.png">
@@ -50,22 +93,14 @@
 
 <body style="padding-top: 50px;">
 
-	<?php 
-		include "registrarUsuer.php";
-		if(validarRegistro() and contraOk()){
-			if(registrar()){
-				echo "si";
-			}
-			else
-				echo "no";
-		}
-	?>
+	
 
+<script type="text/javascript" src="obtenerCampos.js"></script>
 
 	<div class="row">
-		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="text-align: center;background-color: #e6e6e6;" >
+		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
 		<b><h1>Bienvenido a Una Gauchada</h1></b>
-			<form  style="" action="registrarse.php" method="POST">
+			<form id="formUsuario" style="" action="registrarse.php" method="POST" onsubmit= "return validar_formulario();">
 				<li>Nombre:<input type="text" name="nombre">*</li><br>
 				<li>Correo electrónico:<input type="text" name="email">*</li><br>
 				<li>Contraseña:<input type="password" name="contraseña1">*</li><br>
@@ -73,7 +108,7 @@
 				<li>Fecha de nacimiento:<input type="date" name="fecha_nac">*</li><br>
 				<li>Teléfono:<input type="text" name="telefono">*</li><br>
 				<li>Localidad:<input type="number" name="localidad">*</li><br>
-				<input type="submit" name="Registrarse">	
+				<input type="submit" value="Registrarse" name="Registrarse">	
 			</form>
 
 		</div>

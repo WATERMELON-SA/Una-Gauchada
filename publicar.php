@@ -4,7 +4,7 @@ include "conexion.php";
 $conect= conectar();
 
 function validarPublicacion(){
-	return ((isset($_POST['idUsuario'])) and (isset($_POST['titulo'])) and (isset($_POST['descripcion'])) and (isset($_POST['localidad'])) and (isset($_POST['categoria']))); 	
+	return ((isset($_POST['idUsuario'])) and ($_POST['idUsuario'] !='') (isset($_POST['titulo'])) and (isset($_POST['descripcion'])) and (isset($_POST['localidad'])) and (isset($_POST['categoria'])) and ($_POST['titulo'] !='') and ($_POST['descripcion'] !='') and ($_POST['localidad'] !='') and ($_POST['categoria'] !='')); 	
 	}
 
 function registrar(){
