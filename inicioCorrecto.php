@@ -10,7 +10,7 @@
 	function datosCorrectos(){
 		include "conexion.php";
 		$mysql = conectar();
-		$contraseña=$_POST['contraseña'];
+		$contraseña=md5($_POST['contraseña']);
 		$email=$_POST['email'];
 		if (isset($mysql)){
 			$dataBase = $mysql->query("SELECT * FROM usuarios WHERE email='$email' AND password='$contraseña'");
