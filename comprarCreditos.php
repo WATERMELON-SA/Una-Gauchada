@@ -45,11 +45,12 @@
 <body>
 	
 <header style="margin-left: 25%"><h2>Compra créditos</h2>
+<img class="img-responsive center-block" href="monedas.jpg">
 <h3>Precio unitario del crédito: $50</h3>
 </header>
 <div style="text-align: center; margin-top: 3%">
-	<h4>Cantidad:  <input type="tel" name="Cantidad"></h4>  
-	<button>Comprar!</button>
+	<h4>Cantidad:  <input type="number" name="Cantidad"></h4>  
+	<button class="btn btn-primary"><a href="compraCorrecta.php"> Comprar </a></button>
 </div>
 
 </body>
