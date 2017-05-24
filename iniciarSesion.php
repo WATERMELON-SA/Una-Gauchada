@@ -52,8 +52,14 @@
 		
 		<h2 style="font-size: 40px">Iniciar sesion</h2>
 		<form action="inicioCorrecto.php"  method="POST">
-			Email:<input type="text" id="email" name="user" placeholder="Correo electrónico" autofocus><br><br>
-			Contrase&ntilde;a:<input type="password" id="pass" placeholder="Contraseña" name="pass"><br><br>
+			<div class="form-group">
+				<label>Email</label></br>
+				<input type="text" class="form-control" style="width: 25%; display: inline-block;;" id="email" name="user" placeholder="Correo electrónico" autofocus><br><br>
+			</div>
+			<div class="form-group">
+				<label>Contrase&ntilde;a</label></br>
+				<input type="password" id="pass" class="form-control" style="width: 25%; display: inline-block;" placeholder="Contraseña" name="pass"><br><br>
+			</div>
 			<input type="submit" name="Ingresar" value="Ingresar" style="width: 20%; height: 1cm;">
 			<br>
 			<br>
