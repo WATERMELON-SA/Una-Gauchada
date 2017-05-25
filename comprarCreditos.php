@@ -43,14 +43,22 @@
 
 </header>
 <body>
-	
-<header style="margin-left: 25%"><h2>Compra créditos</h2>
-<img class="img-responsive center-block" href="monedas.jpg">
-<h3>Precio unitario del crédito: $50</h3>
+<?php
+	if (isset($_POST['cantidad']) AND ($_POST['cantidad'] !='')){
+		header("Location: compra.php");
+	}
+
+?>
+<header style="text-align: center"><h2>Compra créditos y podrás publicar mas favores!!!</h2>
+<img class="img-responsive center-block" style="max-width: 10%" src="monedas.jpg">
+<h3>Precio del crédito: $50</h3>
 </header>
-<div style="text-align: center; margin-top: 3%">
-	<h4>Cantidad:  <input type="number" name="Cantidad"></h4>  
-	<button class="btn btn-primary"><a href="compraCorrecta.php"> Comprar </a></button>
+<div style="text-align: center; margin-top: 2%">
+	<h2>Cantidad:  <input method="POST" class="form-control" style="display:inline-block;width: 6%; height: 40px; font-size: 20px;" type="number" max="30" min="1" name="cantidad"></h2>  
+	<button class="btn btn-primary" style="font-size:20px"><a href="comprarCreditos.php" style="color: white"> Comprar </a></button>
 </div>
+
+
+
 
 </body>
