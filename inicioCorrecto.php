@@ -18,6 +18,7 @@
 			$_SESSION["nombre"] = $dataBase["nombre"];
 			$_SESSION["email"]=$dataBase["email"];
 			$_SESSION["contraseña"]=$dataBase["contraseña"];
+			$_SESSION["id"]=$dataBase["idUsuario"];
 			return true;
 			}
 			return false;		

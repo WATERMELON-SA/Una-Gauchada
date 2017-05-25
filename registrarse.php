@@ -53,7 +53,7 @@
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
 		<b><h1>Bienvenido a Una Gauchada</h1></b>
-			<form id="formUsuario" style="" action="registrarse.php" method="POST" onsubmit= "return validar();">
+			<form id="formUsuario" action="registrarse.php" method="POST" onsubmit= "return validar_formulario();">
 				<li>Nombre:<input type="text" name="nombre" >*</li><br>
 				<li>Correo electrónico:<input type="email" name="email" >*</li><br>
 				<li>Contraseña:<input type="password" name="contraseña1" >*</li><br>
