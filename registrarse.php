@@ -49,18 +49,19 @@
 
 <script type="text/javascript" src="obtenerCampos.js"></script>
 
+
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
 		<b><h1>Bienvenido a Una Gauchada</h1></b>
-			<form id="formUsuario" style="" action="registrarse.php" method="POST" onsubmit= "return validar_formulario();">
-				<li>Nombre:<input type="text" name="nombre" required>*</li><br>
-				<li>Correo electrónico:<input type="text" name="email" required>*</li><br>
-				<li>Contraseña:<input type="password" name="contraseña1" required>*</li><br>
-				<li>Repetir contraseña:<input type="password" name="contraseña2" required>*</li><br>
-				<li>Fecha de nacimiento:<input type="date" name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" required>*</li><br>
-				<li>Teléfono:<input type="text" name="telefono" required>*</li><br>
-				<li>Localidad:<input type="number" min="1" name="localidad" required>*</li><br>
-				<input type="submit" value="Registrarse" name="Registrarse" required>	
+			<form id="formUsuario" style="" action="registrarse.php" method="POST" onsubmit= "return validar();">
+				<li>Nombre:<input type="text" name="nombre" >*</li><br>
+				<li>Correo electrónico:<input type="email" name="email" >*</li><br>
+				<li>Contraseña:<input type="password" name="contraseña1" >*</li><br>
+				<li>Repetir contraseña:<input type="password" name="contraseña2" >*</li><br>
+				<li>Fecha de nacimiento:<input type="date" name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" >*</li><br>
+				<li>Teléfono:<input type="text" name="telefono" >*</li><br>
+				<li>Localidad:<input type="number" min="1" name="localidad" >*</li><br>
+				<input type="submit" value="Registrarse" name="Registrarse">	
 			</form>
 			<br>
 	<?php 
