@@ -45,6 +45,7 @@
 <body>
 <?php
 	if (isset($_POST['cantidad']) AND ($_POST['cantidad'] !='')){
+
 		header("Location: compra.php");
 	}
 

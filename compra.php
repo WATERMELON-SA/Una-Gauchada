@@ -45,31 +45,32 @@
 <body>
 	<h2 style="margin-left: 15%">Ingrese sus datos para poder validar su compra de 
 	<?php 
-	echo " $_POST['cantidad']"
+	echo " '$_POST['cantidad']'";
 	?>
 	créditos por $ 
 	<?php 
 	echo ($_POST['cantidad'] * 50);
+  include "validarCompra.php";
 	?>
 
 	</h2></br>
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="compra.php" method="POST">
 	<div class="form-group">
     <label  class="col-sm-2 control-label">Nombre completo</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control " placeholder="Nombre completo"></br>
+      <input type="text" class="form-control " name="nombre" placeholder="Nombre completo"></br>
     </div>
     <label  class="col-sm-2 control-label">Apellido</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control " placeholder="Apellido"></br>
+      <input type="text" class="form-control " name="apellido" placeholder="Apellido"></br>
     </div>
     <label type="number" class="col-sm-2 control-label">DNI</label>
     <div class="col-sm-10">
-      <input  class="form-control " placeholder="DNI"></br>
+      <input  class="form-control " name="dni" placeholder="DNI"></br>
     </div>
     <label  class="col-sm-2 control-label">Nro tarjeta de débito</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control " placeholder="Nro tarjeta"></br>
+      <input type="number" class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta"></br>
     </div>
 </div>
  
