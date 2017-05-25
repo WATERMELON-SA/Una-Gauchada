@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html  style="overflow-x: hidden;">
 <head>
@@ -41,7 +44,7 @@
   </ul>
 
 
-	<button type="button" class="btn btn-default navbar-btn navbar-right">Iniciar sesion</button>
+	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="iniciarSesion.php">Iniciar sesion</a></button>
 
 
   </div>
@@ -63,15 +66,25 @@
     $traerFavor = $conexion->query("SELECT * FROM favor WHERE idFavor = $idFavor");
     $favor = $traerFavor->fetch_assoc();
     $idUsuario = $favor['idUsuario'];
-    $traerNombre = $conexion->query("SELECT * FROM usuario WHERE idUsuario = $idUsuario");
+    $traerNombre = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario");
     $favorNombre = $traerNombre->fetch_assoc();
   ?>
 
     <div class="container">
       <div class="well cajaDetalle row">
-        <div class="cajaFoto col-lg-4 col-xs-4">
-          <img style="margin-top:20%" class="img-responsive" src="mostrarimagen.php?idFavor=<?php echo $idFavor ?>" alt="">
-        </div>
+        <?php
+              if (is_null($favor['contenidoimagen'])) {
+            ?>
+              <div class="cajaFoto col-lg-4 col-xs-4">
+                <img style="margin-top:20%" class="img-responsive" src="logo.png" alt="">
+              </div>
+            <?php
+              }else{
+            ?>
+            <div class="cajaFoto col-lg-4 col-xs-4">
+              <img style="margin-top:20%" class="img-responsive" src="mostrarimagen.php?idFavor=<?php echo $favor['idFavor']?>" alt="">
+            </div>
+            <?php } ?>
         <div class="col-lg-8 col-xs-8" style="margin-top:5%">
           <h2><?php echo strtoupper($favor["titulo"])?></h2>
           <div class="separador"></div>
@@ -79,12 +92,18 @@
           <h3><?php echo $favor["descripcion"] ?></h3>
           <div class="separador"></div>
           <h3>Peticionante: <?php echo $favorNombre['nombre']?></h3>
+          <?php if (isset($_SESSION['nombre'])) {
+          ?>
+          <button class="btn btn-primary">Ofrecer</button>
+          <?php
+          }
+          ?>
         </div>
       </div>
     </div>
     <div class="container">
       <div class="well cajaPreguntas row">
-        <h1>ACA VAN LAS PREGUNTAS</h1>
+        <h1 style="text-align:center;">ACA VAN LAS PREGUNTAS</h1>
       </div>
     </div>
 

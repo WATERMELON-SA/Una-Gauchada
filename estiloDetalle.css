@@ -11,7 +11,7 @@
 	height:3px;
 	border-radius:5px;
 	width:auto;
-	background-color:darkgreen;
+	background-color:grey;
 }
 
 .cajaPreguntas{
@@ -19,5 +19,5 @@
 }
 
 h2{
-	color:darkslategrey;
+	color:lightseagreen;
 }

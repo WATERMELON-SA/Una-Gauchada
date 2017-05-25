@@ -56,6 +56,8 @@
     <li><a href="#">Preguntas</a></li>
   </ul>
   </li>
+  <?php if (!isset($_SESSION['nombre'])) {
+  ?>
 
 	<button class="btn btn-default navbar-right navbar-btn" type="button" >
     	<a href="registrarse.php"> Registrarse</a>
@@ -63,7 +65,9 @@
 
 
 	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="iniciarSesion.php">Iniciar sesion</a></button>
-
+   <?php 
+	}
+	?>
 
   </div>
 </nav>

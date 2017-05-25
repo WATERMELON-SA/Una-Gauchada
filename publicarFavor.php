@@ -20,6 +20,17 @@
 	else{
 		header("Location: index.php");
 	}
+	include "conexion.php";
+	$conection = conectar();
+	$consulta = $conection->query("SELECT * FROM localidad");
+	if ($consulta != false) {
+		$localidades = $consulta->fetch_assoc();
+	}
+	$consulta2 = $conection->query("SELECT * FROM categoria");
+	if ($consulta2 != false) {
+		$categorias = $consulta2->fetch_assoc();
+	}
+	
 ?>
 
 
@@ -83,12 +94,30 @@
 				<li>Título:<input type="text" name="titulo" >*</li><br>
 				<li>Descripcion:<textarea style="width: 500px; height: 150px;" name="descripcion" ></textarea>*</li><br>
 				<li>Fecha de vencimiento:<input type="date" name="fecha_venc"  min="<?php echo (date('Y-m-d', strtotime('+1 day'))); ?>">*</li><br>
-				<li>Localidad:<input type="number"  min="1" name="localidad" >*</li><br>
-				<li>Categoria:<input type="number"  min="1" name="categoria">*</li><br>
-				<li><input type="file" name="imagen" id="imagen"></li><br>
+				<li>Localidad:<select name="localidad">
+				<?php
+					while (isset($localidades)) {
+				?>
+					<option value="<?php echo $localidades['idLocalidad']?>"> <?php echo $localidades['nombre']?></option>
+				<?php
+					$localidades = $consulta->fetch_assoc();
+				}
+				?>
+				</select>*</li><br>
+				<li>Categoria:<select name="categoria">
+				<?php
+					while (isset($categorias)) {
+				?>
+					<option value="<?php echo $categorias['idCategoria']?>"> <?php echo $categorias['nombre']?></option>
+				<?php
+					$categorias = $consulta2->fetch_assoc();
+				}
+				?>
+				</select>*</li><br>
+				<li><input style="display:inline;"type="file" name="imagen" id="imagen"></li><br>
 				<li>La imagen es opcional, si no tienes una ahora no te preocupes!!</li><br>
 				<li><input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id']; ?>"></li>
-				<input type="submit" value="Publicar Favor" name="Publicar">		
+				<input type="submit" class="btn btn-primary" value="Publicar Favor" name="Publicar">		
 			</form>
 			<br>
 	<?php 

@@ -1,3 +1,12 @@
+<?php
+	include "conexion.php";
+	$conection = conectar();
+	$consulta = $conection->query("SELECT * FROM localidad");
+	if ($consulta != false) {
+		$localidades = $consulta->fetch_assoc();
+	}
+?>
+
 <!DOCTYPE html>
 <html  style="overflow-x: hidden">
 <head>
@@ -16,7 +25,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-  <a href="muestra1.html"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
+  <a href="index.php"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
 
 
    <form class="navbar-form navbar-left" role="search">
@@ -60,8 +69,17 @@
 				<li>Repetir contraseña:<input type="password" name="contraseña2" >*</li><br>
 				<li>Fecha de nacimiento:<input type="date" name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" >*</li><br>
 				<li>Teléfono:<input type="text" name="telefono" >*</li><br>
-				<li>Localidad:<input type="number" min="1" name="localidad" >*</li><br>
-				<input type="submit" value="Registrarse" name="Registrarse">	
+				<li>Localidad:<select name="localidad">
+				<?php
+					while (isset($localidades)) {
+				?>
+					<option value="<?php echo $localidades['idLocalidad']?>"> <?php echo $localidades['nombre']?></option>
+				<?php
+					$localidades = $consulta->fetch_assoc();
+				}
+				?>
+				</select>*</li><br>
+				<input class="btn btn-primary" type="submit" value="Registrarse" name="Registrarse">	
 			</form>
 			<br>
 	<?php 
