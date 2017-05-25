@@ -57,28 +57,19 @@
 				<li>Correo electrónico:<input type="text" name="email" required>*</li><br>
 				<li>Contraseña:<input type="password" name="contraseña1" required>*</li><br>
 				<li>Repetir contraseña:<input type="password" name="contraseña2" required>*</li><br>
-				<li>Fecha de nacimiento:<input type="date" name="fecha_nac" required>*</li><br>
+				<li>Fecha de nacimiento:<input type="date" name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" required>*</li><br>
 				<li>Teléfono:<input type="text" name="telefono" required>*</li><br>
-				<li>Localidad:<input type="number" name="localidad" required>*</li><br>
+				<li>Localidad:<input type="number" min="1" name="localidad" required>*</li><br>
 				<input type="submit" value="Registrarse" name="Registrarse" required>	
 			</form>
 			<br>
-			<?php 
+	<?php 
 		include "registrarUser.php";
 		if(validarRegistro()) {
-			if (contraOk()){
-				if(registrar()){
-					echo "<p style='color: green;>Tu cuenta ha sido creada con éxito. Ahora <a href='iniciarSesion.php'>Inicia Sesion</a></p>";
-				}
-				else{
-					echo "<p style='color: red;''>Ya existe una cuenta con ese email, por favor prueba con uno diferente</p>";
-				}
-			}
-			else{
-				echo "<p style='color: red;''>Las contraseñas no coinciden, por favor ingreselas nuevamente</p>";
-			}
+			$ret =registrar();
+			echo $ret;
 		}
-?>
+	?>
 
 		</div>
 	

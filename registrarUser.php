@@ -18,8 +18,22 @@
 		return (isset($arreglo['email']));
 	}
 
+	function edadCorrecta(){
+		$mayor16 = date('Y-m-d', strtotime('-16 year'));
+		return ($_POST['fecha_nac'] <= $mayor16);
+	}
+
 	function registrar(){
-		if (!correoExistente()) {
+		if (!contraOk()){
+			return "<p style='color: red;'>Las contraseñas no coinciden, por favor ingreselas nuevamente</p>";
+		}
+		if (correoExistente()) {
+			return "<p style='color: red;'>Ya existe una cuenta con ese email, por favor prueba con uno diferente</p>";
+		}	
+		if (!(edadCorrecta())) {
+			return "<p style='color: red;'>Debes ser mayor de 16 años para poder registrarte</p>";
+		}	
+		
 			$nombre = $_POST['nombre'];
 			$email = $_POST['email'];
 			$contra = md5($_POST['contraseña1']);
@@ -31,10 +45,12 @@
 			$conect= conectar();
 			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,password) VALUES ('$nombre','$email','$idLocalidad','$telefono','0','$nac','$contra')";
 			$ok= $conect->query($sql);
-			echo $ok;
 			$conect -> close();
-			return $ok;
-		}
+			if ($ok){
+				return "<p style='color: green;'>Tu cuenta ha sido creada con éxito. Ahora <a href='iniciarSesion.php'>Inicia Sesion</a></p>";
+			}
+			else{
+				return "<p style='color: red;'>Tu cuenta no se ha podido crear</p>";
+			}
 	}
-
 ?>
