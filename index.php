@@ -1,11 +1,3 @@
-<?php
-	session_start();
-	if(isset ($_SESSION['nombre']){
-		$inicio=true;
-	}
-?>
-
-
 <!DOCTYPE html>
 <html  style="overflow-x: hidden">
 <head>
@@ -19,6 +11,15 @@
 	<script type="text/javascript" src="bootstrap.min.js"></script>
 	<title>Una Gauchada</title>
 </head>
+
+<?php
+	session_start();
+	if(isset ($_SESSION['nombre'])){
+		$inicio=true;
+	}
+?>
+
+
 
 <header>
 
@@ -37,22 +38,24 @@
 
 	
   <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <li class="dropdown">
   <?php
-	if($inicio){
-		echo "Bienvenido .$_SESSION['nombre']";
+	if(isset($inicio) AND ($inicio)){
+		echo "Bienvenido ".$_SESSION['nombre'];
 	} else {
 	echo "Menu";
 	}
   ?>
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
     <li><a href="#">Mis pedidos</a></li>
     <li><a href="#">Postulaciones</a></li>
     <li><a href="#">Comprar creditos</a></li>
     <li role="separator" class="divider"></li>
     <li><a href="#">Preguntas</a></li>
   </ul>
+  </li>
 
 	<button class="btn btn-default navbar-right navbar-btn" type="button" >
     	<a href="registrarse.php"> Registrarse</a>
@@ -64,3 +67,56 @@
 
   </div>
 </nav>
+
+
+
+
+
+
+		<img style="width: 100%;" src="banner.png">
+
+
+</header>
+
+<body style="background-color: #e6e6e6; padding-top: 50px;">
+
+
+
+
+
+<div class="row" style="text-align:center">
+		<img src="logo.png">
+		<h2 class="text-center text-primary subtitulo">Date una vuelta y fijate si podes ayudar</h2>
+	</div>
+
+	<br><br><br><br><br>
+
+	<div class="container">
+		<div class="container">
+			<div class="well cajaFavor row">
+				<div class="cajaFoto col-lg-4 col-xs-4">
+					<img style="margin-top:20%" class="img-responsive" src="burro.jpg" alt="burro">
+				</div>
+				<div class="col-lg-8 col-xs-8">
+					<h3>Titulo</h3>
+					<h4>Descripcion</h4>
+					<h5>Usuario</h5>
+					<a href="#">Ver más</a>
+				</div>
+			</div>
+		</div>
+		<?php
+			include "mostrarFavores.php";
+			mostrarFavores()
+		?>
+		
+	</div>
+</div>
+
+	  <footer class="footer">
+      <div class="container">
+        <p class="footerText subtitulo text-center">DEVELOPED BY Watermelon Web Development S.A.</p>
+      </div>
+    </footer>
+</body>
+</html>

@@ -11,7 +11,7 @@
 	
 	while (isset($arreglo)) { 
 		$idUsuario = $arreglo['idUsuario'];
-		$traernombre = $mysql->query("SELECT nombre FROM usuario WHERE idUsuario = $idUsuario ");
+		$traernombre = $mysql->query("SELECT nombre FROM usuarios WHERE idUsuario = $idUsuario ");
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
@@ -28,7 +28,7 @@
 							<a href="#">Ver más</a>
 						</div>
 						</div>
-					</div>;
+					</div>
 		<?php					
 			$arreglo = $traer->fetch_assoc();
 		}

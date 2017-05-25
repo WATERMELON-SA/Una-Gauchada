@@ -9,7 +9,7 @@
 	$telefono= $_POST['telefono'];
 	$creditos = 1;
 	$localidad = $_POST['localidad'];
-	$result = $link -> query("INSERT INTO usuario (nombre, email, telefono, localidad, creditos, fecha_nac, puntaje, contraseña) VALUES ('$nombre', '$email', '$telefono', '$localidad', '$creditos', '$nac', '$puntaje', '$contra')");
+	$result = $link -> query("INSERT INTO usuarios (nombre, email, telefono, localidad, creditos, fecha_nac, puntaje, contraseña) VALUES ('$nombre', '$email', '$telefono', '$localidad', '$creditos', '$nac', '$puntaje', '$contra')");
 	$link -> close();
 
 ?>

@@ -13,14 +13,13 @@
 	function correoExistente(){
 		$email = $_POST['email'];
 		$link = conectar();
-		$comprobar = $link->query("SELECT * FROM usuario WHERE email = '$email'");
-		echo $comprobar;
+		$comprobar = $link->query("SELECT * FROM usuarios WHERE email = '$email'");
 		$arreglo = $comprobar->fetch_assoc();
 		return (isset($arreglo['email']));
 	}
 
 	function registrar(){
-		//if (!correoExistente()) {
+		if (!correoExistente()) {
 			$nombre = $_POST['nombre'];
 			$email = $_POST['email'];
 			$contra = md5($_POST['contraseña1']);
@@ -30,12 +29,12 @@
 			$creditos = 1;
 			$idLocalidad = $_POST['localidad'];
 			$conect= conectar();
-			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,contraseña) VALUES ('$nombre','$email','$idLocalidad','$telefono','0','$nac','$contra')";
+			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,password) VALUES ('$nombre','$email','$idLocalidad','$telefono','0','$nac','$contra')";
 			$ok= $conect->query($sql);
 			echo $ok;
 			$conect -> close();
 			return $ok;
-		//}
+		}
 	}
 
 ?>
