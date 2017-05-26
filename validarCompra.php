@@ -1,36 +1,27 @@
 <?php 
 	session_start();
-	if(isset ($_SESSION['nombre'])){
-		$inicio=true;
-	}
-
-	function validar(){
+function validar(){
 		return ((isset($_POST['nombre'])) and (isset($_POST['apellido'])) and (isset($_POST['DNI'])) and (isset($_POST['nroTarjeta'])) and ($_POST['nombre'] !='') and ($_POST['apellido'] !='') and ($_POST['DNI'] != '') and ($_POST['nroTarjeta'] != ''));
 	}
 
 	function actualizarBD(){
 		include "conexion.php";
+		$masCreditos= $_SESSION['creditos'] + $_POST['cantidad'];
+		$id = $_SESSION['id'];
 		$link = conectar();
-		$link->query(" UPDATE usuarios SET cantCreditos=cantCreditos+1 WHERE email='$_SESSION['email']'");
-
+		$link->query("UPDATE usuarios u SET u.creditos= $masCreditos WHERE u.idUsuario=$id");
+		$_SESSION['creditos']= $masCreditos;
 	}
 
-	if validar(){
+	if (validar()){
 		if (($_POST['nombre'] !='') and ($_POST['apellido'] !='') and ($_POST['DNI'] != '') and ($_POST['nroTarjeta'] != '')){
 			actualizarBD();
-			<script> alert("Tu compra se realizo exitosamente") </script>
-			header("Location: index.php");
-
+			header("Location: index.php?comprado=1");
 		}
-		else{
-			echo "Faltan completar campos";
-		}
-
-
 	}
-
-
-
+	else{
+			header("Location: comprarCreditos.php?comprado=0");
+		}
 
 
 ?>

@@ -1,5 +1,4 @@
 <?php
-	include "conexion.php";
 
 	function validarRegistro(){
 		return ((isset($_POST['nombre'])) and (isset($_POST['email'])) and (isset($_POST['fecha_nac'])) and (isset($_POST['telefono'])) and (isset($_POST['localidad'])) and (isset($_POST['contraseña1'])) and (isset($_POST['contraseña2'])) and ($_POST['nombre'] !='') and ($_POST['email'] !='') and ($_POST['fecha_nac'] != '') and ($_POST['telefono'] != '') and ($_POST['localidad'] != '') and ($_POST['contraseña1'] != '') and ($_POST['contraseña2']!= ''));
@@ -23,7 +22,7 @@
 		return ($_POST['fecha_nac'] <= $mayor16);
 	}
 
-	function registrar(){
+	function registrar($conect){
 		if (!contraOk()){
 			return "<p style='color: red;'>Las contraseñas no coinciden, por favor ingreselas nuevamente</p>";
 		}
@@ -42,8 +41,7 @@
 			$telefono= $_POST['telefono'];
 			$creditos = 1;
 			$idLocalidad = $_POST['localidad'];
-			$conect= conectar();
-			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,password) VALUES ('$nombre','$email','$idLocalidad','$telefono','0','$nac','$contra')";
+			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,password) VALUES ('$nombre','$email','$idLocalidad','$telefono','$creditos','$nac','$contra')";
 			$ok= $conect->query($sql);
 			$conect -> close();
 			if ($ok){

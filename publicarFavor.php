@@ -20,26 +20,13 @@
 	else{
 		header("Location: index.php");
 	}
-	include "conexion.php";
-	$conection = conectar();
-	$consulta = $conection->query("SELECT * FROM localidad");
-	if ($consulta != false) {
-		$localidades = $consulta->fetch_assoc();
-	}
-	$consulta2 = $conection->query("SELECT * FROM categoria");
-	if ($consulta2 != false) {
-		$categorias = $consulta2->fetch_assoc();
-	}
-	
 ?>
-
-
 
 <header>
 
 <nav class="navbar navbar-default navbar-fixed-top">
   <div class="container">
-  <a href="muestra1.html"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
+  <a href="index.php"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
 
 
    <form class="navbar-form navbar-left" role="search">
@@ -65,53 +52,43 @@
   <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
     <li><a href="#">Mis pedidos</a></li>
     <li><a href="#">Postulaciones</a></li>
-    <li><a href="#">Comprar creditos</a></li>
-    <li role="separator" class="divider"></li>
+    <li><a href="comprarCreditos.php">Comprar creditos</a></li>
     <li><a href="#">Preguntas</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
   </ul>
   </li>
-
-
   </div>
 </nav>
-
 		<img style="width: 100%;" src="banner.png">
-
-
 </header>
 
 <body style="padding-top: 50px;">
 
-
 <script type="text/javascript" src="obtenerCampos.js"></script>
-
-
+<?php
+	include "conexion.php";
+	$conect = conectar();
+	include "listador.php";
+?>
 
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
 		<b><h1>Publica un Favor</h1></b>
-			<form id="formUsuario" enctype="multipart/form-data" action="publicarFavor.php" method="POST" onsubmit= "return validar_formulario();">
+			<form id="formUsuario" enctype="multipart/form-data" action="publicarFavor.php" onsubmit= "return validar_formulario();" method="POST" >
 				<li>Título:<input type="text" name="titulo" >*</li><br>
 				<li>Descripcion:<textarea style="width: 500px; height: 150px;" name="descripcion" ></textarea>*</li><br>
 				<li>Fecha de vencimiento:<input type="date" name="fecha_venc"  min="<?php echo (date('Y-m-d', strtotime('+1 day'))); ?>">*</li><br>
 				<li>Localidad:<select name="localidad">
+				<option value="" selected>Selecciona una localidad</option>
 				<?php
-					while (isset($localidades)) {
-				?>
-					<option value="<?php echo $localidades['idLocalidad']?>"> <?php echo $localidades['nombre']?></option>
-				<?php
-					$localidades = $consulta->fetch_assoc();
-				}
+					listarLocalidades($conect);
 				?>
 				</select>*</li><br>
 				<li>Categoria:<select name="categoria">
-				<?php
-					while (isset($categorias)) {
-				?>
-					<option value="<?php echo $categorias['idCategoria']?>"> <?php echo $categorias['nombre']?></option>
-				<?php
-					$categorias = $consulta2->fetch_assoc();
-				}
+				<option value="" selected>Selecciona una categoría</option>
+				<?php 
+					listarCategorias($conect);
 				?>
 				</select>*</li><br>
 				<li><input style="display:inline;"type="file" name="imagen" id="imagen"></li><br>
@@ -123,7 +100,7 @@
 	<?php 
 		include "publicar.php";
 		if (validarPublicacion()) {
-			$ret= publicar();
+			$ret= publicar($conect);
 			echo $ret;
 		}
 

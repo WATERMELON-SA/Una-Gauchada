@@ -58,7 +58,7 @@
 		<img style="width: 100%;" src="banner.png">
 </header>
 
-<body>
+<body style="padding-top: 50px;">
   <?php
     include "conexion.php";
     $conexion = conectar();

@@ -46,9 +46,13 @@
 
 <body style="text-align: center; background-color: #e6e6e6;">
 
-		<?php 
+	<?php 
 		include "inicioCorrecto.php";
-		?>
+		session_start();
+		if(isset ($_SESSION['nombre'])){
+			header("Location: index.php");
+		}
+	?>
 		
 		<h2 style="font-size: 40px">Iniciar sesion</h2>
 		<form action="iniciarSesion.php"  method="POST">
@@ -60,7 +64,7 @@
 				<label>Contrase&ntilde;a</label></br>
 				<input type="password" id="pass" class="form-control" style="width: 25%; display: inline-block;" placeholder="Contraseña" name="contraseña"><br><br>
 			</div>
-			<input type="submit" name="Ingresar" value="Ingresar" style="width: 20%; height: 1cm;">
+			<input type="submit" class="btn btn-primary" name="Ingresar" value="Ingresar" style="width: 20%; height: 1cm;">
 			<br>
 			<br>
 			&iquest;A&uacute;n no tienes una cuenta? <a href="registrarse.php" style="text-decoration:none"> Registrate </a>

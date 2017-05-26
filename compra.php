@@ -42,19 +42,27 @@
 
 
 </header>
+
+<?php
+    if (!isset($_POST['cantidad']) || ($_POST['cantidad'] =='')){
+      header("Location: comprarCreditos.php?Fallo");
+  }
+
+?>
+
 <body>
 	<h2 style="margin-left: 15%">Ingrese sus datos para poder validar su compra de 
 	<?php 
-	echo " '$_POST['cantidad']'";
+	echo $_POST['cantidad'];
 	?>
 	créditos por $ 
 	<?php 
 	echo ($_POST['cantidad'] * 50);
-  include "validarCompra.php";
 	?>
 
 	</h2></br>
-	<form class="form-horizontal" action="compra.php" method="POST">
+
+	<form class="form-horizontal" action="validarCompra.php" method="POST">
 	<div class="form-group">
     <label  class="col-sm-2 control-label">Nombre completo</label>
     <div class="col-sm-10">
@@ -66,7 +74,7 @@
     </div>
     <label type="number" class="col-sm-2 control-label">DNI</label>
     <div class="col-sm-10">
-      <input  class="form-control " name="dni" placeholder="DNI"></br>
+      <input  class="form-control " name="DNI" placeholder="DNI"></br>
     </div>
     <label  class="col-sm-2 control-label">Nro tarjeta de débito</label>
     <div class="col-sm-10">
@@ -82,6 +90,7 @@
     
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
+    <input type="hidden" name="cantidad" value="<?php echo $_POST['cantidad']; ?>">
       <button type="submit" class="btn btn-primary">Validar Compra</button>    (En cuanto presione validar compra esta se efectuará)
     </div>
   </div>

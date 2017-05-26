@@ -19,6 +19,7 @@
 			$_SESSION["email"]=$dataBase["email"];
 			$_SESSION["contraseña"]=$dataBase["contraseña"];
 			$_SESSION["id"]=$dataBase["idUsuario"];
+			$_SESSION['creditos']= $dataBase['creditos'];
 			return true;
 			}
 			return false;		
@@ -31,7 +32,7 @@
 		}
 				
 		else{
-			echo "mal ahee";	
+			echo "<p style='margin-top:30px; color:red'>Datos incorrectos, verifiquelos</p>";	
 		}
 	}
 

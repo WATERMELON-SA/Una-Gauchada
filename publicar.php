@@ -9,13 +9,26 @@ function validarFecha(){
 	return ($_POST['fecha_venc'] > $valida);
 }
 
+function validarCreditos($conect){
+	$id= $_SESSION['id'];
+	$creditos = $conect -> query("SELECT creditos FROM usuarios WHERE idUsuario='$id'");
+	$creditos = $creditos->fetch_assoc();
+	return ($creditos['creditos']);
+}
 
-function publicar(){
+
+function actualizarCreditos($conect){
+	$cant=$_SESSION['creditos'] -1;
+	$id= $_SESSION['id'];
+	$valor= $conect->query("UPDATE usuarios u SET u.creditos=$cant WHERE u.idUsuario=$id");
+	$_SESSION['creditos']= $cant;
+	return $valor;
+}
+
+function publicar($conect){
 	if (!validarFecha()) {
 		return "La fecha debe ser mayor al día de hoy";
 	}
-	include "conexion.php";
-	$conect= conectar();
 	$idUsuario=$_POST['idUsuario'];
 	$titulo= $_POST['titulo'];
 	$descripcion= $_POST['descripcion'];
@@ -23,22 +36,22 @@ function publicar(){
 	$idLocalidad= $_POST['localidad'];
 	$categoria= $_POST['categoria'];
 	$venc=$_POST['fecha_venc'];
-
+	if (!actualizarCreditos($conect)) {
+		return "Tus créditos no se han podido actualizar, comprueba tener suficientes";
+	}
 	if ($_FILES['imagen']['tmp_name']!='') {
   		$filetype =$_FILES['imagen']['type'];
   		$filecontent = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
   		$arraytype=explode('/', $filetype);
   		$deftype = $arraytype[1];
+  		$publicado= $conect -> query("INSERT INTO favor (idUsuario, titulo, descripcion, completo, idLocalidad, idCategoria, fecha_vencimiento, contenidoimagen, tipoimagen) VALUES('$idUsuario', '$titulo', '$descripcion', '$completo', '$idLocalidad', '$categoria', '$venc', '$filecontent', '$deftype')");
 	}
 	else{
-		$deftype= NULL;
-		$filecontent= NULL;
+		$publicado= $conect -> query("INSERT INTO favor (idUsuario, titulo, descripcion, completo, idLocalidad, idCategoria, fecha_vencimiento) VALUES('$idUsuario', '$titulo', '$descripcion', '$completo', '$idLocalidad', '$categoria', '$venc')");
 	}
-
-	$publicado= $conect -> query("INSERT INTO favor (idUsuario, titulo, descripcion, completo, idLocalidad, idCategoria, fecha_vencimiento, contenidoimagen, tipoimagen) VALUES('$idUsuario', '$titulo', '$descripcion', '$completo', '$idLocalidad', '$categoria', '$venc', '$filecontent', '$deftype')");
 	if ($publicado)
-		return "Tu producto ha sido publicado con éxito";
-	return "Tu producto no ha podido ser publicado";
+		return "Tu favor ha sido publicado con éxito";
+	return "Tu favor no ha podido ser publicado";
 }
 
  ?>
