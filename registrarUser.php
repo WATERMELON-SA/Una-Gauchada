@@ -24,13 +24,13 @@
 
 	function registrar($conect){
 		if (!contraOk()){
-			return "<p style='color: red;'>Las contraseñas no coinciden, por favor ingreselas nuevamente</p>";
+			return "Las contraseñas no coinciden, por favor ingreselas nuevamente";
 		}
 		if (correoExistente()) {
-			return "<p style='color: red;'>Ya existe una cuenta con ese email, por favor prueba con uno diferente</p>";
+			return "Ya existe una cuenta con ese email, por favor prueba con uno diferente";
 		}	
 		if (!(edadCorrecta())) {
-			return "<p style='color: red;'>Debes ser mayor de 16 años para poder registrarte</p>";
+			return "Debes ser mayor de 16 años para poder registrarte";
 		}	
 		
 			$nombre = $_POST['nombre'];
@@ -45,10 +45,18 @@
 			$ok= $conect->query($sql);
 			$conect -> close();
 			if ($ok){
-				return "<p style='color: green;'>Tu cuenta ha sido creada con éxito. Ahora <a href='iniciarSesion.php'>Inicia Sesion</a></p>";
+?>
+				<form id="myform" action="inicioCorrecto.php" method="POST">
+					<input type="hidden" name="email" id="email" value="<?php echo $_POST['email']; ?>">
+					<input type="hidden" name="contraseña" id="pass" value="<?php echo $_POST['contraseña1']; ?>">
+				</form>
+				<script type="text/javascript">
+					document.getElementById('myform').submit();
+				</script>
+<?php
+				return "Tu cuenta fue creada con éxito";
 			}
-			else{
-				return "<p style='color: red;'>Tu cuenta no se ha podido crear</p>";
-			}
+			else
+				return "Tu cuenta no se ha podido crear";
 	}
 ?>

@@ -47,8 +47,6 @@
 
 	
 
-<script type="text/javascript" src="obtenerCampos.js"></script>
-
 <?php
 	include "conexion.php";
 	$conection = conectar();
@@ -58,19 +56,54 @@
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
 		<b><h1>Bienvenido a Una Gauchada</h1></b>
-			<form id="formUsuario" action="registrarse.php" method="POST" onsubmit= "return validar_formulario();">
-				<li>Nombre:<input type="text" name="nombre" required>*</li><br>
-				<li>Correo electrónico:<input type="email" name="email" required>*</li><br>
-				<li>Contraseña:<input type="password" name="contraseña1" required >*</li><br>
-				<li>Repetir contraseña:<input type="password" name="contraseña2" required>*</li><br>
-				<li>Fecha de nacimiento:<input type="date" required name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" >*</li><br>
-				<li>Teléfono:<input type="text" required name="telefono" >*</li><br>
-				<li>Localidad:<select name="localidad" required>
-				<option value="" selected>Selecciona una localidad</option>
-					<?php
-						listarLocalidades($conection);
-					?>
-				</select>*</li><br>
+			<form class="form-horizontal" action="registrarse.php" method="POST">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nombre">Nombre:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="nombre" maxlength="35" required placeholder="Juan Perez">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="email">Correo electrónico:</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" name="email" maxlength="40" required placeholder="juanperez@ejemplo.com">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="contraseña1">Contraseña:</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" name="contraseña1" maxlength="15" minlength="4" required placeholder="Tu contraseña">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="contraseña2">Repetir contraseña:</label>
+					<div class="col-sm-10">
+						<input type="password" class="form-control" name="contraseña2" maxlength="15" minlength="4" required placeholder="Tu contraseña">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="fecha_nac">Fecha de nacimiento:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" required name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" >
+					</div>
+				</div>	
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="telefono">Teléfono:</label>
+					<div class="col-sm-10">
+						<input type="number" class="form-control" required maxlength="20" name="telefono" placeholder="011-15-1234567" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="localidad">Localidad:</label>
+					<div class="col-sm-10">
+						<select name="localidad" class="form-control" required>
+							<option value="" selected>Selecciona una localidad</option>
+							<?php
+								listarLocalidades($conection);
+							?>
+						</select>
+					</div>
+				</div>																							
 				<input class="btn btn-primary" type="submit" value="Registrarse" name="Registrarse">	
 			</form>
 			<br>
@@ -78,7 +111,11 @@
 		include "registrarUser.php";
 		if(validarRegistro()) {
 			$ret =registrar($conection);
-			echo $ret;
+	?>	
+		<script type="text/javascript">
+			alert("<?php echo $ret; ?>");
+		</script>
+	<?php	
 		}
 	?>
 		</div>
