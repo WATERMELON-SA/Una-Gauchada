@@ -49,9 +49,11 @@ function publicar($conect){
 	else{
 		$publicado= $conect -> query("INSERT INTO favor (idUsuario, titulo, descripcion, completo, idLocalidad, idCategoria, fecha_vencimiento) VALUES('$idUsuario', '$titulo', '$descripcion', '$completo', '$idLocalidad', '$categoria', '$venc')");
 	}
-	if ($publicado)
-		return "Tu favor ha sido publicado con éxito";
-	return "Tu favor no ha podido ser publicado";
+	if (!$publicado){
+		return "Tu favor no ha podido ser publicado";
+	}
+	
+	header("Location: detalleFavor.php");	
 }
 
  ?>
