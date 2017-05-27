@@ -54,6 +54,6 @@ function publicar($conect){
 		devolverCredito($conect);
 		return "Tu favor no ha podido ser publicado";
 	}
-	header("Location:index.php");	
+	return true;	
 }
  ?>

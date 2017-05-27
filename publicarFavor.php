@@ -1,3 +1,21 @@
+	<?php 
+	include "conexion.php";
+	$conect = conectar();
+	include "listador.php";
+		include "publicar.php";
+		if (validarPublicacion()) {
+			$ret= publicar($conect);
+			if ($ret) {
+				header("Location: index.php");
+			}
+	?>	
+		<script type="text/javascript">
+			alert("<?php echo $ret; ?>");
+		</script>
+	<?php	
+		}
+	?>
+	
 <!DOCTYPE html>
 <html  style="overflow-x: hidden">
 <head>
@@ -66,11 +84,6 @@
 <body style="padding-top: 50px;">
 
 <script type="text/javascript" src="obtenerCampos.js"></script>
-<?php
-	include "conexion.php";
-	$conect = conectar();
-	include "listador.php";
-?>
 
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
@@ -131,18 +144,6 @@
 				<input class="btn btn-primary" type="submit" value="Publicar Favor" name="Publicar">	
 			</form>
 
-	<?php 
-		include "publicar.php";
-		if (validarPublicacion()) {
-			$ret= publicar($conect);
-	?>	
-		<script type="text/javascript">
-			alert("<?php echo $ret; ?>");
-		</script>
-	<?php	
-		}
-	?>
-	
 		</div>
 	
 	</div>
