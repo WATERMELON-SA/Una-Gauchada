@@ -1,22 +1,17 @@
 <?php 
-
 function validarPublicacion(){
 	return ( (isset($_POST['idUsuario'])) and ($_POST['idUsuario'] !='') and (isset($_POST['titulo'])) and (isset($_POST['descripcion'])) and (isset($_POST['localidad'])) and (isset($_POST['categoria'])) and ($_POST['titulo'] !='') and ($_POST['descripcion'] !='') and ($_POST['localidad'] !='') and ($_POST['categoria'] !='') and (isset($_POST['fecha_venc'])) and ($_POST['fecha_venc'] !='')); 	
 	}
-
 function validarFecha(){
 	$valida= date('Y-m-d', strtotime('+1 day'));
 	return ($_POST['fecha_venc'] > $valida);
 }
-
 function validarCreditos($conect){
 	$id= $_SESSION['id'];
 	$creditos = $conect -> query("SELECT creditos FROM usuarios WHERE idUsuario='$id'");
 	$creditos = $creditos->fetch_assoc();
 	return ($creditos['creditos']);
 }
-
-
 function actualizarCreditos($conect){
 	$cant=$_SESSION['creditos'] -1;
 	$id= $_SESSION['id'];
@@ -24,7 +19,13 @@ function actualizarCreditos($conect){
 	$_SESSION['creditos']= $cant;
 	return $valor;
 }
-
+function devolverCredito($conect){
+	$cant=$_SESSION['creditos'] + 1;
+	$id= $_SESSION['id'];
+	$valor= $conect->query("UPDATE usuarios u SET u.creditos=$cant WHERE u.idUsuario=$id");
+	$_SESSION['creditos']= $cant;
+	return $valor;
+}
 function publicar($conect){
 	if (!validarFecha()) {
 		return "La fecha debe ser mayor al día de hoy";
@@ -50,10 +51,9 @@ function publicar($conect){
 		$publicado= $conect -> query("INSERT INTO favor (idUsuario, titulo, descripcion, completo, idLocalidad, idCategoria, fecha_vencimiento) VALUES('$idUsuario', '$titulo', '$descripcion', '$completo', '$idLocalidad', '$categoria', '$venc')");
 	}
 	if (!$publicado){
+		devolverCredito($conect);
 		return "Tu favor no ha podido ser publicado";
 	}
-	
-	header("Location: detalleFavor.php");	
+	header("Location:index.php");	
 }
-
  ?>

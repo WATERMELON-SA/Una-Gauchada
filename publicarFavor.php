@@ -75,7 +75,9 @@
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >
 		<b><h1>Publica un Favor</h1></b>
-
+		<h2>
+			Actualmente posees <?php echo $_SESSION['creditos']; ?> creditos
+		</h2>
 
 		<form class="form-horizontal" enctype="multipart/form-data" action="publicarFavor.php" method="POST">
 				<div class="form-group">
