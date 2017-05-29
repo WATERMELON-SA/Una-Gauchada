@@ -10,6 +10,11 @@ function validar(){
 		$id = $_SESSION['id'];
 		$link = conectar();
 		$link->query("UPDATE usuarios u SET u.creditos= $masCreditos WHERE u.idUsuario=$id");
+
+		$costo=$_POST['cantidad']*50;
+		$cantidad=$_POST['cantidad'];
+		$fecha=echo (date('Y-m-d'));
+		$link->query("INSERT INTO compra (idUsuario,costo,cantidad,fecha_compra) VALUES ('$id','$costo','$cantidad','$fecha')");
 		$_SESSION['creditos']= $masCreditos;
 	}
 
@@ -19,9 +24,4 @@ function validar(){
 			header("Location: index.php?comprado=1");
 		}
 	}
-	else{
-			header("Location: comprarCreditos.php?comprado=0");
-		}
-
-
 ?>

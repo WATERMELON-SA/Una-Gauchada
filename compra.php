@@ -66,20 +66,29 @@
 	<div class="form-group">
     <label  class="col-sm-2 control-label">Nombre completo</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control " name="nombre" placeholder="Nombre completo"></br>
+      <input type="text"  maxlength="30" class="form-control" required name="nombre" placeholder="Nombre completo"></br>
     </div>
-    <label  class="col-sm-2 control-label">Apellido</label>
+    <label class="col-sm-2 control-label">DNI</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control " name="apellido" placeholder="Apellido"></br>
+      <input  class="form-control " maxlength="8" minlength="8" required type="number" name="DNI" placeholder="DNI"></br>
     </div>
-    <label type="number" class="col-sm-2 control-label">DNI</label>
+    <label  class="col-sm-2 control-label">Nro tarjeta de crédito (sin espacios)</label>
     <div class="col-sm-10">
-      <input  class="form-control " name="DNI" placeholder="DNI"></br>
+      <input type="number" maxlength="16" minlength="16" required  class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta"></br>
     </div>
-    <label  class="col-sm-2 control-label">Nro tarjeta de débito</label>
+     <label  class="col-sm-2 control-label">Tipo de tarjeta</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta"></br>
+      <input type="select"  class="form-control" name="tipoTarjeta" required></br>
     </div>
+    <label  class="col-sm-2 control-label">Codigo de seguridad</label>
+    <div class="col-sm-10">
+      <input type="number" maxlength="3" minlength="3" required  class="form-control" name="codigoSeguridad"  placeholder="Codigo de seguridad de tarjeta"></br>
+    </div>
+    <label  class="col-sm-2 control-label">Fecha Vencimiento</label>
+    <div class="col-sm-10">
+      <input type="date" class="form-control" required name="fechaVencimiento" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>"></br>
+    </div>
+
 </div>
  
       <div class="checkbox" style="margin-left: 15%">
@@ -91,7 +100,7 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
     <input type="hidden" name="cantidad" value="<?php echo $_POST['cantidad']; ?>">
-      <button type="submit" class="btn btn-primary">Validar Compra</button>    (En cuanto presione validar compra esta se efectuará)
+      <input type="submit" value="Validar Compra" class="btn btn-primary"> (En cuanto presione validar compra esta se efectuará)
     </div>
   </div>
 </form>

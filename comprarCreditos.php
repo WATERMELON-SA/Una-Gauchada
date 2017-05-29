@@ -44,15 +44,6 @@
 </header>
 <body>
  
-  <?php
-    if (isset($_GET['comprado'])) {
-  ?>
-  <script type="text/javascript"> alert("Faltan completar campos");</script>
-  <?php    
-    }
-  ?>
- 
-
 <?php
 	if (isset($_GET['Fallo'])) {
 		echo "Debes ingresar el numero de creditos a comprar";
