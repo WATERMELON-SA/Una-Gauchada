@@ -58,7 +58,7 @@
 		<img style="width: 100%;" src="banner.png">
 </header>
 
-<body style="padding-top: 50px;">
+<body>
   <?php
     include "conexion.php";
     $conexion = conectar();
@@ -68,6 +68,16 @@
     $idUsuario = $favor['idUsuario'];
     $traerNombre = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario");
     $favorNombre = $traerNombre->fetch_assoc();
+    $idCategoria = $favor['idCategoria'];
+    $idLocalidad = $favor['idLocalidad'];
+    $traercategoria = $conexion->query("SELECT nombre FROM categoria WHERE idCategoria = $idCategoria");
+    if (isset($traercategoria)) {
+      $arreglocategoria = $traercategoria->fetch_assoc();
+    }
+    $traerlocalidad = $conexion->query("SELECT nombre FROM localidad WHERE idLocalidad = $idLocalidad");
+    if (isset($traerlocalidad)) {
+      $arreglolocalidad = $traerlocalidad->fetch_assoc();
+    }
   ?>
 
     <div class="container">
@@ -92,6 +102,8 @@
           <h3><?php echo $favor["descripcion"] ?></h3>
           <div class="separador"></div>
           <h3>Peticionante: <?php echo $favorNombre['nombre']?></h3>
+          <h3>Localidad:<?php echo $arreglolocalidad['nombre'] ?></h5>
+          <h3>Categoria:<?php echo $arreglocategoria['nombre'] ?></h5>
           <?php if (isset($_SESSION['nombre'])) {
           ?>
           <button class="btn btn-primary">Ofrecer</button>
@@ -101,12 +113,10 @@
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="well cajaPreguntas row">
-        <h1 style="text-align:center;">ACA VAN LAS PREGUNTAS</h1>
-      </div>
-    </div>
-
+    <?php
+      include "mostrarpreguntas.php";
+      mostrarPreguntas($idFavor);
+    ?>
 </body>
 
 </html>

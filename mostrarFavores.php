@@ -3,7 +3,8 @@
 	function mostrarFavores(){
 		$mysql = conectar();
 		if (isset($mysql)){
-			$traer = $mysql->query("SELECT * FROM favor");
+			$fechacontrol = date('Y-m-d');
+			$traer = $mysql->query("SELECT * FROM favor WHERE fechavencimiento > $fechacontrol");
 			if(isset($traer)){
 				$arreglo = $traer->fetch_assoc();
 			}
@@ -11,10 +12,12 @@
 	
 	while (isset($arreglo)) { 
 		$idUsuario = $arreglo['idUsuario'];
+		
 		$traernombre = $mysql->query("SELECT nombre FROM usuarios WHERE idUsuario = $idUsuario ");
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
+		
 		$descripcioncorta = substr($arreglo['descripcion'],0,170);
 		?>
 			<div class="container">
