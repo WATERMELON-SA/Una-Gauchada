@@ -44,11 +44,6 @@
 </header>
 <body>
  
-<?php
-	if (isset($_GET['Fallo'])) {
-		echo "Debes ingresar el numero de creditos a comprar";
-	}
-?>
 <header style="text-align: center"><h2>Compra créditos y podrás publicar mas favores!!!</h2>
 <img class="img-responsive center-block" style="max-width: 10%" src="monedas.jpg">
 <h3>Precio del crédito: $50</h3>
@@ -56,8 +51,8 @@
 <div style="text-align: center; margin-top: 2%">
 	<h2>Cantidad:</h2>
 	<form method="POST" action="compra.php">
-	<input class="form-control" style="display:inline-block; width: 6%; height: 40px; font-size: 20px;" type="number" max="30" min="1" name="cantidad">  
-	<input type="submit" class="btn btn-primary" style="display: inline-block;" name="Comprar" style="font-size:20px">
+	<input type="number" max="999" min="1" required class="form-control" style="display:inline-block; width: 8%; height: 40px; font-size: 20px;" name="cantidad">  
+	<input type="submit" required class="btn btn-primary" style="display: inline-block;" name="Comprar" style="font-size:20px">
 	</form>
 </div>
 

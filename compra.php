@@ -74,11 +74,18 @@
     </div>
     <label  class="col-sm-2 control-label">Nro tarjeta de crédito (sin espacios)</label>
     <div class="col-sm-10">
-      <input type="number" maxlength="16" minlength="16" required  class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta"></br>
+      <input type="number" max="9999999999999999" min="0000000000000000" required  class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta"></br>
     </div>
      <label  class="col-sm-2 control-label">Tipo de tarjeta</label>
     <div class="col-sm-10">
-      <input type="select"  class="form-control" name="tipoTarjeta" required></br>
+      <select class="form-control">
+        <option>Maestro</option>
+        <option>Nativa</option>
+        <option>Visa</option>
+        <option>American Express</option>        
+        <option>Master Card</option>
+      </select>
+      </br>
     </div>
     <label  class="col-sm-2 control-label">Codigo de seguridad</label>
     <div class="col-sm-10">
@@ -86,14 +93,14 @@
     </div>
     <label  class="col-sm-2 control-label">Fecha Vencimiento</label>
     <div class="col-sm-10">
-      <input type="date" class="form-control" required name="fechaVencimiento" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>"></br>
-    </div>
+      <input type="date" class="form-control" required name="fechaVencimiento" min= "<?php echo (date('Y-m-d')); ?>"></br>
+    </div> 
 
 </div>
  
       <div class="checkbox" style="margin-left: 15%">
         <label>
-          <input type="checkbox"> Acepto los términos y condiciones de UnaGauchada
+          <input required type="checkbox"> Acepto los términos y condiciones de UnaGauchada
         </label>
       </div></br>
     

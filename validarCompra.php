@@ -10,18 +10,18 @@ function validar(){
 		$id = $_SESSION['id'];
 		$link = conectar();
 		$link->query("UPDATE usuarios u SET u.creditos= $masCreditos WHERE u.idUsuario=$id");
-
-		$costo=$_POST['cantidad']*50;
+		$valorCredito = $link->query("SELECT precio FROM credito");
+		$valorCredito = $valorCredito-> fetch_assoc();
+		$costo=$_POST['cantidad'] * $valorCredito['precio'];
 		$cantidad=$_POST['cantidad'];
-		$fecha=echo (date('Y-m-d'));
+		$fecha= date('Y-m-d');
 		$link->query("INSERT INTO compra (idUsuario,costo,cantidad,fecha_compra) VALUES ('$id','$costo','$cantidad','$fecha')");
 		$_SESSION['creditos']= $masCreditos;
 	}
+	//if (validar()){
+		echo "aca";
+		actualizarBD();
+		header("Location: index.php?comprado=1");
+	//	}
 
-	if (validar()){
-		if (($_POST['nombre'] !='') and ($_POST['apellido'] !='') and ($_POST['DNI'] != '') and ($_POST['nroTarjeta'] != '')){
-			actualizarBD();
-			header("Location: index.php?comprado=1");
-		}
-	}
 ?>

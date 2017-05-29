@@ -1,21 +1,3 @@
-	<?php 
-	include "conexion.php";
-	$conect = conectar();
-	include "listador.php";
-		include "publicar.php";
-		if (validarPublicacion()) {
-			$ret= publicar($conect);
-			if ($ret) {
-				header("Location: index.php");
-			}
-	?>	
-		<script type="text/javascript">
-			alert("<?php echo $ret; ?>");
-		</script>
-	<?php	
-		}
-	?>
-	
 <!DOCTYPE html>
 <html  style="overflow-x: hidden">
 <head>
@@ -30,8 +12,24 @@
 	<title>Una Gauchada</title>
 </head>
 
-<?php
+<?php 
+	include "conexion.php";
+	$conect = conectar();
+	include "listador.php";
+	include "publicar.php";
 	session_start();
+		if (validarPublicacion()) {
+			$ret= publicar($conect);
+		//	if ($ret=1) {
+		//		header("Location: index.php");
+		//	}
+	?>	
+		<script type="text/javascript">
+			alert("<?php echo $ret; ?>");
+		</script>
+	<?php	
+		}
+	
 	if(isset ($_SESSION['nombre'])){
 		$inicio=true;
 	}
@@ -108,7 +106,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="fecha_venc">Fecha de vencimiento:</label>
 					<div class="col-sm-10">
-						<input type="date" class="form-control" id="fecha_venc" name="fecha_venc"  min="<?php echo (date('Y-m-d', strtotime('+1 day'))); ?>" max="<?php echo (date('Y-m-d', strtotime('+1 year'))); ?>" required >
+						<input type="date" class="form-control" id="fecha_venc" name="fecha_venc" min="<?php echo (Date('Y-m-d')); ?>" max="<?php echo (date('Y-m-d', strtotime('+1 year'))); ?>" required >
 					</div>
 				</div>
 				<div class="form-group">

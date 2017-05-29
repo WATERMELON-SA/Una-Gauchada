@@ -13,10 +13,15 @@ function validarCreditos($conect){
 	return ($creditos['creditos']);
 }
 function actualizarCreditos($conect){
-	$cant=$_SESSION['creditos'] -1;
-	$id= $_SESSION['id'];
-	$valor= $conect->query("UPDATE usuarios u SET u.creditos=$cant WHERE u.idUsuario=$id");
-	$_SESSION['creditos']= $cant;
+	$cant=$_SESSION['creditos'];
+	$cant=$cant -1;
+	if ($cant > 1 ) {
+		$id= $_SESSION['id'];
+		$valor= $conect->query("UPDATE usuarios u SET u.creditos=$cant WHERE u.idUsuario=$id");
+		$_SESSION['creditos']= $cant;
+	}
+	else 
+		$valor = false;
 	return $valor;
 }
 function devolverCredito($conect){
@@ -54,6 +59,8 @@ function publicar($conect){
 		devolverCredito($conect);
 		return "Tu favor no ha podido ser publicado";
 	}
-	return true;	
+	if ($publicado) {
+		return true;	
+	}
 }
  ?>
