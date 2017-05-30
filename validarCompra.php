@@ -14,8 +14,18 @@
 		$link->query("INSERT INTO compra (idUsuario,costo,cantidad,fecha_compra) VALUES ('$id','$costo','$cantidad','$fecha')");
 		$_SESSION['creditos']= $masCreditos;
 	}
+	function datosIncorrectos(){
+		if(( strlen($_POST['DNI']) < 8) or (strlen($_POST['nroTarjeta']) <16) or (strlen($_POST['codigoSeguridad']) <3))
+			return true;
+		return false; 
+
+	}
+	if (!datosIncorrectos()){
 	actualizarBD();
 	header("Location: index.php?comprado=1");
+	}
+	else 
+		header("Location: compra.php?comprado=$_POST[cantidad]");
 
 
 ?>

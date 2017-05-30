@@ -79,12 +79,21 @@
     <img style="width: 100%;" src="banner.png">
 </header>
 
-<?php
-    if (!isset($_POST['cantidad']) || ($_POST['cantidad'] =='')){
+ <?php
+    if (isset($_GET['comprado'])) {
+  ?>
+  <script type="text/javascript"> alert("Tus datos son incorrectos"); </script>
+  <?php  
+    $_POST['cantidad']=$_GET['comprado'];
+    }
+    else{
+if (!isset($_POST['cantidad']) || ($_POST['cantidad'] =='')){
       header("Location: comprarCreditos.php?Fallo");
   }
 
-?>
+    }
+  ?>
+
 
 <body>
 	<h2 style="margin-left: 15%">Ingrese sus datos para poder validar su compra de 
@@ -122,10 +131,12 @@ function validarLength(e,contenido,length){
   return true;
 }
 
+function validarMinLength(contenido,length){
+  if (contenido.length<length)
+    return false;
+
+}
 </script>
-
-
-
 
 	<form class="form-horizontal" action="validarCompra.php" method="POST">
 	<div class="form-group">
@@ -135,11 +146,11 @@ function validarLength(e,contenido,length){
     </div>
     <label class="col-sm-2 control-label">DNI</label>
     <div class="col-sm-10">
-      <input  class="form-control " max="99999999" onkeydown="return validarLength(event,this.value,8)" required type="number" name="DNI" placeholder="DNI"></br>
+      <input  class="form-control " min="1" max="99999999" onkeydown="return validarLength(event,this.value,8)" required type="number" name="DNI" placeholder="DNI"></br>
     </div>
     <label  class="col-sm-2 control-label">Nro tarjeta de crédito (sin espacios)</label>
     <div class="col-sm-10">
-      <input type="number" required max="9999999999999999" onkeydown="return validarLength(event,this.value,16)" class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta (16 digitos)"></br>
+      <input type="number" min="0" required max="9999999999999999" onkeydown="return validarLength(event,this.value,16)" class="form-control" name="nroTarjeta"  placeholder="Nro tarjeta (16 digitos)"></br>
     </div>
      <label  class="col-sm-2 control-label">Tipo de tarjeta</label>
     <div class="col-sm-10">
@@ -154,7 +165,7 @@ function validarLength(e,contenido,length){
     </div>
     <label  class="col-sm-2 control-label">Codigo de seguridad</label>
     <div class="col-sm-10">
-      <input type="number" max="999" onkeydown="return validarLength(event,this.value,3)" required  class="form-control" name="codigoSeguridad"  placeholder="Codigo de seguridad de tarjeta (3 digitos)"></br>
+      <input type="number" min="0" max="999" onkeydown="return validarLength(event,this.value,3)" required  class="form-control" name="codigoSeguridad"  placeholder="Codigo de seguridad de tarjeta (3 digitos)"></br>
     </div>
     <label  class="col-sm-2 control-label">Fecha Vencimiento</label>
     <div class="col-sm-10">
@@ -168,11 +179,12 @@ function validarLength(e,contenido,length){
           <input required type="checkbox"> Acepto los términos y condiciones de UnaGauchada
         </label>
       </div></br>
-    
+
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
     <input type="hidden" name="cantidad" value="<?php echo $_POST['cantidad']; ?>">
-      <input type="submit" value="Validar Compra" class="btn btn-primary"> (En cuanto presione validar compra esta se efectuará)
+      <input type="submit" value="Validar Compra"  class="btn btn-primary"> (En cuanto presione validar compra esta se efectuará)
     </div>
   </div>
 </form>
