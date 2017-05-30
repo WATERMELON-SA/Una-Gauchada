@@ -1,9 +1,5 @@
 <?php 
 	session_start();
-function validar(){
-		return ((isset($_POST['nombre'])) and (isset($_POST['apellido'])) and (isset($_POST['DNI'])) and (isset($_POST['nroTarjeta'])) and ($_POST['nombre'] !='') and ($_POST['apellido'] !='') and ($_POST['DNI'] != '') and ($_POST['nroTarjeta'] != ''));
-	}
-
 	function actualizarBD(){
 		include "conexion.php";
 		$masCreditos= $_SESSION['creditos'] + $_POST['cantidad'];
@@ -18,10 +14,8 @@ function validar(){
 		$link->query("INSERT INTO compra (idUsuario,costo,cantidad,fecha_compra) VALUES ('$id','$costo','$cantidad','$fecha')");
 		$_SESSION['creditos']= $masCreditos;
 	}
-	//if (validar()){
-		echo "aca";
-		actualizarBD();
-		header("Location: index.php?comprado=1");
-	//	}
+	actualizarBD();
+	header("Location: index.php?comprado=1");
+
 
 ?>
