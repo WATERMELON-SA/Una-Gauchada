@@ -20,6 +20,7 @@
 			$_SESSION["contraseña"]=$dataBase["contraseña"];
 			$_SESSION["id"]=$dataBase["idUsuario"];
 			$_SESSION['creditos']= $dataBase['creditos'];
+			$_SESSION['calif_pend']=$dataBase['calif_pend'];
 			return true;
 			}
 			return false;		

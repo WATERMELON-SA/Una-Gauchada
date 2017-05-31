@@ -58,7 +58,7 @@
 		<img style="width: 100%;" src="banner.png">
 </header>
 
-<body>
+<body style="padding-top: 50px;">
   <?php
     include "conexion.php";
     $conexion = conectar();
@@ -104,7 +104,8 @@
           <h3>Peticionante: <?php echo $favorNombre['nombre']?></h3>
           <h3>Localidad:<?php echo $arreglolocalidad['nombre'] ?></h5>
           <h3>Categoria:<?php echo $arreglocategoria['nombre'] ?></h5>
-          <?php if (isset($_SESSION['nombre'])) {
+          <?php 
+            if (isset($_SESSION['nombre']) AND ($_SESSION['id'] != $idUsuario)) {
           ?>
           <button class="btn btn-primary">Ofrecer</button>
           <?php

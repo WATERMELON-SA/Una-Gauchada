@@ -61,12 +61,10 @@
   	if (!isset($_SESSION['nombre'])) {
   ?>
 
-	<button class="btn btn-default navbar-right navbar-btn" type="button" >
-    	<a href="registrarse.php"> Registrarse</a>
-  </button>
+    	<a class="btn btn-default navbar-right navbar-btn" href="registrarse.php"> Registrarse</a>
 
 
-	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="iniciarSesion.php">Iniciar sesion</a></button>
+	<a class="btn btn-default navbar-btn navbar-right" href="iniciarSesion.php">Iniciar sesion</a> 
    <?php 
 	}
 	?>
@@ -97,11 +95,10 @@
 
 
 <div class="row" style="text-align:center">
-		<img src="logo.png">
-		<h2 class="text-center text-primary subtitulo">Date una vuelta y fijate si podes ayudar</h2>
+		<h1 class="text-center text-primary subtitulo">Date una vuelta y fijate si podes ayudar</h1>
 	</div>
 
-	<br><br><br><br><br>
+	<br><br><br>
 
 	<div class="container">
 		<?php

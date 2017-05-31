@@ -20,9 +20,12 @@
 	session_start();
 		if (validarPublicacion()) {
 			$ret= publicar($conect);
-		//	if ($ret=1) {
-		//		header("Location: index.php");
-		//	}
+			if ($ret==false) {
+				$idnuevo = $conect->query("SELECT max(idFavor) as id FROM favor");
+				$idnuevo = $idnuevo->fetch_assoc();
+				$idnuevo= $idnuevo['id'];
+				header("Location: detalleFavor.php?idFavor=".$idnuevo);
+			}
 	?>	
 		<script type="text/javascript">
 			alert("<?php echo $ret; ?>");
@@ -88,6 +91,9 @@
 		<b><h1>Publica un Favor</h1></b>
 		<h2>
 			Actualmente posees <?php echo $_SESSION['creditos']; ?> creditos
+		</h2>
+		<h2>
+			Tenes <?php echo $_SESSION['calif_pend']; ?> calificaciones pendientes
 		</h2>
 
 		<form class="form-horizontal" enctype="multipart/form-data" action="publicarFavor.php" method="POST">

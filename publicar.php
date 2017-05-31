@@ -14,8 +14,8 @@ function validarCreditos($conect){
 }
 function actualizarCreditos($conect){
 	$cant=$_SESSION['creditos'];
-	$cant=$cant -1;
-	if ($cant > 1 ) {
+	if ($cant >= 1 ) {
+		$cant=$cant -1;
 		$id= $_SESSION['id'];
 		$valor= $conect->query("UPDATE usuarios u SET u.creditos=$cant WHERE u.idUsuario=$id");
 		$_SESSION['creditos']= $cant;
@@ -23,6 +23,9 @@ function actualizarCreditos($conect){
 	else 
 		$valor = false;
 	return $valor;
+}
+function debeCalificaciones(){
+	return $_SESSION['calif_pend'] > 0;
 }
 function devolverCredito($conect){
 	$cant=$_SESSION['creditos'] + 1;
@@ -34,6 +37,9 @@ function devolverCredito($conect){
 function publicar($conect){
 	if (!validarFecha()) {
 		return "La fecha debe ser mayor al día de hoy";
+	}
+	if (debeCalificaciones()) {
+		return "Tienes calificacones pendientes, por favor califica a tus gauchos";
 	}
 	$idUsuario=$_POST['idUsuario'];
 	$titulo= $_POST['titulo'];
@@ -60,7 +66,7 @@ function publicar($conect){
 		return "Tu favor no ha podido ser publicado";
 	}
 	if ($publicado) {
-		return true;	
+		return false;	
 	}
 }
  ?>

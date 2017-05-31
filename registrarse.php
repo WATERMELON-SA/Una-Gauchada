@@ -90,7 +90,7 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="telefono">Teléfono:</label>
 					<div class="col-sm-10">
-						<input type="number" class="form-control" required max="9999999999999" name="telefono" placeholder="011151234567" >
+						<input type="number" class="form-control" required max="9999999999999" min="1000000000"  name="telefono" placeholder="011151234567" >
 					</div>
 				</div>
 				<div class="form-group">
