@@ -19,11 +19,16 @@
 <?php
 		}else{
 			while (isset($pregunta)) {
+				$idUsuarioPreg = $pregunta['idUsuario'];
+				$traernombre = $mysql->query("SELECT nombre FROM usuarios WHERE idUsuario = $idUsuarioPreg");
+				if (isset($traernombre)) {
+					$nombre = $traernombre->fetch_assoc();
+				}
 ?>
 			 <div class="container">
 	      		<div class="well cajaPreguntas row">
-	        		<h3 style="text-align:left;">Pregunta:<?php echo $pregunta['contenido'] ?></h1>
-	        		<h3 style="text-align:left;">Respuesta:<?php echo $pregunta['respuesta'] ?></h1>
+	        		<h3 style="text-align:left;"><?php echo $nombre['nombre'] ?> pregunta: <?php echo $pregunta['contenido'] ?></h1>
+	        		<h3 style="text-align:left;">Respuesta del usuario: <?php echo $pregunta['respuesta'] ?></h1>
 	      		</div>
 	    	</div>
 <?php
