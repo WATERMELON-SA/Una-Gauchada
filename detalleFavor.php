@@ -1,5 +1,8 @@
 <?php
   session_start();
+  if (!isset($_SESSION['nombre'])) {
+    header("Location: iniciarSesion.php?alert=1");
+  }
 ?>
 <!DOCTYPE html>
 <html  style="overflow-x: hidden;">

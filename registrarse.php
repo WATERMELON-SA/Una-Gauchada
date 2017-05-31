@@ -11,6 +11,12 @@
 	<script type="text/javascript" src="bootstrap.min.js"></script>
 	<title>Una Gauchada</title>
 </head>
+<?php
+	session_start();
+	if(isset ($_SESSION['nombre'])){
+		$inicio=true;
+	}
+?>
 
 <header>
 
@@ -19,7 +25,7 @@
   <a href="index.php"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
 
 
-   <form class="navbar-form navbar-left" role="search">
+   <form class="navbar-form navbar-left" role="search" onsubmit="return false">
   
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Buscar"> 
@@ -27,13 +33,38 @@
   <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
 </form>
 
-	<button class="btn btn-default navbar-right navbar-btn" type="button" >
-    	<a href="index.php"> Inicio</a>
+	<?php
+		if(isset($inicio) AND ($inicio)){
+	?>
+  <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <li class="dropdown">
+  	<?php
+			echo "Bienvenido ".$_SESSION['nombre'];
+  	?>
+    <span class="caret"></span>
   </button>
+  <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Mis pedidos</a></li>
+    <li><a href="#">Postulaciones</a></li>
+    <li><a href="comprarCreditos.php">Comprar creditos</a></li>
+    <li><a href="publicarFavor.php">Publicar Favor</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
+  </ul>
+  </li>
+  
+  <?php 
+  	}
+  	if (!isset($_SESSION['nombre'])) {
+  ?>
+
+    	<a class="btn btn-default navbar-right navbar-btn" href="registrarse.php">Inicio</a>
 
 
-	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="iniciarSesion.php">Iniciar sesion</a></button>
-
+	<a class="btn btn-default navbar-btn navbar-right" href="iniciarSesion.php">Iniciar sesion</a> 
+   <?php 
+	}
+	?>
 
   </div>
 </nav>
