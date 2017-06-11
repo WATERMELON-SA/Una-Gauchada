@@ -49,7 +49,7 @@ function publicar($conect){
 	$categoria= $_POST['categoria'];
 	$venc=$_POST['fecha_venc'];
 	if (!actualizarCreditos($conect)) {
-		return "Tus créditos no se han podido actualizar, comprueba tener suficientes";
+		return "No tienes creditos suficientes";
 	}
 	if ($_FILES['imagen']['tmp_name']!='') {
   		$filetype =$_FILES['imagen']['type'];

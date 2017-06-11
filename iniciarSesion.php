@@ -1,7 +1,7 @@
 <?php
-	if ((isset($_GET['alert'])) AND ($_GET['alert']==1)) {
+	if (isset($_GET['alert'])) {
 ?>
-	<script> alert("Por favor inicia sesión para poder ver un favor en detalle") </script>
+<script>alert("Por favor inicia sesión para ver un favor en detalle.")</script>
 <?php
 	}
 ?>
@@ -19,15 +19,6 @@
 	<title>Una Gauchada</title>
 </head>
 
-<?php
-	session_start();
-	if(isset ($_SESSION['nombre'])){
-		$inicio=true;
-	}
-?>
-
-
-
 <header>
 
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -35,7 +26,7 @@
   <a href="index.php"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
 
 
-   <form class="navbar-form navbar-left" role="search" onsubmit="return false">
+   <form class="navbar-form navbar-left" role="search">
   
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Buscar"> 
@@ -43,42 +34,16 @@
   <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
 </form>
 
-	<?php
-		if(isset($inicio) AND ($inicio)){
-	?>
-  <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  <li class="dropdown">
-  	<?php
-			echo "Bienvenido ".$_SESSION['nombre'];
-  	?>
-    <span class="caret"></span>
+	<button class="btn btn-default navbar-right navbar-btn" type="button" >
+    	<a href="index.php"> Inicio</a>
   </button>
-  <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Mis pedidos</a></li>
-    <li><a href="#">Postulaciones</a></li>
-    <li><a href="comprarCreditos.php">Comprar creditos</a></li>
-    <li><a href="publicarFavor.php">Publicar Favor</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
-  </ul>
-  </li>
-  
-  <?php 
-  	}
-  	if (!isset($_SESSION['nombre'])) {
-  ?>
-
-    	<a class="btn btn-default navbar-right navbar-btn" href="registrarse.php"> Registrarse</a>
 
 
-	<a class="btn btn-default navbar-btn navbar-right" href="index.php">Inicio</a> 
-   <?php 
-	}
-	?>
+	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="registrarse.php"> Registrarse</a></button>
+
 
   </div>
 </nav>
-
 
 		<img style="width: 100%;" src="banner.png">
 
@@ -90,6 +55,7 @@
 
 	<?php 
 		include "inicioCorrecto.php";
+		session_start();
 		if(isset ($_SESSION['nombre'])){
 			header("Location: index.php");
 		}
@@ -99,11 +65,11 @@
 		<form action="iniciarSesion.php"  method="POST">
 			<div class="form-group">
 				<label>Email</label></br>
-				<input type="text" class="form-control" style="width: 25%; display: inline-block;;" id="email" name="email" placeholder="Correo electrónico" autofocus><br><br>
+				<input type="text" maxlength="40" class="form-control" style="width: 25%; display: inline-block;;" id="email" name="email" placeholder="Correo electrónico" autofocus><br><br>
 			</div>
 			<div class="form-group">
 				<label>Contrase&ntilde;a</label></br>
-				<input type="password" id="pass" class="form-control" style="width: 25%; display: inline-block;" placeholder="Contraseña" name="contraseña"><br><br>
+				<input type="password" maxlength="40" id="pass" class="form-control" style="width: 25%; display: inline-block;" placeholder="Contraseña" name="contraseña"><br><br>
 			</div>
 			<input type="submit" class="btn btn-primary" name="Ingresar" value="Ingresar" style="width: 20%; height: 1cm;">
 			<br>

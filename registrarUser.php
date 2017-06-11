@@ -41,7 +41,7 @@
 			$telefono= $_POST['telefono'];
 			$creditos = 1;
 			$idLocalidad = $_POST['localidad'];
-			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,password,puntaje) VALUES ('$nombre','$email','$idLocalidad','$telefono','$creditos','$nac','$contra','$puntaje')";
+			$sql="INSERT INTO usuarios (nombre,email,idLocalidad,telefono,creditos,fechanacimiento,password,puntaje) VALUES ('$nombre','$email','$idLocalidad','$telefono',$creditos,'$nac','$contra','$puntaje')";
 			$ok= $conect->query($sql);
 			$conect -> close();
 			if ($ok){

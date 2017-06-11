@@ -13,8 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="Roboto-Regular.ttf">
 	<link rel="stylesheet" type="text/css" href="estiloDetalle.css">
-	<link rel="javascript" type="text/javascript" href="bootstrap.min.js">
-	<link rel="javascript" type="text/javascript" href="jquery-3.1.1.min.js">
+  <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="bootstrap.min.js"></script>
 	<title>Una Gauchada</title>
 </head>
 
@@ -33,25 +33,29 @@
   <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
 </form>
 
-	
-  <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Menu
+  
+  <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <li class="dropdown">
+  <?php
+  if(isset($_SESSION['nombre'])) {
+    echo "Bienvenido ".$_SESSION['nombre'];
+  }
+
+  ?>
     <span class="caret"></span>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
+  <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Mis pedidos</a></li>
+    <li><a href="#">Postulaciones</a></li>
+    <li><a href="comprarCreditos.php">Comprar creditos</a></li>
+    <li><a href="#">Preguntas</a></li>
     <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
+    <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
   </ul>
-
-
-	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="iniciarSesion.php">Iniciar sesion</a></button>
-
-
+  </li>
   </div>
 </nav>
+
 
 
 

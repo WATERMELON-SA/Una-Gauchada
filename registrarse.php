@@ -11,12 +11,6 @@
 	<script type="text/javascript" src="bootstrap.min.js"></script>
 	<title>Una Gauchada</title>
 </head>
-<?php
-	session_start();
-	if(isset ($_SESSION['nombre'])){
-		$inicio=true;
-	}
-?>
 
 <header>
 
@@ -32,40 +26,14 @@
   </div>
   <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
 </form>
-
 	<?php
-		if(isset($inicio) AND ($inicio)){
+		session_start();
+		if(isset($_SESSION['nombre'])){
+			header("Location: index.php");
+		}
 	?>
-  <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  <li class="dropdown">
-  	<?php
-			echo "Bienvenido ".$_SESSION['nombre'];
-  	?>
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Mis pedidos</a></li>
-    <li><a href="#">Postulaciones</a></li>
-    <li><a href="comprarCreditos.php">Comprar creditos</a></li>
-    <li><a href="publicarFavor.php">Publicar Favor</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
-  </ul>
-  </li>
-  
-  <?php 
-  	}
-  	if (!isset($_SESSION['nombre'])) {
-  ?>
-
     	<a class="btn btn-default navbar-right navbar-btn" href="registrarse.php">Inicio</a>
-
-
 	<a class="btn btn-default navbar-btn navbar-right" href="iniciarSesion.php">Iniciar sesion</a> 
-   <?php 
-	}
-	?>
-
   </div>
 </nav>
 
@@ -117,6 +85,7 @@
 					<div class="col-sm-10">
 						<input type="date" class="form-control" required name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" >
 					</div>
+					Debes ser mayor de 16 años.
 				</div>	
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="telefono">Teléfono:</label>
