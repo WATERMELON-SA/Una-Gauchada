@@ -17,10 +17,13 @@
 				session_start();
 			$_SESSION["nombre"] = $dataBase["nombre"];
 			$_SESSION["email"]=$dataBase["email"];
-			$_SESSION["contraseña"]=$dataBase["contraseña"];
+			$_SESSION["contraseña"]=$dataBase["password"];
 			$_SESSION["id"]=$dataBase["idUsuario"];
 			$_SESSION['creditos']= $dataBase['creditos'];
 			$_SESSION['calif_pend']=$dataBase['calif_pend'];
+			$_SESSION['fecha_nac']=$dataBase['fechanacimiento'];
+			$_SESSION['telefono']=$dataBase['telefono'];
+			$_SESSION['localidad']=$dataBase['idLocalidad'];
 			return true;
 			}
 			return false;		

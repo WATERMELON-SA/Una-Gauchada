@@ -117,6 +117,11 @@
           <button class="btn btn-primary">Ofrecer</button>
           <?php
           }
+          else{
+          ?>
+          <a href="borrarFavor.php?idFavor=<?php echo $idFavor; ?>"" class="btn btn-primary">Borrar</a>
+          <?php
+          }
           ?>
         </div>
       </div>

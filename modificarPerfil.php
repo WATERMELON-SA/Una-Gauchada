@@ -47,7 +47,6 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
-   <li><a href="miPerfil.php">Mi Perfil</a></li>
     <li><a href="#">Mis pedidos</a></li>
     <li><a href="#">Postulaciones</a></li>
     <li><a href="comprarCreditos.php">Comprar creditos</a></li>
@@ -82,38 +81,51 @@
 
 
 </header>
-
-<body style="background-color: #e6e6e6; padding-top: 50px;">
-
-  <?php
-    if (isset($_GET['comprado'])) {
-  ?>
- 	<script type="text/javascript"> alert("Tu compra se realizo exitosamente"); </script>
-  <?php    
-    }
-  ?>
-
-
-
-<div class="row" style="text-align:center">
-		<h1 class="text-center text-primary subtitulo">Date una vuelta y fijate si podes ayudar</h1>
-	</div>
-
-	<br><br><br>
-
-	<div class="container">
-		<?php
-			include "mostrarFavores.php";
-			mostrarFavores()
-		?>
-		
-	</div>
-</div>
-
-	  <footer class="footer">
-      <div class="container">
-        <p class="footerText subtitulo text-center">DEVELOPED BY Watermelon Web Development S.A.</p>
-      </div>
-    </footer>
-</body>
-</html>
+<body>
+<?php
+	include "conexion.php";
+	$conection = conectar();
+	include "listador.php";
+?>
+<form class="form-horizontal" action="modificarDatosPersonales.php" style="width: 40%; margin-top: 2%; margin-left: 15%" method="POST">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="nombre">Nombre:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" name="nombre" maxlength="35" value="<?php echo $_SESSION['nombre']?>" required>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="email">Correo electrónico:</label>
+					<div class="col-sm-10">
+						<input type="email" class="form-control" name="email" value="<?php echo $_SESSION['email']?>" maxlength="40" required >
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="fecha_nac">Fecha de nacimiento:</label>
+					<div class="col-sm-10">
+						<input type="date" class="form-control" required name="fecha_nac" min="<?php echo (date('Y-m-d', strtotime('-80 year'))); ?>" max="<?php echo (date('Y-m-d', strtotime('-16 year'))); ?>" value="<?php echo $_SESSION['fecha_nac']?>" >
+					</div>
+				</div>	
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="telefono">Teléfono:</label>
+					<div class="col-sm-10">
+						<input type="number" class="form-control" required max="9999999999999" min="1000000000"  name="telefono" value="<?php echo $_SESSION['telefono']?>" >
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="localidad">Localidad:</label>
+					<div class="col-sm-10">
+						<select name="localidad" class="form-control" required>
+							<option value="">Selecciona una localidad</option>
+							<?php
+								$id = $_SESSION['id'];
+								$usuario = $conection-> query("SELECT * FROM usuarios where idUsuario=$id");
+								$usuario= $usuario -> fetch_assoc();
+								listarLocalidadesConOptionActive($conection, $usuario['idLocalidad']);
+							?>
+						</select>
+					</div>
+				</div>																							
+				<input class="btn btn-primary" style="margin-left: 25%" type="submit" value="Guardar" name="Guardar">	
+			</form>
+			<br>

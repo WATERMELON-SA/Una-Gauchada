@@ -4,7 +4,7 @@
 		$mysql = conectar();
 		if (isset($mysql)){
 			$fechacontrol = date('Y-m-d');
-			$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol");
+			$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1");
 			if(isset($traer)){
 				$arreglo = $traer->fetch_assoc();
 			}

@@ -25,4 +25,21 @@ function listarLocalidades($conection){
 	}
 }
 
+function listarLocalidadesConOptionActive($conection, $locaUser){
+	$consulta = $conection->query("SELECT * FROM localidad");
+		if ($consulta != false) {
+			$localidades = $consulta->fetch_assoc();
+		}
+		while (isset($localidades)) {
+	?>
+			<option value=
+			<?php echo '"'.$localidades['idLocalidad'].'" '; 
+				if ($localidades['idLocalidad'] == $locaUser) {
+			 		echo "selected";
+			 	} 
+			?>> <?php echo $localidades['nombre']?></option>
+	<?php
+			$localidades = $consulta->fetch_assoc();
+		}
+}
 ?>
