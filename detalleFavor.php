@@ -119,7 +119,7 @@
           }
           else{
           ?>
-          <a href="borrarFavor.php?idFavor=<?php echo $idFavor; ?>"" class="btn btn-primary">Borrar</a>
+          <a onClick='if(confirm("¿Estas seguro que deseas borrar este favor?")) location.href ="borrarFavor.php?idFavor=<?php echo $idFavor; ?>";' class="btn btn-primary">Borrar</a>
           <?php
           }
           ?>
