@@ -119,6 +119,7 @@
           }
           else{
           ?>
+          <button class="btn btn-primary">Modificar Favor</button>
           <a onClick='if(confirm("¿Estas seguro que deseas borrar este favor?")) location.href ="borrarFavor.php?idFavor=<?php echo $idFavor; ?>";' class="btn btn-primary">Borrar</a>
           <?php
           }
@@ -129,6 +130,23 @@
     <?php
       include "mostrarpreguntas.php";
       mostrarPreguntas($idFavor);
+      if ($_SESSION['id'] != $idUsuario) {
+    ?>
+    <div class="container">
+    <form class="form-horizontal" method="POST" action="hacerPregunta.php">
+	    <div class="form-group">
+	    	<label class="control-label col-sm-1" for="pregunta">Pregunta:</label>
+		    <div class="col-sm-10">
+		    	<textarea type="text" required class="form-control" placeholder="Escribí tu pregunta acá" name="pregunta">
+				</textarea>
+			</div>
+		</div>
+		<input type="hidden" name="idFavor" value="<?php echo $idFavor; ?>">
+    	<input class="btn btn-primary" type="submit" value="Preguntar" name="Preguntar">	
+	</form>
+	</div>
+	<?php
+      }
     ?>
 </body>
 
