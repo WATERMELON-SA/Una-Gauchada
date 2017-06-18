@@ -40,7 +40,10 @@
 							<h4><?php echo $descripcioncorta; if (strlen($arreglo['descripcion']) > 170) {
 								echo "...";
 							}?></h4>
-							<h5><?php echo $arreglonombre["nombre"]?></h5>
+							<h5>
+								<a href="verPerfiles.php?idUser=<?php echo $idUsuario; ?>">
+									<?php echo $arreglonombre["nombre"]?></h5>
+								</a>
 							<a href="detalleFavor.php?idFavor=<?php echo $arreglo['idFavor'] ?>">Ver más</a>
 						</div>
 						</div>

@@ -84,7 +84,7 @@
 
 <body style="padding-top: 50px;">
 
-<script type="text/javascript" src="obtenerCampos.js"></script>
+
 
 	<div class="row">
 		<div class="col-md-offset-2 col-xs-offset-1 col-xs-9 col-md-8"  style="margin-top: 50px; text-align: center;background-color: #e6e6e6;" >

@@ -87,7 +87,7 @@
 	$conection = conectar();
 	include "listador.php";
 ?>
-<form class="form-horizontal" action="modificarDatosPersonales.php" style="width: 40%; margin-top: 2%; margin-left: 15%" method="POST">
+<form class="form-horizontal" enctype="multipart/form-data" action="modificarDatosPersonales.php" style="width: 40%; margin-top: 2%; margin-left: 15%" method="POST">
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="nombre">Nombre:</label>
 					<div class="col-sm-10">
@@ -125,7 +125,15 @@
 							?>
 						</select>
 					</div>
-				</div>																							
+				</div>
+				<div class="form-group">
+				<!-- <img src="mostrarFotoPerfil?idUser=<?php //echo $id; ?>"> -->	
+					<label class="control-label col-sm-2" for="imagen">Imagen de perfil:</label>
+					<div class="col-sm-10">
+						<input type="file" name="imagen" id="imagen"><br>
+					</div>
+				</div>
+																											
 				<input class="btn btn-primary" style="margin-left: 25%" type="submit" value="Guardar" name="Guardar">	
 			</form>
 			<br>
