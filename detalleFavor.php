@@ -85,6 +85,9 @@
     if (isset($traerlocalidad)) {
       $arreglolocalidad = $traerlocalidad->fetch_assoc();
     }
+    $idPostulante = $_SESSION['id'];
+    $postulado= $conexion ->query("SELECT * FROM postula WHERE idUsuario= $idPostulante AND idFavor= $idFavor");
+    $postulado= $postulado-> fetch_assoc();
   ?>
 
     <div class="container">
@@ -111,12 +114,24 @@
           <h3>Peticionante: <?php echo $favorNombre['nombre']?></h3>
           <h3>Localidad:<?php echo $arreglolocalidad['nombre'] ?></h5>
           <h3>Categoria:<?php echo $arreglocategoria['nombre'] ?></h5>
+          
           <?php 
-            if (isset($_SESSION['nombre']) AND ($_SESSION['id'] != $idUsuario)) {
+            if ($_SESSION['id'] != $idUsuario) {
+              if(!$postulado){
           ?>
-          <button class="btn btn-primary">Ofrecer</button>
+          <form method="POST" action="postularse.php">
+            <label>Contale al dueño del favor por qué te tiene que elegir:</label>
+            <textarea required class="form-control" type="text" name="comentario" style="resize: none"></textarea>
+            <input type="hidden" name="idUsuario" value="<?php echo $_SESSION['id']; ?>">
+            <input type="hidden" name="idFavor" value="<?php echo $idFavor ?>">
+            <br>
+            <input type="submit" class="btn btn-primary" value="Ofrecerme">
+          </form>
           <?php
-          }
+              }
+              else
+                echo("<p style='color: green'> Ya te has postulado para este favor </p>");
+            }
           else{
           ?>
           <button class="btn btn-primary">Modificar Favor</button>

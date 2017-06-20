@@ -49,7 +49,7 @@
   <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
    <li><a href="miPerfil.php">Mi Perfil</a></li>
     <li><a href="#">Mis pedidos</a></li>
-    <li><a href="#">Postulaciones</a></li>
+    <li><a href="misPostulaciones.php">Postulaciones</a></li>
     <li><a href="comprarCreditos.php">Comprar creditos</a></li>
     <li><a href="publicarFavor.php">Publicar Favor</a></li>
     <li role="separator" class="divider"></li>
