@@ -16,12 +16,45 @@
 		<h1 class="text-center text-primary subtitulo">Date una vuelta y fijate si podes ayudar</h1>
 	</div>
 
-	<br><br><br>
+	<br><br>
+	
+	<div style="margin-left:20%;">
+		<span style="font-size:200%">Ordenar por:</span>
+		<span>
+			<select style="font-size:150%" id="select" name="select">
+				<option value="#">Seleccionar</option>
+				<option value="idLocalidad">Localidad</option>
+				<option value="titulo">Titulo</option>
+				<option value="idCategoria">Categoria</option>
+				<option value="fechaviejo">Más viejos</option>
+				<option value="fechanuevo">Más nuevos</option>
+			</select>
+		</span>
+		<script>
+			$('select').change(function() {
+   				window.location.href = "index.php?order=".concat($(this).val());
+			});
+		</script>
+	</div>
+
+	
+	<br>
+
 
 	<div class="container">
 		<?php
 			include "mostrarFavores.php";
-			mostrarFavores()
+			if (isset($_GET['search'])){
+				$search = $_GET['search'];
+			}else{
+				$search=false;
+			}
+			if(isset($_GET['order'])){
+				$order=$_GET['order'];
+			}else{
+				$order=false;
+			}
+			mostrarFavores($search,$order);
 		?>
 		
 	</div>
