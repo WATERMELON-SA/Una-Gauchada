@@ -3,7 +3,7 @@
 	function mostrarFavores($search,$order){
 		$mysql = conectar();
 		$format = 'ASC';
-		if ($order==false) {
+		if (!$order) {
 			$order = 'idFavor';
 		}else{
 			if($order=='fechaviejo'){
@@ -14,17 +14,17 @@
 				$order='fecha_vencimiento';
 			}
 		}
-		if ($search!=false) {
+		if ($search) {
 			$fechacontrol = date('Y-m-d');
 			$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 AND (descripcion LIKE '%$search%' OR
-			 titulo LIKE '%$search%') ORDER BY '$order'");
+			 titulo LIKE '%$search%') ORDER BY $order");
 			if(isset($traer)){
 				$arreglo = $traer->fetch_assoc();
 			}
 		}else{
 			if (isset($mysql)){
 				$fechacontrol = date('Y-m-d');
-				$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 ORDER BY '$order'");
+				$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 ORDER BY $order");
 				if(isset($traer)){
 					$arreglo = $traer->fetch_assoc();
 				}
