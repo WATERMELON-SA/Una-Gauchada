@@ -12,7 +12,6 @@
 		$email=$_POST['email'];
 		if (isset($mysql)){
 			$dataBase = $mysql->query("SELECT * FROM usuarios WHERE email='$email' AND password='$contraseña'");
-			var_dump($dataBase);
 			$dataBase = $dataBase->fetch_assoc();
 			if (isset($dataBase['email'])){
 				session_start();

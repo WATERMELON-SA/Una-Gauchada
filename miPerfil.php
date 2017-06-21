@@ -17,19 +17,29 @@ if (isset($mysql)){
    
     }
     
-?>
+
+if (isset($_GET['pass'])){
+ ?>
+  <script type="text/javascript"> alert("Tu contraseña fue cambiada"); </script>
+  <?php  
+
+}
 
 
-						<?php
+
+
+
+
+						
 						if (is_null($arreglo['contenidoimagen'])) {
 						?>
-							<div style="float:left; margin-top: 5%; margin-left: 5%;" class="cajaFoto col-lg-4 col-xs-4">
+							<div style="float:left; margin-top: 10%;" class="cajaFoto col-lg-4 col-xs-4">
 								<img  class="img-responsive" src="logo.png" alt="">
 							</div>
 						<?php
 							}else{
 						?>
-						<div  class="cajaFoto col-lg-4 col-xs-4">
+						<div  style="float:left; margin-top: 4%; margin-left: 5%" class="cajaFoto col-lg-4 col-xs-4">
 							<img style="margin-top:20%" class="img-responsive" src="mostrarimagenPerfil.php?idUsuario=<?php echo $arreglo ['idUsuario']?>" alt="">
 						</div>
 						<?php } ?>
@@ -38,7 +48,7 @@ if (isset($mysql)){
 
 
 
-<div class="form-horizontal col-sm-10" style="margin-top: 2%;">
+<div class="form-horizontal col-sm-10" style=" margin-top: 2%">
         <div class="form-group">
           <label class="control-label col-sm-2" for="nombre">Nombre:</label>
           <div class="col-sm-10">

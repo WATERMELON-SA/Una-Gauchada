@@ -42,4 +42,21 @@ function listarLocalidadesConOptionActive($conection, $locaUser){
 			$localidades = $consulta->fetch_assoc();
 		}
 }
+
+
+
+
+function listarPostulantes($conection,$user){
+	$consulta=$conection->query("SELECT * FROM ((favor INNER JOIN postula ON favor.idFavor=postula.idFavor) INNER JOIN usuarios ON postula.idUsuario=usuarios.idUsuario) WHERE favor.idUsuario='$user'");
+	if ($consulta!= false) {
+		$postulantes=$consulta->fetch_assoc();
+	}
+	while (isset($postulantes)) {
+		?> 
+		<tr>
+			<td><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?></a></td>
+			<td><?php echo $postulantes['titulo'] ?></td>
+		</tr><?php $postulantes=$consulta->fetch_assoc();
+	}
+}
 ?>

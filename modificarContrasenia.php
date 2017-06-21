@@ -1,6 +1,27 @@
 <?php include "navbar.php" ?>
 <body>
-	
+<?php  
+if (isset($_GET['actual'])){
+ ?>
+  <script type="text/javascript"> alert("Tus contraseña actual no coincide con la ingresada"); </script>
+  <?php  
+
+}
+
+elseif (isset($_GET['nueva'])) {
+   ?>
+  <script type="text/javascript"> alert("Tu nueva contraseña no puede ser igual a la anterior"); </script>
+  <?php  
+}
+elseif (isset($_GET['repetir'])) {
+   ?>
+  <script type="text/javascript"> alert("Tus contraseñas no coinciden en los ultimos dos campos"); </script>
+  <?php  
+}
+
+
+
+?>
 
 	<form class="form-horizontal" method="POST" action="validarNuevaContrasenia.php" style="margin-left: 20%; margin-top: 2%">
   <div class="form-group">
