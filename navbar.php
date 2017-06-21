@@ -28,12 +28,12 @@
   <a href="index.php"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
 
 
-   <form class="navbar-form navbar-left" role="search" onsubmit="return false">
+   <form class="navbar-form navbar-left" role="search">
   
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Buscar"> 
+    <input type="text" class="form-control" placeholder="Buscar" name="search"> 
   </div>
-  <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
+  <button type="submit" class="btn btn-default" name="search_btn"> <img src="glyphicons-28-search.png"></button>
 </form>
 
 	<?php
