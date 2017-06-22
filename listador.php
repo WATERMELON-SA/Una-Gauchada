@@ -76,7 +76,7 @@ function listarPostulantesParaFavor($conection,$favor){
 		?>
 		<div class="container">
 		<h1 class="col-sm-4"><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?> </a></h1>
-		<button style="margin-top: 3%" class="btn btn-primary">Elegir gaucho</button><br>
+		<a onClick='if(confirm("¿Estas seguro que deseas elegir este usuario como gaucho para tu favor?")) location.href ="elegirGaucho.php?idFavor=<?php echo $favor; ?>"' style="margin-top: 3%" class="btn btn-primary">Elegir gaucho</a><br>
 		<p class="col-sm-10" style="padding-left: 12%"> <?php echo $postulantes['comentario'] ?> </p>
 		</div> <?php $postulantes=$consulta->fetch_assoc(); 
 
