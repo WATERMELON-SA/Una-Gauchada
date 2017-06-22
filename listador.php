@@ -47,7 +47,7 @@ function listarLocalidadesConOptionActive($conection, $locaUser){
 
 
 function listarPostulantes($conection,$user){
-	$consulta=$conection->query("SELECT * FROM ((favor INNER JOIN postula ON favor.idFavor=postula.idFavor) INNER JOIN usuarios ON postula.idUsuario=usuarios.idUsuario) WHERE favor.idUsuario='$user'");
+	$consulta=$conection->query("SELECT * FROM ((favor INNER JOIN postula ON favor.idFavor=postula.idFavor) INNER JOIN usuarios ON postula.idUsuario=usuarios.idUsuario) WHERE favor.idUsuario='$user' and  favor.activo=1 ");
 	if ($consulta!= false) {
 		$postulantes=$consulta->fetch_assoc();
 	}
