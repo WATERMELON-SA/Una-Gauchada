@@ -30,6 +30,7 @@
 				<option value="fechanuevo">Más nuevos</option>
 			</select>
 		</span>
+		<span style="font-size:200%; margin-left:5%; color:black;"><a href="busquedaAvanzadaConGet.php">Búsqueda avanzada</a></span>
 		<script>
 			$('select').change(function() {
    				window.location.href = "index.php?order=".concat($(this).val());
