@@ -10,84 +10,8 @@
 	<h1>Búsqueda avanzada</h1>
 </div>
 
-
-<div class="container" style="margin-top:3%; border:solid 3px black; border-radius:1%; width:30%;">
-
-<form action="busquedaAvanzadaConGet.php" method="GET">
-
-<br>
-
-<div id="firstBox">
-	<!-- FILTRADO POR CATEGORIA-->
-	<div style="text-align:center; margin-top:1%;">
-		<span style="font-size:200%;">Categoria:</span>
-		<span>
-			<select style="font-size:150%" id="select_categoria" name="categoria">
-				<option value="#">Seleccionar</option>
-				<?php
-					listarCategorias($conection);
-				?>
-			</select>
-		</span>
-	</div>
-
-	<!-- FILTRADO POR LOCALIDAD-->
-	<div style="text-align:center; margin-top:1%;">
-		<span style="font-size:200%;">Localidad:</span>
-		<span>
-			<select style="font-size:150%" id="select_localidad" name="localidad">
-				<option value="#">Seleccionar</option>
-				<?php
-					listarLocalidades($conection);
-				?>
-			</select>
-		</span>
-	</div>
-</div>
-
-<div id="secondBox">
-	<!-- FILTRADO POR ORDEN-->
-	<div style="text-align:center; margin-top:1%;">
-		<span style="font-size:200%;">Ordenar por:</span>
-		<span>
-			<select style="font-size:150%" id="select_orden" name="order">
-				<option value="#">Seleccionar</option>
-				<option value="idLocalidad">Localidad</option>
-				<option value="titulo">Titulo</option>
-				<option value="idCategoria">Categoria</option>
-				<option value="fechaviejo">Más viejos</option>
-				<option value="fechanuevo">Más nuevos</option>
-			</select>
-		</span>
-	</div>
-
-	<div style="text-align:center; margin-top:1%;">
-		<span style="font-size:200%;">Búsqueda: </span>
-		<input type="text" name="busqueda">
-	</div>
-
-	<div style="text-align:center; margin-top:1%;">
-		<span>
-			<input class="btn" type="Submit" value="Filtrar">
-		</span>
-	</div>
-</div>
-
-
-</form>
-
-<br>
-
-</div>
-
-<br><br>
-
-<!-- MUESTRO FAVORES -->
-<div>
-	
-
-	<?php
-			if (isset($_GET['busqueda'])){
+<?php
+	if (isset($_GET['busqueda'])){
 				$search = $_GET['busqueda'];
 			}else{
 				$search=false;
@@ -107,8 +31,106 @@
 			}else{
 				$categoria=false;
 			}
-			mostrarFavores($search,$order,$localidad,$categoria,$conection);
-		?>
+?>
+
+
+
+<div class="container" style="margin-top:3%; border:solid 3px black; border-radius:1%; width:30%;">
+
+<form action="busquedaAvanzadaConGet.php" method="GET">
+
+<br>
+
+<div id="firstBox">
+	<!-- FILTRADO POR CATEGORIA-->
+	<div style="text-align:center; margin-top:1%;">
+		<span style="font-size:200%;">Categoria:</span>
+		<span>
+			<select style="font-size:150%" id="select_categoria" name="categoria" required>
+				<option disabled selected value>Seleccionar</option>
+				<?php
+					listarCategorias($conection);
+				?>
+			</select>
+		</span>
+	</div>
+
+	<!-- FILTRADO POR LOCALIDAD-->
+	<div style="text-align:center; margin-top:1%;">
+		<span style="font-size:200%;">Localidad:</span>
+		<span>
+			<select style="font-size:150%" id="select_localidad" name="localidad" required>
+				<option disabled selected value>Seleccionar</option>
+				<?php
+					listarLocalidades($conection);
+				?>
+			</select>
+		</span>
+	</div>
+</div>
+
+<div id="secondBox">
+	<!-- FILTRADO POR ORDEN-->
+	<div style="text-align:center; margin-top:1%;">
+		<span style="font-size:200%;">Ordenar por:</span>
+		<span>
+			<select required style="font-size:150%" id="select_orden" name="order">
+				<option disabled selected value>Seleccionar</option>
+				<option value="idLocalidad">Localidad</option>
+				<option value="titulo">Titulo</option>
+				<option value="idCategoria">Categoria</option>
+				<option value="fechaviejo">Más viejos</option>
+				<option value="fechanuevo">Más nuevos</option>
+			</select>
+		</span>
+	</div>
+
+	<div style="text-align:center; margin-top:1%;">
+		<span style="font-size:200%;">Búsqueda: </span>
+		<input type="text" name="busqueda">
+	</div>
+
+	<div style="text-align:center; margin-top:1%;">
+		<span>
+			<input class="btn" type="Submit" value="Filtrar" name="filter">
+		</span>
+	</div>
+</div>
+
+
+</form>
+
+
+
+
+<br>
+
+</div>
+<?php
+if (isset($_GET['filter'])) {
+	$traerlocalidad = $conection->query("SELECT * FROM localidad WHERE idLocalidad = $localidad");
+	$localidadmuestra = $traerlocalidad->fetch_assoc();
+	$traercategoria = $conection->query("SELECT * FROM categoria WHERE idCategoria = $categoria");
+	$categoriamuestra = $traercategoria->fetch_assoc();
+	$localidadmuestra =  $localidadmuestra['nombre'];
+	$categoriamuestra = $categoriamuestra['nombre'];
+?>
+	<h3 style="text-align:center;"><?php echo ("Estás filtrando por ". $localidadmuestra . " - " . $categoriamuestra . "."); ?></h3>
+
+<?php
+	}
+	
+?>
+
+<br><br>
+
+<!-- MUESTRO FAVORES -->
+<div>
+	
+
+	<?php
+		mostrarFavores($search,$order,$localidad,$categoria,$conection);
+	?>
 		
 
 
