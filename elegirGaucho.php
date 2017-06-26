@@ -10,7 +10,7 @@
 	$_SESSION['calif_pend'] = $calif;
 	$yo= $mysql->query("UPDATE usuarios SET calif_pend =$calif WHERE idUsuario=$id");
 
-	header("Location: index.php");
+	header("Location: infoContacto.php?idUsuario=$idUsuarioCumple&idFavor=$idFavor");
 
 
   ?>

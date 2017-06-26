@@ -62,7 +62,10 @@ if ($postulantes['activo'] == 1) {
 			$estado= "<a class='btn btn-primary' href='#'>Elegir gaucho</a>";
 		}
 			elseif ($postulantes['idUsuarioCumple']==$postulantes['idUsuario']) {
-				$estado= "has elegido a este usuario como gaucho!";
+				$nombre=$postulantes['idUsuario'];
+				$favor=$postulantes['idFavor'];
+				$puntuar="puntuarUsuario.php?idUsuario=$nombre&idFavor=$favor";
+				$estado= "has elegido a este usuario como gaucho! <a href=$puntuar>califica este usuario</a>" ;
 			}
 			else{
 				$estado= "Has rechazado a este usuario";
