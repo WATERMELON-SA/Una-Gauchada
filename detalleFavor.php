@@ -1,6 +1,8 @@
-<?php include "navbar.php";  ?>
+<?php include "navbar.php";  
+?>
 
 <body style="padding-top: 50px;">
+<div class="container">
   <?php
     include "conexion.php";
     include "listador.php";
@@ -52,7 +54,7 @@
           <h3>Categoria:<?php echo $arreglocategoria['nombre'] ?></h5>
           
           <?php 
-            if ($_SESSION['id'] != $idUsuario) {
+            if ($_SESSION['id'] != $idUsuario)  {
               if(!$postulado){
           ?>
           <form method="POST" action="postularse.php">
@@ -68,7 +70,7 @@
               else
                 echo("<p style='color: green'> Ya te has postulado para este favor </p>");
             }
-          else{
+          elseif(is_null($favor['idUsuarioCumple'])){
           ?>
           <button class="btn btn-primary">Modificar Favor</button>
           <a onClick='if(confirm("¿Estas seguro que deseas borrar este favor?")) location.href ="borrarFavor.php?idFavor=<?php echo $idFavor; ?>";' class="btn btn-primary">Borrar</a>
@@ -78,10 +80,24 @@
         </div>
       </div>
     </div>
+    <?php
+      if(($_SESSION['id']==$idUsuario) AND (is_null($favor['idUsuarioCumple']))){
+    ?>
     <h1>Postulantes:</h1>
     <?php
-      listarPostulantesParaFavor(conectar(),$idFavor);?>
+      listarPostulantesParaFavor(conectar(),$idFavor);
+    }
+    elseif ($favor['idUsuarioCumple']!=null) {
+      $idCumplidor= $favor['idUsuarioCumple'];
+      $usuarioCumple = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idCumplidor");
+      $usuarioCumple = $usuarioCumple ->fetch_assoc();
+      ?>
 
+      <h3 style="text-align: center;">Has elegido al usuario <?php echo $usuarioCumple['nombre']; ?> como gaucho ► <a href="#"> Ver info contacto</a>
+      </h3>
+      <?php
+    }
+    ?>
       <br>
     <h1>Preguntas:</h1>
 
@@ -95,17 +111,17 @@
 	    <div class="form-group">
 	    	<label class="control-label col-sm-1" for="pregunta">Pregunta:</label>
 		    <div class="col-sm-10">
-		    	<textarea type="text" required class="form-control" placeholder="Escribí tu pregunta acá" name="pregunta">
+		    	<textarea type="text" required class="form-control" style="resize: vertical;" name="pregunta">
 				</textarea>
 			</div>
 		</div>
 		<input type="hidden" name="idFavor" value="<?php echo $idFavor; ?>">
-    	<input class="btn btn-primary" type="submit" value="Preguntar" name="Preguntar">	
+    <input class="btn btn-primary" type="submit" value="Preguntar" name="Preguntar">	
 	</form>
 	</div>
 	<?php
       }
     ?>
+    </div>
 </body>
-
 </html>

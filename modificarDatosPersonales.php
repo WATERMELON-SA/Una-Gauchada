@@ -1,7 +1,7 @@
 <?php
 session_start();
 function chequeoModificación(){
-	return (($_POST['nombre']==$_SESSION['nombre']) and ($_POST['email']==$_SESSION['email']) and ($_POST['telefono']==$_SESSION['telefono']) and ($_POST['fecha_nac']==$_SESSION['fecha_nac']) and ($_POST['localidad']==$_SESSION['localidad']));
+	return (($_POST['nombre']==$_SESSION['nombre']) and ($_POST['email']==$_SESSION['email']) and ($_POST['telefono']==$_SESSION['telefono']) and ($_POST['fecha_nac']==$_SESSION['fecha_nac']) and ($_POST['localidad']==$_SESSION['localidad']) and ($_FILES['imagen']['tmp_name']=='') and (isset($_FILES['imagen']['tmp_name'])));
 }
 
 

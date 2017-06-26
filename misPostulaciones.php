@@ -21,6 +21,18 @@
 		}
 		
 		$descripcioncorta = substr($favor['descripcion'],0,170);
+		if ($favor['activo'] == 1) {
+			$estado= "En espera";
+		}
+		elseif ($favor['completo']==0) {
+			$estado = "El favor ha sido borrado";
+		}
+			elseif ($favor['idUsuarioCumple']==$id) {
+				$estado= "El usuario te ha elegido como gaucho";
+			}
+			else{
+				$estado= "El usuario te ha rechazado";
+			}
 ?>
 	<div class="container">
 					<div class="well cajaFavor row">
@@ -42,10 +54,12 @@
 							<h4><?php echo $descripcioncorta; if (strlen($favor['descripcion']) > 170) {
 								echo "...";
 							}?></h4>
-							<h5>
 								<a href="verPerfiles.php?idUser=<?php echo $idUsuario; ?>">
-									<?php echo $arreglonombre["nombre"]?></h5>
+									<?php echo $arreglonombre["nombre"];?>
 								</a>
+							<br>
+							<b>Estado: <?php echo $estado; ?></b>
+							<br>
 							<a href="detalleFavor.php?idFavor=<?php echo $favor['idFavor'] ?>">Ver más</a>
 						</div>
 						</div>

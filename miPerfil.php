@@ -1,6 +1,6 @@
 <?php include "navbar.php" ?>
 <body>
-
+<div class="container ">
 <?php
 include "conexion.php";
 $mysql = conectar();
@@ -33,13 +33,13 @@ if (isset($_GET['pass'])){
 						
 						if (is_null($arreglo['contenidoimagen'])) {
 						?>
-							<div style="float:left; margin-top: 10%;" class="cajaFoto col-lg-4 col-xs-4">
+							<div style="float:left; margin-top: 10%;" class="cajaFoto col-xs-4">
 								<img  class="img-responsive" src="logo.png" alt="">
 							</div>
 						<?php
 							}else{
 						?>
-						<div  style="float:left; margin-top: 4%; margin-left: 5%" class="cajaFoto col-lg-4 col-xs-4">
+						<div  style="float:left; margin-top: 4%; margin-left: 5%" class="cajaFoto col-xs-4">
 							<img style="margin-top:20%" class="img-responsive" src="mostrarimagenPerfil.php?idUsuario=<?php echo $arreglo ['idUsuario']?>" alt="">
 						</div>
 						<?php } ?>
@@ -47,8 +47,8 @@ if (isset($_GET['pass'])){
 
 
 
-
-<div class="form-horizontal col-sm-10" style=" margin-top: 2%">
+<div class="row">
+<div class="form-horizontal col-xs-8" style=" margin-top: 2%">
         <div class="form-group">
           <label class="control-label col-sm-2" for="nombre">Nombre:</label>
           <div class="col-sm-10">
@@ -91,6 +91,12 @@ if (isset($_GET['pass'])){
           <label class="control-label col-sm-3" for="calif_pend">Calificaciones pendientes: <?php  echo $_SESSION['calif_pend'] ?></label>
         </div>  
         </div>
-
-
+</div>
+        <br>
+        <a class="btn btn-primary" href="#">Ver mis gauchadas</a>
+        <a class="btn btn-primary" href="#">Ver mis comentarios en gauchadas</a>
+        <a class="btn btn-primary" href="#">Ver mis calificaciones</a>
+        <a class="btn btn-primary" href="listarPostulantes.php">Ver comentarios sobre mis gauchadas</a>
+        <a class="btn btn-primary" href="misPostulaciones.php">Ver favores en los que me postule</a>
+</div>
 </body>

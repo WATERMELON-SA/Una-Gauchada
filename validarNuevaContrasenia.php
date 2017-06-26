@@ -7,13 +7,13 @@ if (isset($mysql)){
 	$traer=$mysql->query("SELECT * FROM usuarios WHERE idUsuario='$id'");
 }
 $arreglo= $traer->fetch_assoc();
-if((md5($_POST['vieja']))!=($arreglo['password'])){ 
-		header("Location: modificarContrasenia.php?actual=1");}
-elseif ($_POST['nueva']==$_POST['vieja']){
-		header("Location: modificarContrasenia.php?nueva=1");}
-elseif ($_POST['nueva']!=$_POST['repetir']) {
+if ($_POST['nueva']!=$_POST['repetir']) {
 	header("Location: modificarContrasenia.php?repetir=1");
 }
+elseif ($_POST['nueva']==$_POST['vieja']){
+		header("Location: modificarContrasenia.php?nueva=1");}
+elseif((md5($_POST['vieja']))!=($arreglo['password'])){ 
+		header("Location: modificarContrasenia.php?actual=1");}
 else{
 	$nueva=md5($_POST['nueva']);
 	$mysql->query("UPDATE usuarios u SET u.password='$nueva' WHERE u.idUsuario='$id'");

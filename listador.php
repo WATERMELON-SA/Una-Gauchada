@@ -47,25 +47,49 @@ function listarLocalidadesConOptionActive($conection, $locaUser){
 
 
 function listarPostulantes($conection,$user){
-	$consulta=$conection->query("SELECT * FROM ((favor INNER JOIN postula ON favor.idFavor=postula.idFavor) INNER JOIN usuarios ON postula.idUsuario=usuarios.idUsuario) WHERE favor.idUsuario='$user' and  favor.activo=1 ");
+	$consulta=$conection->query("SELECT * FROM ((favor INNER JOIN postula ON favor.idFavor=postula.idFavor) INNER JOIN usuarios ON postula.idUsuario=usuarios.idUsuario) WHERE favor.idUsuario='$user' and  (completo=1 or activo=1) ");
 	if ($consulta!= false) {
 		$postulantes=$consulta->fetch_assoc();
 	}
+	if (!isset($postulantes)) 
+		{ 	?>
+		<div class="container">
+		<h2>No posees postulantes para ningún favor</h2>
+		</div>
+<?php }
+
+if ($postulantes['activo'] == 1) {
+			$estado= "<a class='btn btn-primary' href='#'>Elegir gaucho</a>";
+		}
+			elseif ($postulantes['idUsuarioCumple']==$postulantes['idUsuario']) {
+				$estado= "has elegido a este usuario como gaucho!";
+			}
+			else{
+				$estado= "Has rechazado a este usuario";
+			}
+
+
+
+
 	while (isset($postulantes)) {
 		?> 
 		<tr>
 			<td><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?></a></td>
-			<td><?php echo $postulantes['titulo'] ?></td>
+			<td><a href="detalleFavor.php?idFavor=<?php echo $postulantes['idFavor'] ?>"><?php echo $postulantes['titulo'] ?></td>
+			<td><?php echo $postulantes['comentario']; ?></td>
+			<td><?php echo $estado; ?></td>
+
 		</tr><?php $postulantes=$consulta->fetch_assoc();
 	}
 }
 
 function listarPostulantesParaFavor($conection,$favor){
 	$consulta=$conection->query("SELECT * FROM (postula p INNER JOIN favor f ON p.idFavor=f.idFavor) INNER JOIN usuarios u ON u.idUsuario=p.idUsuario WHERE f.idFavor='$favor' ");
-	if ($consulta!= false) {
+	if (isset($consulta)) {
 		$postulantes=$consulta->fetch_assoc();
 	}
-	else{ 	?>
+	if (!isset($postulantes)) 
+		{ 	?>
 		<div class="container">
 		<h2>Nadie se ha postulado para este favor</h2>
 		</div>
@@ -76,7 +100,7 @@ function listarPostulantesParaFavor($conection,$favor){
 		?>
 		<div class="container">
 		<h1 class="col-sm-4"><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?> </a></h1>
-		<a onClick='if(confirm("¿Estas seguro que deseas elegir este usuario como gaucho para tu favor?")) location.href ="elegirGaucho.php?idFavor=<?php echo $favor; ?>"' style="margin-top: 3%" class="btn btn-primary">Elegir gaucho</a><br>
+		<a onClick='if(confirm("¿Estas seguro que deseas elegir este usuario como gaucho para tu favor?")) location.href ="elegirGaucho.php?idFavor=<?php echo $favor; ?>&idUsuario=<?php echo $postulantes['idUsuario']; ?>"' style="margin-top: 3%" class="btn btn-primary">Elegir gaucho</a><br>
 		<p class="col-sm-10" style="padding-left: 12%"> <?php echo $postulantes['comentario'] ?> </p>
 		</div> <?php $postulantes=$consulta->fetch_assoc(); 
 

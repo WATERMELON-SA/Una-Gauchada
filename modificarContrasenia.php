@@ -3,7 +3,7 @@
 <?php  
 if (isset($_GET['actual'])){
  ?>
-  <script type="text/javascript"> alert("Tus contraseña actual no coincide con la ingresada"); </script>
+  <script type="text/javascript"> alert("Tu contraseña actual no coincide con la ingresada"); </script>
   <?php  
 
 }

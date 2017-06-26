@@ -1,10 +1,11 @@
 <?php
 	function guardarPregunta($conection){
 		session_start();
-	    $pregunta= $_POST['pregunta'];
-	    $idFavor= $_POST['idFavor'];
+	    $respuesta= $_POST['respuesta'];
+	    $idPregunta= $_POST['idPregunta'];
 	    $idUsuario= $_SESSION['id'];
-		$resul = $conection->query("INSERT INTO pregunta(contenido, idUsuario, idFavor) VALUES ('$pregunta','$idUsuario','$idFavor')");
+	    $idFavor= $_POST['idFavor'];
+		$resul = $conection->query("UPDATE pregunta SET respuesta='$respuesta' WHERE idPregunta= $idPregunta");
 		header("Location: detalleFavor.php?idFavor=$idFavor");
 	}
 	 include "conexion.php";

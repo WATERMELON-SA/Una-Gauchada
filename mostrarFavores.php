@@ -77,7 +77,13 @@
 								<a href="verPerfiles.php?idUser=<?php echo $idUsuario; ?>">
 									<?php echo $arreglonombre["nombre"]?></h5>
 								</a>
+							<?php 
+								if (isset($_SESSION['id'])) {
+							?>
 							<a href="detalleFavor.php?idFavor=<?php echo $arreglo['idFavor'] ?>">Ver más</a>
+							<?php
+							}
+							?>
 						</div>
 						</div>
 					</div>
