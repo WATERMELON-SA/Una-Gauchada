@@ -1,6 +1,11 @@
 <?php 
 	include "navbar.php" ;
 	include "conexion.php";
+if (isset($_GET['Fallo']) | !isset($_SESSION['id'])){
+	header("Location: index.php");
+}
+
+
 ?>
 <body>
  
