@@ -58,10 +58,15 @@ function listarPostulantes($conection,$user){
 		</div>
 <?php }
 
-if ($postulantes['activo'] == 1) {
-			$estado= "<a class='btn btn-primary' href='#'>Elegir gaucho</a>";
+	while (isset($postulantes)) {
+		if ($postulantes['activo'] == 1) {
+
+			$idCumple=$postulantes['idUsuario'];
+			$idFavor=$postulantes['idFavor'];
+			$href="elegirGaucho.php?idUsuario=$idCumple&idFavor=$idFavor";
+			$estado= "<a class='btn btn-primary' href=$href>Elegir gaucho</a>";
 		}
-		elseif(!is_null($postulantes['puntuacion'])){
+		elseif((!is_null($postulantes['puntuacion'])) and ($postulantes['idUsuarioCumple']==$postulantes['idUsuario']) ){
 					$estado= "has elegido y calificado a este usuario como gaucho!";
 				}
 			elseif ($postulantes['idUsuarioCumple']==$postulantes['idUsuario']) {
@@ -71,13 +76,11 @@ if ($postulantes['activo'] == 1) {
 				$estado= "has elegido a este usuario como gaucho! <a href=$puntuar>califica este usuario</a>" ;
 			}
 			
-				else{$estado= "Has rechazado a este usuario";
-			}
+				else{
+					$estado= "Has rechazado a este usuario";
+				}
 
 
-
-
-	while (isset($postulantes)) {
 		?> 
 		<tr>
 			<td><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?></a></td>
