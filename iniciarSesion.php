@@ -1,7 +1,7 @@
 <?php
 	if (isset($_GET['alert'])) {
 ?>
-<script>alert("Por favor inicia sesión para ver un favor en detalle.")</script>
+<script>alert("Por favor inicia sesión para acceder a esta página.")</script>
 <?php
 	}
 ?>
@@ -34,12 +34,11 @@
   <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
 </form>
 
-	<button class="btn btn-default navbar-right navbar-btn" type="button" >
-    	<a href="index.php"> Inicio</a>
-  </button>
+	<a class="btn btn-default navbar-right navbar-btn" type="button" href="index.php"> Inicio</a>
+ 
 
 
-	<button type="button" class="btn btn-default navbar-btn navbar-right"><a href="registrarse.php"> Registrarse</a></button>
+	<a type="button" class="btn btn-default navbar-btn navbar-right" href="registrarse.php"> Registrarse</a>
 
 
   </div>
