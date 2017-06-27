@@ -3,11 +3,18 @@
 <body style="padding-top: 50px;">
 
 <?php
+  if (!(isset($_SESSION['id']))) {
+    header("Location: index.php");
+  }
   include "conexion.php";
   $conection= conectar();
   $idUser=$_GET['idUser'];
   $usuario = $conection -> query("SELECT * FROM usuarios WHERE idUsuario= '$idUser'");
   $usuario = $usuario -> fetch_assoc();
+  $favoresCumplidos= $conection-> query("SELECT * FROM favor WHERE idUsuarioCumple='$idUser'");
+  if (isset($favoresCumplidos)) {
+    $arreglo= $favoresCumplidos->fetch_assoc();
+  }
 ?>
   
   <br>
@@ -37,12 +44,56 @@
       <br>
        <label>Puntaje:</label>
       <?php echo $usuario['puntaje']; ?>
-      <br>
+       <br>
        <label>Calificaciones pendientes:</label>
       <?php echo $usuario['calif_pend']; ?>
       <br>
        <label>Fecha de nacimiento:</label>
       <?php echo $usuario['fechanacimiento']; ?>
+      <br>
+
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Ver hitorial de puntuaciones
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Historial de puntuaciones</h4>
+            </div>
+            <div class="modal-body">
+            <?php
+            if (isset($arreglo)) {
+              while (isset($arreglo)) {
+            ?>
+              
+                <b>Favor: <?php echo $arreglo['titulo']; ?></b>
+                <br>
+                Puntuacion: <?php echo $arreglo['puntuacion']; ?>
+                <br>
+                Comentario del dueño: <?php echo $arreglo['comentario']; ?>
+                <br>
+
+            <?php
+            $arreglo= $favoresCumplidos->fetch_assoc();
+              }
+            }
+            else
+              echo("Este usuario no ha sido puntuado en ningun favor");
+            ?>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
