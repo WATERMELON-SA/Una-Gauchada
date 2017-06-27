@@ -4,57 +4,12 @@
 <script>alert("Por favor inicia sesión para acceder a esta página.")</script>
 <?php
 	}
+	include "navbar.php";
 ?>
-<!DOCTYPE html>
-<html  style="overflow-x: hidden">
-<head>
-	<link rel="shortcut icon" href="logo.png">
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="logo.png">
-	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="Roboto-Regular.ttf">
-	<link rel="stylesheet" type="text/css" href="estilo1.css">	
-	<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="bootstrap.min.js"></script>
-	<title>Una Gauchada</title>
-</head>
-
-<header>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-  <a href="index.php"><img alt="brand" class="navbar-left" src="logo.png" style="width: 50px; height: 50px"></a>
-
-
-   <form class="navbar-form navbar-left" role="search">
-  
-  <div class="form-group">
-    <input type="text" class="form-control" placeholder="Buscar"> 
-  </div>
-  <button type="submit" class="btn btn-default"> <img src="glyphicons-28-search.png"></button>
-</form>
-
-	<a class="btn btn-default navbar-right navbar-btn" type="button" href="index.php"> Inicio</a>
- 
-
-
-	<a type="button" class="btn btn-default navbar-btn navbar-right" href="registrarse.php"> Registrarse</a>
-
-
-  </div>
-</nav>
-
-		<img style="width: 100%;" src="banner.png">
-
-
-</header>
-
-
 <body style="text-align: center; background-color: #e6e6e6;">
 
 	<?php 
 		include "inicioCorrecto.php";
-		session_start();
 		if(isset ($_SESSION['nombre'])){
 			header("Location: index.php");
 		}
