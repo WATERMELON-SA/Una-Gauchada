@@ -11,7 +11,7 @@
   $idUser=$_GET['idUser'];
   $usuario = $conection -> query("SELECT * FROM usuarios WHERE idUsuario= '$idUser'");
   $usuario = $usuario -> fetch_assoc();
-  $favoresCumplidos= $conection-> query("SELECT * FROM favor WHERE idUsuarioCumple='$idUser'");
+  $favoresCumplidos= $conection-> query("SELECT * FROM favor WHERE idUsuarioCumple='$idUser' AND puntuacion IS NOT NULL");
   if (isset($favoresCumplidos)) {
     $arreglo= $favoresCumplidos->fetch_assoc();
   }
@@ -77,6 +77,7 @@
                 Puntuacion: <?php echo $arreglo['puntuacion']; ?>
                 <br>
                 Comentario del dueño: <?php echo $arreglo['comentario']; ?>
+                <br>
                 <br>
 
             <?php
