@@ -4,7 +4,7 @@
 
 <?php
   if (!(isset($_SESSION['id']))) {
-    header("Location: index.php");
+    header("Location: iniciarSesion.php?alert");
   }
   include "conexion.php";
   $conection= conectar();
@@ -15,6 +15,10 @@
   if (isset($favoresCumplidos)) {
     $arreglo= $favoresCumplidos->fetch_assoc();
   }
+  $idLocalidad=$usuario['idLocalidad'];
+  $localidad=$conection-> query("SELECT * FROM localidad WHERE idLocalidad='$idLocalidad'");
+  $localidad= $localidad-> fetch_assoc();
+  $localidad= $localidad['nombre'];
 ?>
   
   <br>
@@ -45,8 +49,8 @@
        <label>Puntaje:</label>
       <?php echo $usuario['puntaje']; ?>
        <br>
-       <label>Calificaciones pendientes:</label>
-      <?php echo $usuario['calif_pend']; ?>
+       <label>Localidad:</label>
+      <?php echo $localidad; ?>
       <br>
        <label>Fecha de nacimiento:</label>
       <?php echo $usuario['fechanacimiento']; ?>
