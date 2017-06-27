@@ -93,9 +93,18 @@
       $usuarioCumple = $usuarioCumple ->fetch_assoc();
       ?>
 
-      <h3 style="text-align: center;">Has elegido al usuario <?php echo $usuarioCumple['nombre']; ?> como gaucho ► <a href="infoContacto.php?idUsuario=<?php echo $idCumplidor?>&idFavor=<?php echo $idFavor?>"> Ver info contacto</a>
-      </h3>
-      <?php
+      <h3 style="text-align: center;">Has elegido al usuario <a href="verPerfiles.php?idUser=<?php echo $usuarioCumple['idUsuario']; ?>"> <?php echo $usuarioCumple['nombre']; ?></a> como gaucho 
+
+      <?php  
+      if (is_null($favor['puntuacion'])){
+      
+        ?>
+        ► <a href="infoContacto.php?idUsuario=<?php echo $idCumplidor?>&idFavor=<?php echo $idFavor?>"> Ver info contacto</a>
+        <?php
+      }
+      ?>
+    </h3>
+    <?php
     }
     ?>
       <br>

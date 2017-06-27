@@ -61,14 +61,17 @@ function listarPostulantes($conection,$user){
 if ($postulantes['activo'] == 1) {
 			$estado= "<a class='btn btn-primary' href='#'>Elegir gaucho</a>";
 		}
+		elseif(!is_null($postulantes['puntuacion'])){
+					$estado= "has elegido y calificado a este usuario como gaucho!";
+				}
 			elseif ($postulantes['idUsuarioCumple']==$postulantes['idUsuario']) {
 				$nombre=$postulantes['idUsuario'];
 				$favor=$postulantes['idFavor'];
 				$puntuar="puntuarUsuario.php?idUsuario=$nombre&idFavor=$favor";
 				$estado= "has elegido a este usuario como gaucho! <a href=$puntuar>califica este usuario</a>" ;
 			}
-			else{
-				$estado= "Has rechazado a este usuario";
+			
+				else{$estado= "Has rechazado a este usuario";
 			}
 
 
