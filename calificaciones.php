@@ -10,7 +10,7 @@ $calif_pend=$_SESSION['calif_pend']-1;
 $comentario=$_POST['comentario'];
 $puntuacion=$_POST['puntuacion'];
 
-$mysql->query("UPDATE favor SET puntuacion='$puntuacion', comentario='$comentario' WHERE idUsuario=$id ");
+$mysql->query("UPDATE favor SET puntuacion='$puntuacion', comentario='$comentario' WHERE idFavor=$idFavor ");
 $mysql->query("UPDATE usuarios SET calif_pend=$calif_pend WHERE idUsuario=$myid ");
 
 
