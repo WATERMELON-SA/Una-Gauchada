@@ -1,7 +1,7 @@
 <?php include "navbar.php" ?>
 
 <body style="background-color: #e6e6e6; padding-top: 50px;">
-<h1 style="text-align: center;">Estos son los favores en los que te postulaste: </h1>
+
 <?php 
 	if (!isset($_SESSION['nombre'])) {
 		header("Location: index.php");
@@ -11,6 +11,10 @@
 	$id = $_SESSION['id'];
 	$postulaciones= $conectar-> query("SELECT * FROM postula WHERE idUsuario=$id");
 	$arreglo= $postulaciones -> fetch_assoc();
+	if (isset($arreglo)){
+		?>
+		<h1 style="text-align: center;">Estos son los favores en los que te postulaste: </h1>
+		<?php
 	while (isset($arreglo)) {
 		$idFavor = $arreglo['idFavor'];
 		$favor = $conectar -> query("SELECT * FROM favor WHERE idFavor = $idFavor");
@@ -67,12 +71,12 @@
 <?php  
 	$arreglo= $postulaciones -> fetch_assoc();
 }
+}
+else{
 ?>
-
-
-
-
-
-
+<h1 style="text-align: center;">No te postulaste a ningún favor</h1>
+<?php 
+}
+?>
 </body>
 </html>
