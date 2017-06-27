@@ -9,10 +9,10 @@
 		}else{
 			if($order=='fechaviejo'){
 				$format = 'ASC';
-				$order='idFavor';
+				$order='fecha_vencimiento';
 			}if ($order=='fechanuevo') {
 				$format = 'DESC';
-				$order='idFavor';
+				$order='fecha_vencimiento';
 			}
 			if ($order=='idCategoria') {
 				$inner="NATURAL JOIN categoria";
@@ -26,14 +26,14 @@
 		if ($search) {
 			$fechacontrol = date('Y-m-d');
 			$traer = $mysql->query("SELECT * FROM favor $inner WHERE fecha_vencimiento > $fechacontrol AND activo = 1 AND (descripcion LIKE '%$search%' OR
-			 titulo LIKE '%$search%') ORDER BY $order $format");
+			 titulo LIKE '%$search%') ORDER BY $order");
 			if(isset($traer)){
 				$arreglo = $traer->fetch_assoc();
 			}
 		}else{
 			if (isset($mysql)){
 				$fechacontrol = date('Y-m-d');
-				$traer = $mysql->query("SELECT * FROM favor $inner WHERE fecha_vencimiento > $fechacontrol AND activo = 1 ORDER BY $order $format");
+				$traer = $mysql->query("SELECT * FROM favor $inner WHERE fecha_vencimiento > $fechacontrol AND activo = 1 ORDER BY $order");
 				if(isset($traer)){
 					$arreglo = $traer->fetch_assoc();
 				}
@@ -56,8 +56,7 @@
 		$idUsuario = $arreglo['idUsuario'];
 		$idLocalidad = $arreglo['idLocalidad'];
 		$idCategoria = $arreglo['idCategoria'];
-		
-		$traernombre = $mysql->query("SELECT nombre FROM usuarios WHERE idUsuario = $idUsuario ");
+		$traernombre = $mysql->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario ");
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
@@ -75,7 +74,7 @@
 		$descripcioncorta = substr($arreglo['descripcion'],0,170);
 		?>
 			<div class="container">
-					<div class="well cajaFavor row" style="height: 110%;">
+					<div class="well cajaFavor row">
 						<?php
 							if (is_null($arreglo['contenidoimagen'])) {
 						?>
@@ -98,8 +97,19 @@
 							<span style="display:inline;"><h5><b>Categoria: <?php echo $arreglocategoria['nombre'];?> - Localidad: <?php echo $arreglolocalidad['nombre'];?></b> </5></span>
 							</div>
 							<h5>
-								<a href="verPerfiles.php?idUser=<?php echo $idUsuario; ?>">
-									<?php echo $arreglonombre["nombre"]?></h5>
+								<?php 	
+								if (isset($_SESSION['nombre'])) {
+									if ($arreglonombre["email"]==$_SESSION["email"]) {
+												$href = "miPerfil.php";
+											}else{
+												$href = "verPerfiles.php?idUser=$idUsuario;";
+											}
+								}else{
+									$href= "iniciarSesion.php";
+								}
+								?>
+								<a href="<?php echo $href; ?>">
+									<?php echo $arreglonombre["nombre"] ;?></h5>
 								</a>
 							<a href="detalleFavor.php?idFavor=<?php echo $arreglo['idFavor'] ?>">Ver más</a>
 						</div>
@@ -109,5 +119,5 @@
 			$arreglo = $traer->fetch_assoc();
 		}
 	}
-	}
-	?>
+}
+?>
