@@ -19,7 +19,8 @@
 		$idFavor = $arreglo['idFavor'];
 		$favor = $conectar -> query("SELECT * FROM favor WHERE idFavor = $idFavor");
 		$favor = $favor -> fetch_assoc();
-		$traernombre = $conectar->query("SELECT nombre FROM usuarios WHERE idUsuario = $id ");
+		$idDueño= $favor['idUsuario'];
+		$traernombre = $conectar->query("SELECT nombre FROM usuarios WHERE idUsuario = $idDueño ");
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
