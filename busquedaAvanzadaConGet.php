@@ -1,5 +1,5 @@
 <?php
-	include "navbaravanzado.php";
+	include "navbar.php";
 	include "conexion.php";
 	include "listador.php";
 	include "mostrar.php";
@@ -46,7 +46,7 @@
 	<div style="text-align:center; margin-top:1%;">
 		<span style="font-size:200%;">Categoria:</span>
 		<span>
-			<select style="font-size:150%" id="select_categoria" name="categoria" required>
+			<select style="font-size:150%" id="select_categoria" name="categoria" >
 				<option disabled selected value>Seleccionar</option>
 				<?php
 					listarCategorias($conection);
@@ -59,7 +59,7 @@
 	<div style="text-align:center; margin-top:1%;">
 		<span style="font-size:200%;">Localidad:</span>
 		<span>
-			<select style="font-size:150%" id="select_localidad" name="localidad" required>
+			<select style="font-size:150%" id="select_localidad" name="localidad" >
 				<option disabled selected value>Seleccionar</option>
 				<?php
 					listarLocalidades($conection);
@@ -74,7 +74,7 @@
 	<div style="text-align:center; margin-top:1%;">
 		<span style="font-size:200%;">Ordenar por:</span>
 		<span>
-			<select required style="font-size:150%" id="select_orden" name="order">
+			<select style="font-size:150%" id="select_orden" name="order">
 				<option disabled selected value>Seleccionar</option>
 				<option value="idLocalidad">Localidad</option>
 				<option value="titulo">Titulo</option>
@@ -107,18 +107,18 @@
 
 </div>
 <?php
-if (isset($_GET['filter'])) {
+/*if (isset($_GET['filter'])) {
 	$traerlocalidad = $conection->query("SELECT * FROM localidad WHERE idLocalidad = $localidad");
 	$localidadmuestra = $traerlocalidad->fetch_assoc();
 	$traercategoria = $conection->query("SELECT * FROM categoria WHERE idCategoria = $categoria");
 	$categoriamuestra = $traercategoria->fetch_assoc();
 	$localidadmuestra =  $localidadmuestra['nombre'];
-	$categoriamuestra = $categoriamuestra['nombre'];
+	$categoriamuestra = $categoriamuestra['nombre'];*/
 ?>
-	<h3 style="text-align:center;"><?php echo ("Estás filtrando por ". $localidadmuestra . " - " . $categoriamuestra . "."); ?></h3>
+	<!--<h3 style="text-align:center;"><?php echo ("Estás filtrando por ". $localidadmuestra . " - " . $categoriamuestra . "."); ?></h3> -->
 
 <?php
-	}
+	//}
 	
 ?>
 

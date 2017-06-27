@@ -1,4 +1,4 @@
-<?php include "navbar.php" ?>
+<?php include "navbaravanzado.php" ?>
 
 <body style="background-color: #e6e6e6; padding-top: 50px;">
 
