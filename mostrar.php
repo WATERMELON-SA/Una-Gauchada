@@ -2,6 +2,7 @@
 	function mostrarFavores($search,$order,$localidad,$categoria,$mysql){
 		$and='';
 		$busqueda='';
+		$format='';
 		if ($categoria!=false) {
 			$and = $and . " AND idCategoria = $categoria";
 		}
@@ -18,15 +19,15 @@
 		}else{
 			if($order=='fechaviejo'){
 				$format = 'ASC';
-				$order='fecha_vencimiento';
+				$order='idFavor';
 			}if ($order=='fechanuevo') {
 				$format = 'DESC';
-				$order='fecha_vencimiento';
+				$order='idFavor';
 			}
 		}
 
 		$fechacontrol = date('Y-m-d');
-		$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 $and $busqueda ORDER BY $order");
+		$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 $and $busqueda ORDER BY $order $format");
 		if(isset($traer)){
 			$arreglo = $traer->fetch_assoc();
 		}
