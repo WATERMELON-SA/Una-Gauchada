@@ -1,5 +1,5 @@
 <?php
-	include "navbaravanzado.php";
+	include "navbar.php";
 	include "conexion.php";
 	include "listador.php";
 	include "mostrar.php";

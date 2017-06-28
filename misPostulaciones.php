@@ -59,7 +59,7 @@
 							<h4><?php echo $descripcioncorta; if (strlen($favor['descripcion']) > 170) {
 								echo "...";
 							}?></h4>
-								<a href="verPerfiles.php?idUser=<?php echo $idUsuario; ?>">
+								<a href="verPerfiles.php?idUser=<?php echo $idDueño; ?>">
 									<?php echo $arreglonombre["nombre"];?>
 								</a>
 							<br>

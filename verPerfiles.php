@@ -59,7 +59,7 @@
 
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Ver hitorial de puntuaciones
+        Ver historial de puntuaciones
       </button>
 
       <!-- Modal -->
@@ -74,11 +74,17 @@
             <?php
             if (isset($arreglo)) {
               while (isset($arreglo)) {
+                $puntuacion=$arreglo['puntuacion'];
+                if ($puntuacion==1)
+                  $puntuacion='Positivo';
+                elseif($puntuacion==0)
+                  $puntuacion='Neutro';
+                else $puntuacion='Negativo';
             ?>
               
                 <b>Favor: <?php echo $arreglo['titulo']; ?></b>
                 <br>
-                Puntuacion: <?php echo $arreglo['puntuacion']; ?>
+                Puntuacion: <?php echo $puntuacion; ?>
                 <br>
                 Comentario del dueño: <?php echo $arreglo['comentario']; ?>
                 <br>

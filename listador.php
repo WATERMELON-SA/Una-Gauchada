@@ -93,7 +93,7 @@ function listarPostulantes($conection,$user){
 }
 
 function listarPostulantesParaFavor($conection,$favor){
-	$consulta=$conection->query("SELECT * FROM (postula p INNER JOIN favor f ON p.idFavor=f.idFavor) INNER JOIN usuarios u ON u.idUsuario=p.idUsuario WHERE f.idFavor='$favor' ");
+	$consulta=$conection->query("SELECT * FROM postula NATURAL JOIN usuarios WHERE idFavor='$favor'");
 	if (isset($consulta)) {
 		$postulantes=$consulta->fetch_assoc();
 	}
@@ -108,7 +108,7 @@ function listarPostulantesParaFavor($conection,$favor){
 	while (isset($postulantes)) {
 		?>
 		<div class="container">
-		<h1 class="col-sm-4"><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?> </a></h1>
+		<h3 class="col-sm-4"><a href="verPerfiles.php?idUser=<?php echo $postulantes['idUsuario']; ?>"><?php echo $postulantes['nombre'] ?> </a></h3>
 		<a onClick='if(confirm("¿Estas seguro que deseas elegir este usuario como gaucho para tu favor?")) location.href ="elegirGaucho.php?idFavor=<?php echo $favor; ?>&idUsuario=<?php echo $postulantes['idUsuario']; ?>"' style="margin-top: 3%" class="btn btn-primary">Elegir gaucho</a><br>
 		<p class="col-sm-10" style="padding-left: 12%"> <?php echo $postulantes['comentario'] ?> </p>
 		</div> <?php $postulantes=$consulta->fetch_assoc(); 
