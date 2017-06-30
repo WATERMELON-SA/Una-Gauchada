@@ -105,7 +105,7 @@
 												$href = "verPerfiles.php?idUser=$idUsuario;";
 											}
 								}else{
-									$href= "iniciarSesion.php";
+									$href= "iniciarSesion.php?alert";
 								}
 								?>
 								<a href="<?php echo $href; ?>">

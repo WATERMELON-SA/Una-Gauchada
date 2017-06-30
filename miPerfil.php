@@ -84,8 +84,11 @@ if (isset($_GET['pass'])){
       <span class="glyphicon glyphicon-pencil" style="margin-left: 10%;"><a href="modificarContrasenia.php">Cambiar contraseña</a></span>
       <br>
       <br>
+       <div class="form-group col-sm-offset-4">
+          <label class="control-label col-sm-3" for="creditos">Puntaje: <?php  echo $arreglo['puntaje'] ?></label>
+        </div>  
       <div class="form-group col-sm-offset-4">
-          <label class="control-label col-sm-3" for="creditos">Cantida de créditos: <?php  echo $_SESSION['creditos'] ?></label>
+          <label class="control-label col-sm-4" for="creditos">Cantida de créditos: <?php  echo $_SESSION['creditos'] ?></label>
         </div>  
       <div class="form-group col-sm-offset-4">
           <label class="control-label col-sm-3" for="calif_pend">Calificaciones pendientes: <?php  echo $_SESSION['calif_pend'] ?></label>
@@ -98,5 +101,61 @@ if (isset($_GET['pass'])){
         <a class="btn btn-primary" href="#">Ver mis calificaciones</a>
         <a class="btn btn-primary" href="listarPostulantes.php">Ver comentarios sobre mis gauchadas</a>
         <a class="btn btn-primary" href="misPostulaciones.php">Ver favores en los que me postule</a>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Ver historial de puntuaciones
+      </button>
 </div>
 </body>
+
+ <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Historial de puntuaciones</h4>
+            </div>
+            <div class="modal-body">
+            <?php
+            $traer=$mysql->query("SELECT * FROM favor WHERE idUsuarioCumple=$id and puntuacion is not null");
+            if(isset($traer))
+                $arreglo=$traer->fetch_assoc();
+            if (isset($arreglo)) {
+              while (isset($arreglo)) {
+                $puntuacion=$arreglo['puntuacion'];
+                if ($puntuacion==1)
+                  $puntuacion='Positivo';
+                elseif($puntuacion==0)
+                  $puntuacion='Neutro';
+                else $puntuacion='Negativo';
+            ?>
+              
+                <b>Favor: <?php echo $arreglo['titulo']; ?></b>
+                <br>
+                Puntuacion: <?php echo $puntuacion; ?>
+                <br>
+                Comentario del dueño: <?php echo $arreglo['comentario']; ?>
+                <br>
+                <br>
+
+            <?php
+            $arreglo= $traer->fetch_assoc();
+              }
+            }
+            else
+              echo("No has sido puntuado en ningun favor");
+            ?>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</html>

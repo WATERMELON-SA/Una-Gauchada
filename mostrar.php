@@ -13,7 +13,6 @@
 			$busqueda = " AND (descripcion LIKE '%$search%' OR
 			 titulo LIKE '%$search%')";
 		}
-
 		if (!$order) {
 			$order = 'idFavor';
 		}else{
@@ -25,14 +24,11 @@
 				$order='idFavor';
 			}
 		}
-
 		$fechacontrol = date('Y-m-d');
 		$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 $and $busqueda ORDER BY $order $format");
 		if(isset($traer)){
 			$arreglo = $traer->fetch_assoc();
 		}
-
-
 		//CHEQUEO QUE EXISTA FRASE BUSCADA
 		if (!isset($arreglo))  {
 	?>
@@ -45,23 +41,20 @@
     	</div>
 		
 	<?php
-
 	}else{
 	while (isset($arreglo)) { 
 		$idUsuario = $arreglo['idUsuario'];
 		$idLocalidad = $arreglo['idLocalidad'];
 		$idCategoria = $arreglo['idCategoria'];
 		
-		$traernombre = $mysql->query("SELECT nombre FROM usuarios WHERE idUsuario = $idUsuario ");
+		$traernombre = $mysql->query("SELECT nombre,email FROM usuarios WHERE idUsuario = $idUsuario ");
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
-
 		$traercategoria = $mysql->query("SELECT nombre FROM categoria WHERE idCategoria = $idCategoria ");
 		if (isset($traercategoria)) {
 			$arreglocategoria = $traercategoria->fetch_assoc();
 		}
-
 		$traerlocalidad = $mysql->query("SELECT nombre FROM localidad WHERE idLocalidad = $idLocalidad ");
 		if (isset($traerlocalidad)) {
 			$arreglolocalidad = $traerlocalidad->fetch_assoc();
@@ -117,4 +110,3 @@
 	}
 	}
 	?>
-
