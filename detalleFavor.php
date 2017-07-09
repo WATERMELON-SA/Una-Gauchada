@@ -90,7 +90,7 @@
     <?php
       listarPostulantesParaFavor(conectar(),$idFavor);
     }
-    elseif ($favor['idUsuarioCumple']!=null) {
+    elseif ($favor['idUsuarioCumple']!=null and $idUsuario==$_SESSION['id']){
       $idCumplidor= $favor['idUsuarioCumple'];
       $usuarioCumple = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idCumplidor");
       $usuarioCumple = $usuarioCumple ->fetch_assoc();
