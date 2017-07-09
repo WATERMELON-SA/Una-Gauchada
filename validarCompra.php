@@ -6,6 +6,7 @@
 		$id = $_SESSION['id'];
 		$link = conectar();
 		$link->query("UPDATE usuarios u SET u.creditos= $masCreditos WHERE u.idUsuario=$id");
+		$_SESSION['creditos']=$masCreditos;
 		$valorCredito = $link->query("SELECT precio FROM credito");
 		$valorCredito = $valorCredito-> fetch_assoc();
 		$costo=$_POST['cantidad'] * $valorCredito['precio'];
