@@ -5,7 +5,7 @@
 	if (isset($_POST['boton'])){
 		$fecha_min=$_POST['fecha_min'];
 		$fecha_max=$_POST['fecha_max'];
-		$traer=$mysql->query("SELECT sum(cantidad) as creditos, sum(costo) as total FROM compra WHERE ($fecha_min < fecha_compra) ");
+		$traer=$mysql->query("SELECT sum(cantidad) as creditos, sum(costo) as total FROM compra WHERE fecha_compra between '$fecha_min' and '$fecha_max' ");
 		$compra=$traer->fetch_assoc();
 		?>
 		<h3> Total ganancias:  $<?php echo $compra['total']; ?> </h3>
@@ -18,6 +18,7 @@
 				<td style="font-weight: bold;">e-mail usuario</td>
 				<td style="font-weight: bold;">Cantidad de creditos</td>
 				<td style="font-weight: bold;">Costo</td>
+				<td style="font-weight: bold;">Fecha</td>
 			</tr>
 			<?php listarCompra(conectar(),$fecha_max,$fecha_min);  ?>
 		</table>

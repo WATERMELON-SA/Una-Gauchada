@@ -118,9 +118,8 @@ function listarPostulantesParaFavor($conection,$favor){
 
 
 function listarCompra($conection,$fecha_max,$fecha_min){
-	$traer=$conection->query("SELECT * FROM compra NATURAL JOIN usuarios WHERE ($fecha_min < fecha_compra) ");
+	$traer=$conection->query("SELECT * FROM compra NATURAL JOIN usuarios WHERE  fecha_compra between '$fecha_min' and '$fecha_max' ");
 	$compra=$traer->fetch_assoc();
-
 	
 	while (isset($compra)) {
 		?>
@@ -128,6 +127,7 @@ function listarCompra($conection,$fecha_max,$fecha_min){
 			<td><?php echo $compra['email'] ?></td>
 			<td><?php echo $compra['cantidad'] ?></td>
 			<td><?php echo $compra['costo'] ?></td>
+			<td><?php echo $compra['fecha_compra'] ?></td>
 		</tr>
 	<?php
 	$compra=$traer->fetch_assoc();
