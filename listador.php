@@ -127,7 +127,7 @@ function listarCompra($conection,$fecha_max,$fecha_min){
 			<td><?php echo $compra['email'] ?></td>
 			<td><?php echo $compra['cantidad'] ?></td>
 			<td><?php echo $compra['costo'] ?></td>
-			<td><?php echo $compra['fecha_compra'] ?></td>
+			<td><?php echo date("d-m-Y",strtotime($compra['fecha_compra'] ));?></td>
 		</tr>
 	<?php
 	$compra=$traer->fetch_assoc();

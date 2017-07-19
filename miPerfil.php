@@ -1,4 +1,4 @@
-<?php include "navbar.php"; include"listador.php"; ?>
+<?php include "navbar.php" ?>
 <body>
 <div class="container ">
 <?php
@@ -24,6 +24,12 @@ if (isset($_GET['pass'])){
   <?php  
 
 }
+
+
+
+
+
+
 						
 						if (is_null($arreglo['contenidoimagen'])) {
 						?>
@@ -79,27 +85,27 @@ if (isset($_GET['pass'])){
       <br>
       <br>
        <div class="form-group col-sm-offset-4">
-          <label class="control-label col-sm-3" for="creditos">Puntaje: <?php  echo $arreglo['puntaje'] ?></label>
+          <label class="control-label " for="creditos">Puntaje: <?php  echo $arreglo['puntaje'] ?></label>
         </div>  
-        <div class="form-group col-sm-offset-4">
+       <div class="form-group col-sm-offset-4">
           <label class="control-label col-sm-3" for="creditos">Reputacion: <?php echo listarReputacion($mysql,$arreglo['puntaje']); ?></label>
         </div>  
       <div class="form-group col-sm-offset-4">
-          <label class="control-label col-sm-4" for="creditos">Cantida de créditos: <?php  echo $_SESSION['creditos'] ?></label>
+          <label class="control-label " for="creditos">Cantida de créditos: <?php  echo $_SESSION['creditos'] ?></label>
         </div>  
       <div class="form-group col-sm-offset-4">
-          <label class="control-label col-sm-3" for="calif_pend">Calificaciones pendientes: <?php  echo $_SESSION['calif_pend'] ?></label>
+          <label class="control-label " for="calif_pend">Calificaciones pendientes: <?php  echo $_SESSION['calif_pend'] ?></label>
         </div>  
         </div>
 </div>
         <br>
-        <a class="btn btn-primary" href="#">Ver mis gauchadas</a>
-        <a class="btn btn-primary" href="#">Ver mis comentarios en gauchadas</a>
-        <a class="btn btn-primary" href="#">Ver mis calificaciones</a>
-        <a class="btn btn-primary" href="listarPostulantes.php">Ver comentarios sobre mis gauchadas</a>
-        <a class="btn btn-primary" href="misPostulaciones.php">Ver favores en los que me postule</a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-        Ver historial de puntuaciones
+        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="misGauchadas.php">Mis gauchadas</a>
+        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="#">Mis comentarios en gauchadas</a>
+        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="#">Mis calificaciones</a>
+        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="listarPostulantes.php">Comentarios sobre mis gauchadas</a>
+        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="misPostulaciones.php">Favores en los que me postule</a>
+        <button type="button" style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
+        Historial de puntuaciones
       </button>
 </div>
 </body>

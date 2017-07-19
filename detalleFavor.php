@@ -90,7 +90,7 @@
     <?php
       listarPostulantesParaFavor(conectar(),$idFavor);
     }
-    elseif ($favor['idUsuarioCumple']!=null and $idUsuario==$_SESSION['id']){
+    elseif ((!is_null($favor['idUsuarioCumple'])) and $idUsuario==$_SESSION['id']){
       $idCumplidor= $favor['idUsuarioCumple'];
       $usuarioCumple = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idCumplidor");
       $usuarioCumple = $usuarioCumple ->fetch_assoc();
@@ -115,7 +115,7 @@
       <?php  
       include "mostrarpreguntas.php";
       mostrarPreguntas($idFavor);
-      if ($_SESSION['id'] != $idUsuario) {
+      if (($_SESSION['id'] != $idUsuario) and (is_null($favor['idUsuarioCumple'])))  {
     ?>
     <div class="container">
     <form class="form-horizontal" method="POST" action="hacerPregunta.php">
