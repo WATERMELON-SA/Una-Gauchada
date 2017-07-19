@@ -1,4 +1,4 @@
-<?php include "navbar.php" ?>
+<?php include "navbar.php"; include"listador.php"; ?>
 <body>
 <div class="container ">
 <?php
@@ -24,12 +24,6 @@ if (isset($_GET['pass'])){
   <?php  
 
 }
-
-
-
-
-
-
 						
 						if (is_null($arreglo['contenidoimagen'])) {
 						?>
@@ -86,6 +80,9 @@ if (isset($_GET['pass'])){
       <br>
        <div class="form-group col-sm-offset-4">
           <label class="control-label col-sm-3" for="creditos">Puntaje: <?php  echo $arreglo['puntaje'] ?></label>
+        </div>  
+        <div class="form-group col-sm-offset-4">
+          <label class="control-label col-sm-3" for="creditos">Reputacion: <?php echo listarReputacion($mysql,$arreglo['puntaje']); ?></label>
         </div>  
       <div class="form-group col-sm-offset-4">
           <label class="control-label col-sm-4" for="creditos">Cantida de créditos: <?php  echo $_SESSION['creditos'] ?></label>

@@ -49,6 +49,9 @@
        <label>Puntaje:</label>
       <?php echo $usuario['puntaje']; ?>
        <br>
+      <label>Reputacion:</label>
+      <?php include "listador.php"; echo listarReputacion($conection, $usuario['puntaje']); ?>
+      <br>
        <label>Localidad:</label>
       <?php echo $localidad; ?>
       <br>

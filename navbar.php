@@ -40,6 +40,9 @@
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
+    <?php if ($_SESSION['admin']) {
+    echo "<li><a href='panelAdmin.php'>Panel Administrador</a></li>";
+  } ?>
    <li><a href="miPerfil.php">Mi Perfil</a></li>
     <li><a href="listarPostulantes.php">Postulantes</a></li>
     <li><a href="misPostulaciones.php">Postulaciones</a></li>

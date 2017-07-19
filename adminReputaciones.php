@@ -1,5 +1,8 @@
 <?php  
-	include "navbaravanzado.php";
+	include "navbar.php";
+	if (!(isset($_SESSION['admin'])) OR (!$_SESSION['admin'])) {
+		header("Location: index.php");
+	}
 	include "conexion.php";
 	$conection = conectar();
 	include "modificarReputacion.php";

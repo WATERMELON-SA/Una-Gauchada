@@ -24,6 +24,7 @@
 			$_SESSION['fecha_nac']=$dataBase['fechanacimiento'];
 			$_SESSION['telefono']=$dataBase['telefono'];
 			$_SESSION['localidad']=$dataBase['idLocalidad'];
+			$_SESSION['admin']=$dataBase['admin'];
 			return true;
 			}
 			return false;		
