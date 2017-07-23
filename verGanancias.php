@@ -1,5 +1,8 @@
 <?php
 include 'navbar.php';
+  if (!(isset($_SESSION['admin'])) OR (!$_SESSION['admin'])) {
+    header("Location: index.php");
+  }
   ?>
 <body>
 

@@ -14,7 +14,7 @@
         Reputaciones
       </a>
 			<a class="btn btn-default" href="#">Categorias</a>	
-			<a class="btn btn-default" href="#">Ganancias</a>
+			<a class="btn btn-default" href="verganancias.php">Ganancias</a>
 			<a class="btn btn-default" href="#">Ranking de usuarios</a>
 		</div>
 	</div>

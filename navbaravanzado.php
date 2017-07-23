@@ -51,6 +51,7 @@
     echo "<li><a href='panelAdmin.php'>Panel Administrador</a></li>";
   } ?>
    <li><a href="miPerfil.php">Mi Perfil</a></li>
+   <li><a href="misgauchadas.php">Mis Gauchadas</a></li>
     <li><a href="listarPostulantes.php">Postulantes</a></li>
     <li><a href="misPostulaciones.php">Postulaciones</a></li>
     <li><a href="comprarCreditos.php">Comprar creditos</a></li>
