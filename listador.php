@@ -137,8 +137,31 @@ function listarCompra($conection,$fecha_max,$fecha_min){
 }
 
 function listarReputacion($conection, $puntaje){
-	$reputacion = $conection->query("SELECT * FROM reputacion WHERE valor_max >= $puntaje ORDER BY valor_max LIMIT 1");
+	$reputacion = $conection->query("SELECT * FROM reputacion WHERE valor_max >= $puntaje ORDER BY valor_max  LIMIT 1");
 	$reputacion = $reputacion->fetch_assoc();
 	return $reputacion['nombre'];
 }
+
+
+
+
+function listarRanking($conection){
+	$traer=$conection->query("SELECT * FROM usuarios ORDER BY puntaje desc , email LIMIT 50 ");
+	$usuario=$traer->fetch_assoc();
+	$ranking=1;
+	while (isset($usuario)) {
+		$reputacion=listarReputacion($conection,$usuario['puntaje']);
+		?>
+		<tr>
+			<td><?php echo $ranking ?></td>
+			<td><?php echo $usuario['email'] ?></td>
+			<td><?php echo $usuario['puntaje'] ?></td>
+			<td><?php echo $reputacion  ?></td>
+		</tr>
+	<?php
+	$usuario=$traer->fetch_assoc();
+	$ranking=$ranking +1;
+	}
+}
+
 ?>
