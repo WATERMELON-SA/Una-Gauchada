@@ -1,10 +1,11 @@
 <?php
 function listarCategorias($conection){
-	$consulta2 = $conection->query("SELECT * FROM categoria");
+	$consulta2 = $conection->query("SELECT * FROM categoria WHERE activo = 0");
 	if ($consulta2 != false) {
 		$categorias = $consulta2->fetch_assoc();
 	}
 	while (isset($categorias)) {
+		
 ?>
 		<option value="<?php echo $categorias['idCategoria']?>"> <?php echo $categorias['nombre']?></option>
 <?php
@@ -35,6 +36,24 @@ function listarLocalidadesConOptionActive($conection, $locaUser){
 			<option value=
 			<?php echo '"'.$localidades['idLocalidad'].'" '; 
 				if ($localidades['idLocalidad'] == $locaUser) {
+			 		echo "selected";
+			 	} 
+			?>> <?php echo $localidades['nombre']?></option>
+	<?php
+			$localidades = $consulta->fetch_assoc();
+		}
+}
+
+function listarCategoriasConOptionActive($conection, $locaUser){
+	$consulta = $conection->query("SELECT * FROM categoria");
+		if ($consulta != false) {
+			$localidades = $consulta->fetch_assoc();
+		}
+		while (isset($localidades)) {
+	?>
+			<option value=
+			<?php echo '"'.$localidades['idCategoria'].'" '; 
+				if ($localidades['idCategoria'] == $locaUser) {
 			 		echo "selected";
 			 	} 
 			?>> <?php echo $localidades['nombre']?></option>
@@ -163,5 +182,27 @@ function listarRanking($conection){
 	$ranking=$ranking +1;
 	}
 }
+
+function listarCategoriasTabla($conection){
+	$consulta2 = $conection->query("SELECT * FROM categoria WHERE activo = 0");
+	if ($consulta2 != false) {
+		$categorias = $consulta2->fetch_assoc();
+	}
+	while (isset($categorias)) {
+?>
+		<tr>
+			<td><?php echo $categorias['nombre']?></td>
+			<td>
+				<a href="modificarcategoria.php?idCat=<?php echo $categorias['idCategoria']?>;" class="btn btn-primary">Modificar</a>
+				<a href="eliminarcategoria.php?idCat=<?php echo $categorias['idCategoria']?>;" class="btn btn-primary" onclick="return confirm('¿Estás seguro?');">Eliminar</a>
+			</td>
+		</tr>
+<?php
+		$categorias = $consulta2->fetch_assoc();
+	}
+}
+
+
+
 
 ?>

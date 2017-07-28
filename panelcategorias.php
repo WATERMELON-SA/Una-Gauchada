@@ -1,37 +1,30 @@
-<?php
-	include "navbar.php";
-	include "listador.php";
-	include "conexion.php";
-	$conection = conectar();
+<?php include "navbar.php";
+include "conexion.php";
+include "listador.php";
 ?>
-
-<div class="row">
-		<div class="col-lg-4 well text-center" style="height:650px; margin-top:50px; margin-left:30%;">
-			<form action="agregarcategoria.php" method="POST">
-				<h2>Agregar una categoria:</h2>
-				<h3>Nombre:</h3> <input type="text" name="categorianueva"><br><br>
-				<input class="btn" type="submit" value="Agregar">
-			</form>
-
-			<div style="height:2px; background-color:black; margin-top:5%;"></div>
-
-			<form action="eliminarcategoria.php" method="POST">
-				<h2>Eliminar una categoria:</h2>
-				<select>
-					<?php listarCategorias($conection); ?>
-				</select><br><br>
-				<input class="btn" type="submit" value="Eliminar">
-			</form>
-			
-			<div style="height:2px; background-color:black; margin-top:5%;"></div>
-
-			<form action="modificarcategoria.php" method="POST">
-				<h2>Modificar una categoria:</h2>
-				<select>
-					<?php listarCategorias($conection); ?>
-				</select>
-				<h3>Nuevo nombre:</h3> <input type="text" name="categoriamodificada"><br><br>
-				<input class="btn" type="submit" value="Modificar">
-			</form>
+<body>
+<div class="container-fluid">
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<tr >
+				<td style="font-weight: bold;">Categoria</td>
+				<td style="font-weight: bold;">Acción</td>
+			</tr>
+			<?php listarCategoriasTabla(conectar());  ?>
+		</table>
+		<div class="container text-center well" style="width:30%;">
+			<?php if (isset($_GET['erroragregar'])) {?>
+				<h3>Ya existe una categoría con ese nombre.</h3>
+			<?php
+			}?>
+				<h3>Agregar categoria:</h3>
+				<form action="agregarcategoria.php" method="GET">
+					<input type="text" name="categorianueva">
+					<input class="btn" type="submit" value="Agregar" name="submit">
+				</form>
 		</div>
 </div>
+</div>
+</div>
+</body>
+</html>
