@@ -18,26 +18,27 @@ $favor = $favor->fetch_assoc();
 		<form class="form-horizontal" enctype="multipart/form-data" action="modificardatosfavor.php" style="width: 40%; margin-top: 2%; margin-left: 15%" method="POST">
 				<h1 class="text-center">Modificar favor: </h1>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="nombre">Titulo:</label>
-					<div class="col-sm-10">
+					<label class="control-label col-sm-4" for="nombre">Titulo:</label>
+					<div class="col-sm-8">
 						<input type="text" class="form-control" name="titulo" maxlength="50" value="<?php echo $favor['titulo']?>" required>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="email">Descripcion:</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" name="desc" value="<?php echo $favor['descripcion']?>" required >
+					<label class="control-label col-sm-4" for="email">Descripcion:</label>
+					<div class="col-sm-8">
+						<!--<input type="text" class="form-control" name="desc" value="<?php echo $favor['descripcion']?>" required > -->
+						<textarea placeholder="<?php echo $favor['descripcion']?>" required style="height:200px; width:300px"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="fecha_venc">Fecha de vencimiento:</label>
-					<div class="col-sm-10">
+					<label class="control-label col-sm-4" for="fecha_venc">Fecha de vencimiento:</label>
+					<div class="col-sm-8">
 						<input type="date" class="form-control" id="fecha_venc" name="fecha_venc" min="<?php echo (Date('Y-m-d')); ?>" max="<?php echo (date('Y-m-d', strtotime('+1 year'))); ?>" value="<?php echo $favor['fecha_vencimiento'];?>" required >
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="localidad">Localidad:</label>
-					<div class="col-sm-10">
+					<label class="control-label col-sm-4" for="localidad">Localidad:</label>
+					<div class="col-sm-8">
 						<select name="localidad" class="form-control" required>
 							<option value="">Selecciona una localidad</option>
 							<?php
@@ -47,8 +48,8 @@ $favor = $favor->fetch_assoc();
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-2" for="localidad">Categoría:</label>
-					<div class="col-sm-10">
+					<label class="control-label col-sm-4" for="localidad">Categoría:</label>
+					<div class="col-sm-8">
 						<select name="categoria" class="form-control" required>
 							<option value="">Selecciona una categoría</option>
 							<?php
@@ -59,8 +60,8 @@ $favor = $favor->fetch_assoc();
 				</div>
 				<div class="form-group">
 				<!-- <img src="mostrarFotoPerfil?idUser=<?php //echo $id; ?>"> -->	
-					<label class="control-label col-sm-2" for="imagen">Imagen:</label>
-					<div class="col-sm-10">
+					<label class="control-label col-sm-4" for="imagen">Imagen:</label>
+					<div class="col-sm-8">
 						<input type="file" name="imagen" id="imagen"><br>
 					</div>
 				</div>

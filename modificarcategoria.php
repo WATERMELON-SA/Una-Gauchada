@@ -14,7 +14,7 @@
 		$nombre = $_GET['categoriamodificada'];
 		$existe = $conection->query("SELECT * FROM categoria WHERE nombre = '$nombre'");
 		$existe = $existe->fetch_assoc();
-		if ((isset($categoria)) AND ($categoria!=false)) {
+		if ((isset($existe)) AND ($existe!=false)) {
 			$yaexiste=true;
 		}
 	}

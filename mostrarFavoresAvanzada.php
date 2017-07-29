@@ -16,7 +16,7 @@
 		}
 		if ($search) {
 			$fechacontrol = date('Y-m-d');
-			$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 AND (descripcion LIKE '%$search%' OR
+			$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > '$fechacontrol' AND activo = 1 AND (descripcion LIKE '%$search%' OR
 			 titulo LIKE '%$search%') ORDER BY $order");
 			if(isset($traer)){
 				$arreglo = $traer->fetch_assoc();
@@ -24,7 +24,7 @@
 		}else{
 			if (isset($mysql)){
 				$fechacontrol = date('Y-m-d');
-				$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 ORDER BY $order");
+				$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > '$fechacontrol' AND activo = 1 ORDER BY $order");
 				if(isset($traer)){
 					$arreglo = $traer->fetch_assoc();
 				}
