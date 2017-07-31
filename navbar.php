@@ -52,16 +52,17 @@
       }
       else{
     ?>
-   <li><a href="miPerfil.php">Mi Perfil</a></li>
    <li><a href="misgauchadas.php">Mis Gauchadas</a></li>
     <li><a href="listarPostulantes.php">Postulantes</a></li>
     <li><a href="misPostulaciones.php">Postulaciones</a></li>
     <li><a href="comprarCreditos.php">Comprar creditos</a></li>
     <li><a href="publicarFavor.php">Publicar Favor</a></li>
-    <li role="separator" class="divider"></li>
+    
     <?php
       }
     ?>
+    <li><a href="miPerfil.php">Mi Perfil</a></li>
+    <li role="separator" class="divider"></li>
     <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
   </ul>
   </li>

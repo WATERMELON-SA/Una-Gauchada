@@ -84,6 +84,10 @@ if (isset($_GET['pass'])){
       <span class="glyphicon glyphicon-pencil" style="margin-left: 10%;"><a href="modificarContrasenia.php">Cambiar contraseña</a></span>
       <br>
       <br>
+      
+      <?php
+        if (!($_SESSION['admin'])){
+      ?>
        <div class="form-group col-sm-offset-4">
           <label class="control-label " for="creditos">Puntaje: <?php  echo $arreglo['puntaje'] ?></label>
         </div>  
@@ -95,7 +99,7 @@ if (isset($_GET['pass'])){
         </div>  
       <div class="form-group col-sm-offset-4">
           <label class="control-label " for="calif_pend">Calificaciones pendientes: <?php  echo $_SESSION['calif_pend'] ?></label>
-        </div>  
+        </div>    
         </div>
 </div>
         <br>
@@ -105,8 +109,12 @@ if (isset($_GET['pass'])){
         <button type="button" style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
         Historial de puntuaciones
       </button>
+      <?php
+        }
+      ?>
 </div>
 </body>
+
 
  <!-- Modal -->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
