@@ -13,8 +13,9 @@
       <a href="adminReputaciones.php" class="btn btn-default">
         Reputaciones
       </a>
-			<a class="btn btn-default" href="#">Categorias</a>	
+			<a class="btn btn-default" href="panelcategorias.php">Categorias</a>	
 			<a class="btn btn-default" href="verganancias.php">Ganancias</a>
 			<a class="btn btn-default" href="ranking.php">Ranking de usuarios</a>
+			<a class="btn btn-default" href="favorescumplidos.php">Favores cumplidos</a>
 		</div>
 	</div>

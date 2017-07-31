@@ -13,7 +13,15 @@
  		$nuevoNombre=$_POST['nuevoNombre'];
  		$nuevoColor=$_POST['nuevoColor'];
  		$nuevoValor_max=$_POST['nuevoValor_max'];
- 		$conection-> query("INSERT INTO reputacion (nombre, color, valor_max) VALUES ('$nuevoNombre','$nuevoColor','$nuevoValor_max')");
+ 		$existe= $conection-> query("SELECT * FROM reputacion WHERE nombre='$nuevoNombre' OR color='$nuevoColor' OR valor_max='$nuevoValor_max'");
+		$existe = $existe->fetch_assoc();
+		if (!$existe) {
+ 			$conection-> query("INSERT INTO reputacion (nombre, color, valor_max) VALUES ('$nuevoNombre','$nuevoColor','$nuevoValor_max')");
+ 		}
+ 		else{
+ 			?> <script type="text/javascript"> alert("Los datos ingresados no son validos, compruebe que no haya otra reputacion con los mismos");</script>
+ 			<?php
+ 		}
  	}
 	$reputaciones = $conection -> query("SELECT * FROM reputacion ORDER BY valor_max");
 	$arreglo= $reputaciones-> fetch_assoc();

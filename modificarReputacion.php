@@ -61,9 +61,14 @@
 		$existe = $existe->fetch_assoc();
 		if (!$existe) {
 			$valido=$conection->query("UPDATE reputacion SET nombre='$nombre', color='$color', valor_max='$valor_max' WHERE idReputacion=$idReputacion");
+			?> 
+				<script type="text/javascript"> alert("Los datos fueron modificados con exito");</script>
+ 			<?php
 		}
 		else{
-			return "Los datos ingresados no son validos, compruebe que no haya otra reputacion con los mismos";
+			?> 
+				<script type="text/javascript"> alert("Los datos ingresados no son validos, compruebe que no haya otra reputacion con los mismos");</script>
+ 			<?php
 		}
 	}
 ?>
