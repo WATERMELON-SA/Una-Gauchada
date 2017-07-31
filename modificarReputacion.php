@@ -33,8 +33,18 @@
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="valor_max">Valor maximo:</label>
 					<div class="col-sm-10">
+					<?php
+						if ($reputacion['valor_max']==9999) {
+							?>
+								<input type="hidden" name="valor_max" max="9999" value="<?php echo $reputacion['valor_max']; ?>">
+							<?php
+								echo $reputacion['valor_max'];
+						}
+						else{
+					?>
 						<input type="number" name="valor_max" max="9999" value="<?php echo $reputacion['valor_max']; ?>" class="form-control" required >
 						<b style="color: red;"> Se utilizara como valor minimo el de la reputacion anterior</b>
+						<?php } ?>
 					</div>
 		</div>
 			<br>

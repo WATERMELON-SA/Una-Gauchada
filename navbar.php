@@ -35,14 +35,23 @@
   <button class="btn btn-default dropdown-toggle navbar-right navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
   <li class="dropdown">
   	<?php
+    if ($_SESSION['admin']) {
+      echo "Bienvenido ".$_SESSION['nombre']."(admin)";
+    }
+    else
 			echo "Bienvenido ".$_SESSION['nombre'];
   	?>
     <span class="caret"></span>
   </button>
   <ul class="dropdown-menu" style="right: 0; left:auto;" aria-labelledby="dropdownMenu1">
-    <?php if ($_SESSION['admin']) {
-    echo "<li><a href='panelAdmin.php'>Panel Administrador</a></li>";
-  } ?>
+    <?php 
+      if ($_SESSION['admin']) {
+    ?>
+        <li><a href='panelAdmin.php'>Panel Administrador</a></li>
+    <?php
+      }
+      else{
+    ?>
    <li><a href="miPerfil.php">Mi Perfil</a></li>
    <li><a href="misgauchadas.php">Mis Gauchadas</a></li>
     <li><a href="listarPostulantes.php">Postulantes</a></li>
@@ -50,6 +59,9 @@
     <li><a href="comprarCreditos.php">Comprar creditos</a></li>
     <li><a href="publicarFavor.php">Publicar Favor</a></li>
     <li role="separator" class="divider"></li>
+    <?php
+      }
+    ?>
     <li><a href="cerrarSesion.php">Cerrar Sesión</a></li>
   </ul>
   </li>

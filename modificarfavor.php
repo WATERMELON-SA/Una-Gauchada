@@ -27,7 +27,7 @@ $favor = $favor->fetch_assoc();
 					<label class="control-label col-sm-4" for="email">Descripcion:</label>
 					<div class="col-sm-8">
 						<!--<input type="text" class="form-control" name="desc" value="<?php echo $favor['descripcion']?>" required > -->
-						<textarea placeholder="<?php echo $favor['descripcion']?>" required style="height:200px; width:300px"></textarea>
+						<textarea required style="height:200px; width:300px"><?php echo $favor['descripcion']?></textarea>
 					</div>
 				</div>
 				<div class="form-group">

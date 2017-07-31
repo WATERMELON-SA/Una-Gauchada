@@ -46,6 +46,9 @@
 	  	if ($diferencia[$i]>200) {
 	  		$diferencia[$i]=200;
 	  	}
+	  	elseif (($diferencia[$i]>=0)&&$diferencia[$i]<=5) {
+	  		$diferencia[$i]=10;
+	  	}
 	  	$colores[$i]=$arreglo['Color'];
 	  	$total = $total + $diferencia[$i];
 	  	$id[$i]=$arreglo['idReputacion'];
@@ -81,10 +84,11 @@
 				<tr>
 				<td style="background-color:<?php echo $colores[$j];?> "><?php echo $arreglo2[$j];?></td>
 				<td><?php echo $rangos[$j]; ?></td>
-				<td><?php verInput($conection, $id[$j]); ?>
+				<td><?php verInput($conection, $id[$j]); if ($j != $i){ ?>
 					<a onClick='if(confirm("¿Estas seguro que deseas borrar esta reputacion?")) location.href ="borrarReputacion.php?idReputacion=<?php echo $id[$j]; ?>";' tittle="eliminar" class="btn btn-default">
 						<img src="remove.png">
 					</a>
+					<?php } ?>
 				</td>
 				</tr>				
 			<?php
