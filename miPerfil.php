@@ -1,4 +1,4 @@
-<?php include "navbar.php" ?>
+<?php include "navbar.php"; include "listador.php"; ?>
 <body>
 <div class="container ">
 <?php
@@ -88,7 +88,7 @@ if (isset($_GET['pass'])){
           <label class="control-label " for="creditos">Puntaje: <?php  echo $arreglo['puntaje'] ?></label>
         </div>  
        <div class="form-group col-sm-offset-4">
-          <label class="control-label col-sm-3" for="creditos">Reputacion: <?php echo listarReputacion($mysql,$arreglo['puntaje']); ?></label>
+          <label class="control-label" for="creditos">Reputacion: <?php echo listarReputacion($mysql,$arreglo['puntaje']); ?></label>
         </div>  
       <div class="form-group col-sm-offset-4">
           <label class="control-label " for="creditos">Cantida de créditos: <?php  echo $_SESSION['creditos'] ?></label>
@@ -100,9 +100,7 @@ if (isset($_GET['pass'])){
 </div>
         <br>
         <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="misGauchadas.php">Mis gauchadas</a>
-        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="#">Mis comentarios en gauchadas</a>
-        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="#">Mis calificaciones</a>
-        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="listarPostulantes.php">Comentarios sobre mis gauchadas</a>
+        <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="listarPostulantes.php">Postulantes en mis gauchadas</a>
         <a style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " href="misPostulaciones.php">Favores en los que me postule</a>
         <button type="button" style="margin-left: 1%; margin-top: 1%" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
         Historial de puntuaciones
