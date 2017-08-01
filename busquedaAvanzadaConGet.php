@@ -49,7 +49,7 @@
 			<select style="font-size:150%" id="select_categoria" name="categoria" >
 				<option disabled selected value>Seleccionar</option>
 				<?php
-					listarCategorias($conection);
+					listarCategoriasAvanzada($conection);
 				?>
 			</select>
 		</span>

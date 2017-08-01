@@ -24,10 +24,9 @@ $favor = $favor->fetch_assoc();
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="control-label col-sm-4" for="email">Descripcion:</label>
+					<label class="control-label col-sm-4" for="descripcion">Descripcion:</label>
 					<div class="col-sm-8">
-						<!--<input type="text" class="form-control" name="desc" value="<?php echo $favor['descripcion']?>" required > -->
-						<textarea required style="height:200px; width:300px"><?php echo $favor['descripcion']?></textarea>
+						<textarea required style="height:200px; width:300px" name="desc"><?php echo $favor['descripcion']?></textarea>
 					</div>
 				</div>
 				<div class="form-group">

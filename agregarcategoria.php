@@ -8,6 +8,7 @@
 	$redirect = '';
 	if ((isset($categorias)) AND ($categorias!=false)) {
 		$redirect = "panelcategorias.php?erroragregar=true";
+		$reactivar = $conection->query("UPDATE categoria SET activo = 0 WHERE nombre = '$catnueva'");
 		$yaexiste = true;
 	}
 	if ((isset($_GET['categorianueva'])) && ($_GET['categorianueva']!='') && ($yaexiste == false)) {

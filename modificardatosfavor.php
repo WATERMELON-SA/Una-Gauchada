@@ -16,13 +16,12 @@ $mysql = conectar();
 			$idCategoria = $_POST['categoria'];
 			$idLocalidad = $_POST['localidad'];
 			$fecha_venc = $_POST['fecha_venc'];
-			var_dump($id);
 			if ($_FILES['imagen']['tmp_name']!='') {
 		  		$filetype =$_FILES['imagen']['type'];
 		  		$filecontent = addslashes(file_get_contents($_FILES['imagen']['tmp_name']));
 		  		$arraytype=explode('/', $filetype);
 		  		$deftype = $arraytype[1];			
-				$traer=$mysql->query("UPDATE favor f SET f.titulo='$titulo',f.descripcion='$desc',f.idLocalidad='$idLocalidad',f.idCategoria='$idCategoria',f.contenidoimagen= '$filecontent', f.tipoimagen='$deftype', f.fecha_vencimiento='$fecha_venc' WHERE u.idFavor='$id'");
+				$traer=$mysql->query("UPDATE favor f SET f.titulo='$titulo',f.descripcion='$desc',f.idLocalidad='$idLocalidad',f.idCategoria='$idCategoria',f.contenidoimagen= '$filecontent', f.tipoimagen='$deftype', f.fecha_vencimiento='$fecha_venc' WHERE f.idFavor='$id'");
 			}
 			else{
 				$traer=$mysql->query("UPDATE favor f SET f.titulo='$titulo',f.descripcion='$desc',f.idLocalidad='$idLocalidad',f.idCategoria='$idCategoria', f.fecha_vencimiento='$fecha_venc' WHERE f.idFavor='$id'");
