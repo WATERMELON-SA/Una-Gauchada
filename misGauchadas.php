@@ -71,7 +71,7 @@
 }
 else{
 ?>
-<h1 style="text-align: center;">No te postulaste a ningún favor</h1>
+<h1 style="text-align: center;">No has publicado ningún favor</h1>
 <?php 
 }
 ?>
