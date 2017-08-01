@@ -75,7 +75,7 @@
             }
           elseif(is_null($favor['idUsuarioCumple'])){
           ?>
-          <button class="btn btn-primary">Modificar Favor</button>
+          <a class="btn btn-primary" href="modificarfavor.php?idFavor=<?php echo $idFavor?>">Modificar Favor</a>
           <a onClick='if(confirm("¿Estas seguro que deseas borrar este favor?")) location.href ="borrarFavor.php?idFavor=<?php echo $idFavor; ?>";' class="btn btn-primary">Borrar</a>
           <?php
           }
