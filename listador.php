@@ -183,17 +183,20 @@ function listarRanking($conection){
 	$usuario=$traer->fetch_assoc();
 	$ranking=1;
 	while (isset($usuario)) {
-		$reputacion=listarReputacion($conection,$usuario['puntaje']);
-		?>
-		<tr>
-			<td><?php echo $ranking ?></td>
-			<td><?php echo $usuario['email'] ?></td>
-			<td><?php echo $usuario['puntaje'] ?></td>
-			<td><?php echo $reputacion  ?></td>
-		</tr>
-	<?php
+		if ($usuario['admin']==false){
+			$reputacion=listarReputacion($conection,$usuario['puntaje']);
+?>
+			<tr>
+				<td><?php echo $ranking ?></td>
+				<td><?php echo $usuario['email'] ?></td>
+				<td><?php echo $usuario['puntaje'] ?></td>
+				<td><?php echo $reputacion  ?></td>
+			</tr>
+<?php
+			$ranking=$ranking +1;
+		}
 	$usuario=$traer->fetch_assoc();
-	$ranking=$ranking +1;
+	
 	}
 }
 
