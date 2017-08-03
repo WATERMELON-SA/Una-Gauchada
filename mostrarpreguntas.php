@@ -14,7 +14,7 @@
 
 		 <div class="container">
       		<div class="well cajaPreguntas row">
-        		<h1 style="text-align:center;">Todavía nadie ha hecho una pregunta sobre este favor.</h1>
+        		<h1 style="text-align:center;">Nadie ha hecho una pregunta sobre este favor.</h1>
       		</div>
     	</div>
 

@@ -26,7 +26,7 @@
 		}
 		
 		$descripcioncorta = substr($favor['descripcion'],0,170);
-		if ($favor['fecha_vencimiento'] < date("Y-m-d")){
+		if ($favor['fecha_vencimiento'] <= date("Y-m-d")){
 			$estado= "El favor está vencido";
 		}
 		elseif ($favor['activo'] == 1) {

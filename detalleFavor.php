@@ -57,6 +57,7 @@
           <h3>Categoria:<?php echo $arreglocategoria['nombre'] ?></h5>
           
           <?php 
+          if (!$_SESSION['admin']) {
             if ($_SESSION['id'] != $idUsuario)  {
               if(!$postulado){
           ?>
@@ -79,43 +80,49 @@
           <a onClick='if(confirm("¿Estas seguro que deseas borrar este favor?")) location.href ="borrarFavor.php?idFavor=<?php echo $idFavor; ?>";' class="btn btn-primary">Borrar</a>
           <?php
           }
+        }
           ?>
         </div>
       </div>
     </div>
-    <?php
-      if(($_SESSION['id']==$idUsuario) AND (is_null($favor['idUsuarioCumple']))){
-    ?>
-    <h1>Postulantes:</h1>
-    <?php
-      listarPostulantesParaFavor(conectar(),$idFavor);
-    }
-    elseif ((!is_null($favor['idUsuarioCumple'])) and $idUsuario==$_SESSION['id']){
-      $idCumplidor= $favor['idUsuarioCumple'];
-      $usuarioCumple = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idCumplidor");
-      $usuarioCumple = $usuarioCumple ->fetch_assoc();
-      ?>
+<?php
+      $hoy= date('Y-m-d');
+      if ($favor['fecha_vencimiento'] > $hoy) {
+        if(($_SESSION['id']==$idUsuario) AND (is_null($favor['idUsuarioCumple']))) {
+?>
+          <h1>Postulantes:</h1>
+<?php
+          listarPostulantesParaFavor(conectar(),$idFavor);
+        }
+        elseif ((!is_null($favor['idUsuarioCumple'])) and $idUsuario==$_SESSION['id']){
+          $idCumplidor= $favor['idUsuarioCumple'];
+          $usuarioCumple = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idCumplidor");
+          $usuarioCumple = $usuarioCumple ->fetch_assoc();
+?>
 
-      <h3 style="text-align: center;">Has elegido al usuario <a href="verPerfiles.php?idUser=<?php echo $usuarioCumple['idUsuario']?> "><?php echo $usuarioCumple['nombre']; ?></a> como gaucho 
-
-      <?php
-      if (is_null($favor['puntuacion'])){
-        ?>
-      
-      ► <a href="infoContacto.php?idUsuario=<?php echo $idCumplidor?>&idFavor=<?php echo $idFavor?>"> Ver info contacto</a>
-      <?php}  ?>
-      </h3>
-      <?php
-    }
+          <h3 style="text-align: center;">Has elegido al usuario <a href="verPerfiles.php?idUser=<?php echo $usuarioCumple['idUsuario']?> "><?php echo $usuarioCumple['nombre']; ?></a> como gaucho 
+<?php
+          if (is_null($favor['puntuacion'])){
+?>
+        
+            ► <a href="infoContacto.php?idUsuario=<?php echo $idCumplidor?>&idFavor=<?php echo $idFavor?>"> Ver info contacto</a>
+<?php 
+          }  
+        }
+      }
+  else{
+?>
+    <h3 style="text-align: center;"> ESTE FAVOR ESTA VENCIDO </h3>
+<?php
   }
-    ?>
+?>
       <br>
     <h1>Preguntas:</h1>
 
       <?php  
       include "mostrarpreguntas.php";
       mostrarPreguntas($idFavor);
-      if (($_SESSION['id'] != $idUsuario) and (is_null($favor['idUsuarioCumple'])))  {
+      if (($_SESSION['id'] != $idUsuario) and (is_null($favor['idUsuarioCumple'])) and (!$_SESSION['admin']))  {
     ?>
     <div class="container">
     <form class="form-horizontal" method="POST" action="hacerPregunta.php">
