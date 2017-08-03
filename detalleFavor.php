@@ -87,13 +87,20 @@
     </div>
 <?php
       $hoy= date('Y-m-d');
-      if ($favor['fecha_vencimiento'] > $hoy) {
         if(($_SESSION['id']==$idUsuario) AND (is_null($favor['idUsuarioCumple']))) {
+          if ($favor['fecha_vencimiento'] > $hoy) {
 ?>
           <h1>Postulantes:</h1>
 <?php
           listarPostulantesParaFavor(conectar(),$idFavor);
         }
+          else{
+?>
+    <h3 style="text-align: center;"> ESTE FAVOR ESTA VENCIDO </h3>
+<?php
+  }
+}
+
         elseif ((!is_null($favor['idUsuarioCumple'])) and $idUsuario==$_SESSION['id']){
           $idCumplidor= $favor['idUsuarioCumple'];
           $usuarioCumple = $conexion->query("SELECT * FROM usuarios WHERE idUsuario = $idCumplidor");
@@ -109,12 +116,6 @@
 <?php 
           }  
         }
-      }
-  else{
-?>
-    <h3 style="text-align: center;"> ESTE FAVOR ESTA VENCIDO </h3>
-<?php
-  }
 ?>
       <br>
     <h1>Preguntas:</h1>

@@ -26,7 +26,10 @@
 		}
 		
 		$descripcioncorta = substr($favor['descripcion'],0,170);
-		if ($favor['fecha_vencimiento'] <= date("Y-m-d")){
+		if (!(is_null($favor['puntuacion']))) {
+			$estado="Has elegido y puntuado a un gaucho";
+		}
+		elseif ($favor['fecha_vencimiento'] <= date("Y-m-d")){
 			$estado= "El favor está vencido";
 		}
 		elseif ($favor['activo'] == 1) {
@@ -35,11 +38,9 @@
 		elseif ($favor['completo']==0) {
 			$estado = "El favor ha sido borrado";
 		}
-			elseif(is_null($favor['puntuacion'])) {
-				$estado= "Ya has elegido a un gaucho";
-			}
-			else{$estado="Has elegido y puntuado a un gaucho";}
-	
+		elseif(is_null($favor['puntuacion'])) {
+			$estado= "Ya has elegido a un gaucho";
+		}
 ?>
 	<div class="container">
 					<div class="well cajaFavor row">

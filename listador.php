@@ -201,7 +201,7 @@ function listarRanking($conection){
 }
 
 function listarCategoriasTabla($conection){
-	$consulta2 = $conection->query("SELECT * FROM categoria WHERE activo = 0");
+	$consulta2 = $conection->query("SELECT * FROM categoria WHERE activo = 0 ORDER BY nombre");
 	if ($consulta2 != false) {
 		$categorias = $consulta2->fetch_assoc();
 	}
