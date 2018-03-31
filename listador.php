@@ -196,7 +196,6 @@ function listarRanking($conection){
 			$ranking=$ranking +1;
 		}
 	$usuario=$traer->fetch_assoc();
-	
 	}
 }
 
