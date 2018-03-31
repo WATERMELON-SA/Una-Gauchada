@@ -19,7 +19,11 @@ include "listador.php";
 			<?php if (isset($_GET['erroragregar'])) {?>
 				<h3>Se reactivo la categoría.</h3>
 			<?php
-			}?>
+			}
+			elseif (isset($_GET['agregarRepetido'])) {?>
+				<h3>Ya existe una categoria con este nombre.</h3>
+			<?php
+			}?>			
 				<h3>Agregar categoria:</h3>
 				<form action="agregarcategoria.php" method="GET">
 					<input type="text" name="categorianueva">

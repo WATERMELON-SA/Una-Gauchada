@@ -7,7 +7,10 @@
 	$yaexiste = false;
 	$redirect = '';
 	if ((isset($categorias)) AND ($categorias!=false)) {
-		$redirect = "panelcategorias.php?erroragregar=true";
+		if ($categorias['activo']!=0)
+			$redirect = "panelcategorias.php?erroragregar=true";
+		else
+			$redirect = "panelcategorias.php?agregarRepetido=true";
 		$reactivar = $conection->query("UPDATE categoria SET activo = 0 WHERE nombre = '$catnueva'");
 		$yaexiste = true;
 	}

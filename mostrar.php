@@ -1,9 +1,18 @@
 <?php
-	include "conexion.php";
-	function mostrarFavores($search,$order){
-		$mysql = conectar();
-		$format = 'ASC';
-		$inner='';
+	function mostrarFavores($search,$order,$localidad,$categoria,$mysql){
+		$and='';
+		$busqueda='';
+		$format='';
+		if ($categoria!=false) {
+			$and = $and . " AND idCategoria = $categoria";
+		}
+		if ($localidad!=false) {
+			$and = $and . " AND idLocalidad = $localidad";
+		}
+		if($search!=false){
+			$busqueda = " AND (descripcion LIKE '%$search%' OR
+			 titulo LIKE '%$search%')";
+		}
 		if (!$order) {
 			$order = 'idFavor';
 		}else{
@@ -14,33 +23,14 @@
 				$format = 'DESC';
 				$order='idFavor';
 			}
-			if ($order=='idCategoria') {
-				$inner="NATURAL JOIN categoria";
-				$order='categoria.nombre';
-			}
-			if ($order=='idLocalidad') {
-				$inner="NATURAL JOIN localidad";
-				$order='localidad.nombre';
-			}
 		}
-		if ($search) {
-			$fechacontrol = date('Y-m-d');
-			$traer = $mysql->query("SELECT * FROM favor $inner WHERE fecha_vencimiento > '$fechacontrol' AND activo = 1 AND (descripcion LIKE '%$search%' OR
-			 titulo LIKE '%$search%') ORDER BY $order $format");
-			if(isset($traer)){
-				$arreglo = $traer->fetch_assoc();
-			}
-		}else{
-			if (isset($mysql)){
-				$fechacontrol = date('Y-m-d');
-				$traer = $mysql->query("SELECT * FROM favor $inner WHERE fecha_vencimiento > '$fechacontrol' AND activo = 1 ORDER BY $order $format");
-				if(isset($traer)){
-					$arreglo = $traer->fetch_assoc();
-				}
-			}
+		$fechacontrol = date('Y-m-d');
+		$traer = $mysql->query("SELECT * FROM favor WHERE fecha_vencimiento > $fechacontrol AND activo = 1 $and $busqueda ORDER BY $order $format");
+		if(isset($traer)){
+			$arreglo = $traer->fetch_assoc();
 		}
-	//CHEQUEO QUE EXISTA FAVOR CON LA FRASE BUSCADA
-	if (($search) && (!isset($arreglo)))  {
+		//CHEQUEO QUE EXISTA FRASE BUSCADA
+		if (!isset($arreglo))  {
 	?>
 		
 
@@ -56,16 +46,15 @@
 		$idUsuario = $arreglo['idUsuario'];
 		$idLocalidad = $arreglo['idLocalidad'];
 		$idCategoria = $arreglo['idCategoria'];
-		$traernombre = $mysql->query("SELECT * FROM usuarios WHERE idUsuario = $idUsuario ");
+		
+		$traernombre = $mysql->query("SELECT nombre,email FROM usuarios WHERE idUsuario = $idUsuario ");
 		if (isset($traernombre)) {
 			$arreglonombre = $traernombre->fetch_assoc();
 		}
-
 		$traercategoria = $mysql->query("SELECT nombre FROM categoria WHERE idCategoria = $idCategoria ");
 		if (isset($traercategoria)) {
 			$arreglocategoria = $traercategoria->fetch_assoc();
 		}
-
 		$traerlocalidad = $mysql->query("SELECT nombre FROM localidad WHERE idLocalidad = $idLocalidad ");
 		if (isset($traerlocalidad)) {
 			$arreglolocalidad = $traerlocalidad->fetch_assoc();
@@ -74,7 +63,7 @@
 		$descripcioncorta = substr($arreglo['descripcion'],0,170);
 		?>
 			<div class="container">
-					<div class="well cajaFavor row" style="height: 110%;">
+					<div class="well cajaFavor row" style="height:110%;">
 						<?php
 							if (is_null($arreglo['contenidoimagen'])) {
 						?>
@@ -105,7 +94,7 @@
 												$href = "verPerfiles.php?idUser=$idUsuario;";
 											}
 								}else{
-									$href= "iniciarSesion.php?alert";
+									$href= "iniciarSesion.php";
 								}
 								?>
 								<a href="<?php echo $href; ?>">
@@ -119,5 +108,5 @@
 			$arreglo = $traer->fetch_assoc();
 		}
 	}
-}
-?>
+	}
+	?>
